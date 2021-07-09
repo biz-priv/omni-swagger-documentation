@@ -31,25 +31,25 @@
       s.setAttribute("src", host + "/try.js");
       document.body.appendChild(s);
 
-      let openapi = "openapi.json";
+      let openapi = "v1";
       let version = searchParams.get("version") ?? "v1.1";
       if (searchParams.has("version")) {
         switch (version) {
           case "v1.1":
-            openapi = "openapi.json";
+            openapi = "v1";
             break;
           case "v1.2":
-            openapi = "openapi2.json";
+            openapi = "v2";
             break;
           default:
-            openapi = "openapi.json";
+            openapi = "v1";
             break;
         }
       }
 
       (function initOpenApi() {
         try {
-          initTry(host + `/` + openapi);
+          initTry(host + `/` + openapi + "/openapi.json");
           loadme(version);
         } catch (error) {
           setTimeout(() => {
