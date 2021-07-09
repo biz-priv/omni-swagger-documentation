@@ -3,7 +3,7 @@
   "info": {
     "title": "Omni Dev Api's",
     "description": "Api Documentation",
-    "version": "v1.1",
+    "version": "v1.2",
     "x-logo": {
       "url": "https://www.bizcloudexperts.com/wp-content/uploads/2018/06/BZCLD_HORZ_4C_RGB-1-e1528347436794.jpg",
       "backgroundColor": "#FFFFFF",
@@ -811,14 +811,13 @@
       }
     },
     "securitySchemes": {
-      "ApiKeyAuth": {
+      "apiKey": {
         "description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.\n Rooxp9YQWT6o10WziF3D1as9PV4gozbm5hpiXpxI",
         "type": "apiKey",
         "name": "x-api-key",
-        "in": "header",
-        "default": "Rooxp9YQWT6o10WziF3D1as9PV4gozbm5hpiXpxI"
+        "in": "header"
       }
     }
   },
-  "security": [{ "ApiKeyAuth": [] }]
+  "security": [{ "apiKey": [] }]
 }
