@@ -1,0 +1,188 @@
+/* CSS reset */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+input {
+  border: 1px solid #b0b0b0;
+  padding: 3px 5px 4px;
+  color: #979797;
+  width: 190px;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+q:before,
+q:after {
+  content: "";
+}
+abbr,
+acronym {
+  border: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* main css */
+
+body .menu-content {
+  padding: 15px;
+  background: transparent;
+  border-right: 1px solid #eee;
+}
+body .menu-content .logiML {
+  margin-bottom: 20px;
+}
+body .api-content .hBHSsv {
+  padding: 15px 0px;
+}
+
+.menu-content label.active {
+  
+  color: #333;
+  background: #fff;
+}
+.menu-content label {
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+  background: #eee;
+  margin-bottom: 4px;
+}
+.menu-content label:hover {
+  background: #fff;
+  color: #333;
+}
+.menu-content .sc-qQYBZ.wIkUb {
+  margin-bottom: 15px;
+}
+
+.api-content .tryBtn {
+  background: #eee;
+  border: 0;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.api-content .bFAotz {
+  background: #006eb7;
+  color: #fff;
+  padding: 7px 20px;
+  bord
+  er-color: #006eb7;
+}
+.sc-fzpans.czQAZT {
+    margin: 10px 0;
+}
+.api-content .cjPMyC > ul {
+    margin-bottom: 15px;
+}
+.api-content .yvLAA {
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: unset;
+    display: block;
+}
+
+.api-content .UJVCK,.api-content  .dSJzNl {
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  background: #eee;
+  padding: 10px 25px;
+  font-size: 17px;
+  text-transform: uppercase;
+  color: #006fbb;
+  margin-bottom: 10px;
+}
+.api-content .form-select{
+  border: 1px solid #333;
+}
+.swagger-ui .dialog-ux .modal-ux-content .auth-container p {
+    line-height: 24px;
+}
+.auth-container {
+  text-align: center;
+}
+.sc-fzqyOu.iVoVLJ.-depth2 {
+  margin-left: 13px;
+  font-size: 15px;
+}
+.sc-AxmLO.sc-fzooss.cAGgca {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #006eb7;
+  text-decoration: underline;
+}
+.api-content  .btn.setAuth {
+  width: 100px;
+  text-align: center;
+  border: 1px solid;
+  padding: 5px;
+  cursor: pointer;
+  float: right;
+}
