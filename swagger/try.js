@@ -200,7 +200,8 @@ function _arrayLikeToArray(arr, len) {
       redoc_dom = _redocOptionsRes[2],
       redoc_callBack = _redocOptionsRes[3];
 
-    var redocVersion = (($('script[src*="/redoc@"]').attr("src") || "").match( // Read the redoc version number from the label
+    var redocVersion = (($('script[src*="/redoc@"]').attr("src") || "").match(
+      // Read the redoc version number from the label
       /redoc@(.+?)\//
     ) || [])[1];
 
@@ -421,7 +422,6 @@ function _arrayLikeToArray(arr, len) {
       }
 
       $opblock.addClass("open");
-      console.log("selStr", selStr);
       $(".swaggerBox").scrollTo($swaggerApiDom.parent());
 
       function changeFn() {
