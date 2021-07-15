@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('BizDev Deploy'){
+        stage('Devint Deploy'){
             when {
                 anyOf {
                     branch 'devint'
@@ -39,7 +39,7 @@ pipeline {
                 }
             }
         }
-        stage('Omni Deploy'){
+        stage('Dev and Prod Deploy'){
             when {
                 anyOf {
                     branch 'develop';
