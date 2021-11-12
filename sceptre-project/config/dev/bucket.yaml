@@ -1,0 +1,7 @@
+template_path: s3/bucket.yaml
+parameters:
+  Environment: {{ stack_group_config.Environment }}
+  BucketName: "omni-redoc-bucket"
+stack_tags:
+  Environment: {{ stack_group_config.Environment }}
+  Project: {{ stack_group_config.Project }}
