@@ -100,11 +100,6 @@
             "schema": {
               "type": "integer"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "application/json"
           }
         ],
         "responses": {
