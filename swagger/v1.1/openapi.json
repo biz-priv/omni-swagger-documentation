@@ -1,0 +1,1104 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Omni Dev Api's",
+    "description": "Api Documentation",
+    "version": "v1.1",
+    "x-logo": {
+      "url": "https://serverless-redoc.s3.amazonaws.com/logo.png",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Bizcloud logo"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://dev-api.omnilogistics.com/v1.1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Shipment"
+    },
+    {
+      "name": "Invoice & Bill",
+      "description": "Invoice & Bill"
+    }
+  ],
+  "paths": {
+    "/create/shipment": {
+      "post": {
+        "operationId": "create/shipment",
+        "summary": "Create Shipment",
+        "tags": ["Shipment"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/create/shipment\"\n\npayload = json.dumps({\n  \"oShipData\": {\n    \"Ready Date\": \"2021-05-31T06:47:00\",\n    \"Service Level\": \"PL\",\n    \"Close Time\": \"2021-05-31T17:00:00\",\n    \"Close Date\": \"2021-05-31T17:00:00\",\n    \"Shipper Name\": \"LLYN STRONG\",\n    \"Shipper Address 1\": \"119 NORTH MAIN STREET\",\n    \"Shipper Address 2\": \"417 Oakbend Blvd.\",\n    \"Shipper City\": \"GREENVILLE\",\n    \"Shipper State\": \"SC\",\n    \"Shipper Zip\": 29601,\n    \"Shipper Country\": \"US\",\n    \"Shipper Phone\": 8642335900,\n    \"Shipper Contact\": \"KATE\",\n    \"Shipper Email\": \"ash@yahoo.com\",\n    \"Consignee Name\": \"SOLIDSCAPE, INC.\",\n    \"Consignee Address 1\": \"316 DANIEL WEBSTER HIGHWAY\",\n    \"Consignee Address 2\": \"apt 345\",\n    \"Consignee City\": \"MERRIMACK\",\n    \"Consignee State\": \"NH\",\n    \"Consignee Zip\": 3054,\n    \"Consignee Country\": \"US\",\n    \"Consignee Phone\": \"603 429-9700\",\n    \"Consignee Contact\": \"Marilyn King\",\n    \"Consignee Email\": \"mking@solidscape.com\",\n    \"Special Instructions\": \"INSIDE PICKUP LIFTGATE REQURIED\",\n    \"Shipment Line List\": [\n      {\n        \"Description\": \"TestTestTestTest Test Test 12345678iubvsdbvojbvjbsovbsovosv\",\n        \"Weight\": \"5\",\n        \"Height\": \"4.0\",\n        \"Length\": \"2.0\",\n        \"Width\": \"3.0\",\n        \"Pieces\": \"4\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"in\",\n        \"PieceType\": \"CYL\",\n        \"Hazmat\": \"1\"\n      },\n      {\n        \"Description\": \"TestTestTestTest Test Test TestTest\",\n        \"Weight\": \"20\",\n        \"Height\": \"5\",\n        \"Length\": \"30\",\n        \"Width\": \"10\",\n        \"Pieces\": \"20\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"cm\",\n        \"PieceType\": \"SKD\",\n        \"Hazmat\": \"0\"\n      },\n      {\n        \"Description\": \"TestTest 4578 TestTestboubsovbosvbobdjobvoavbovebv\",\n        \"Weight\": \"20\",\n        \"Height\": \"5\",\n        \"Length\": \"30\",\n        \"Width\": \"10\",\n        \"Pieces\": \"20\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"cm\",\n        \"PieceType\": \"SKD\",\n        \"Hazmat\": \"0\"\n      }\n    ],\n    \"Reference List\": [\n      {\n        \"Reference No\": \"RMA 32768\"\n      }\n    ],\n    \"New Shipment Accessorials List\": [\n      {\n        \"Code\": \"PALL\"\n      },\n      {\n        \"Code\": \"SHRNK\"\n      },\n      {\n        \"Code\": \"WEEK\"\n      },\n      {\n        \"Code\": \"HOLPU\"\n      },\n      {\n        \"Code\": \"LIMPU\"\n      }\n    ]\n  }\n})\nheaders = {\n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request POST 'https://dev-api.omnilogistics.com/v1.1/create/shipment' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"oShipData\":{\n        \"Ready Date\": \"2021-05-31T06:47:00\",\n        \"Service Level\": \"PL\",\n        \"Close Time\": \"2021-05-31T17:00:00\",\n        \"Close Date\": \"2021-05-31T17:00:00\",\n        \"Shipper Name\": \"LLYN STRONG\",\n        \"Shipper Address 1\": \"119 NORTH MAIN STREET\",\n        \"Shipper Address 2\": \"417 Oakbend Blvd.\",\n        \"Shipper City\": \"GREENVILLE\",\n        \"Shipper State\": \"SC\",\n        \"Shipper Zip\": 29601,\n        \"Shipper Country\": \"US\",\n        \"Shipper Phone\": 8642335900,\n        \"Shipper Contact\": \"KATE\",\n        \"Shipper Email\": \"ash@yahoo.com\",\n        \"Consignee Name\": \"SOLIDSCAPE, INC.\",\n        \"Consignee Address 1\": \"316 DANIEL WEBSTER HIGHWAY\",\n        \"Consignee Address 2\": \"apt 345\",\n        \"Consignee City\": \"MERRIMACK\",\n        \"Consignee State\": \"NH\",\n        \"Consignee Zip\": 3054,\n        \"Consignee Country\": \"US\",\n        \"Consignee Phone\": \"603 429-9700\",\n        \"Consignee Contact\": \"Marilyn King\",\n        \"Consignee Email\": \"mking@solidscape.com\",\n        \"Special Instructions\": \"INSIDE PICKUP LIFTGATE REQURIED\",\n      \"Shipment Line List\":[\n         {\n            \"Description\":\"TestTestTestTest Test Test 12345678iubvsdbvojbvjbsovbsovosv\",\n            \"Weight\":\"5\",\n            \"Height\":\"4.0\",\n            \"Length\":\"2.0\",\n            \"Width\":\"3.0\",\n            \"Pieces\":\"4\",\n            \"WeightUOMV3\":\"lb\",\n            \"DimUOMV3\":\"in\",\n            \"PieceType\":\"CYL\",\n            \"Hazmat\":\"1\"\n         },\n         {\n            \"Description\":\"TestTestTestTest Test Test TestTest\",\n            \"Weight\":\"20\",\n            \"Height\":\"5\",\n            \"Length\":\"30\",\n            \"Width\":\"10\",\n            \"Pieces\":\"20\",\n            \"WeightUOMV3\":\"lb\",\n            \"DimUOMV3\":\"cm\",\n            \"PieceType\":\"SKD\",\n            \"Hazmat\":\"0\"\n         },\n         {\n            \"Description\":\"TestTest 4578 TestTestboubsovbosvbobdjobvoavbovebv\",\n            \"Weight\":\"20\",\n            \"Height\":\"5\",\n            \"Length\":\"30\",\n            \"Width\":\"10\",\n            \"Pieces\":\"20\",\n            \"WeightUOMV3\":\"lb\",\n            \"DimUOMV3\":\"cm\",\n            \"PieceType\":\"SKD\",\n            \"Hazmat\":\"0\"\n         }\n      ],\n      \"Reference List\":[\n         {\n            \"Reference No\":\"RMA 32768\"\n         }\n      ],\n      \"New Shipment Accessorials List\":[\n         {\n            \"Code\":\"PALL\"\n         },\n         {\n            \"Code\":\"SHRNK\"\n         },\n         {\n            \"Code\":\"WEEK\"\n         },\n         {\n            \"Code\":\"HOLPU\"\n         },\n         {\n            \"Code\":\"LIMPU\"\n         }\n      ]\n   }\n}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n  \"oShipData\": {\n    \"Ready Date\": \"2021-05-31T06:47:00\",\n    \"Service Level\": \"PL\",\n    \"Close Time\": \"2021-05-31T17:00:00\",\n    \"Close Date\": \"2021-05-31T17:00:00\",\n    \"Shipper Name\": \"LLYN STRONG\",\n    \"Shipper Address 1\": \"119 NORTH MAIN STREET\",\n    \"Shipper Address 2\": \"417 Oakbend Blvd.\",\n    \"Shipper City\": \"GREENVILLE\",\n    \"Shipper State\": \"SC\",\n    \"Shipper Zip\": 29601,\n    \"Shipper Country\": \"US\",\n    \"Shipper Phone\": 8642335900,\n    \"Shipper Contact\": \"KATE\",\n    \"Shipper Email\": \"ash@yahoo.com\",\n    \"Consignee Name\": \"SOLIDSCAPE, INC.\",\n    \"Consignee Address 1\": \"316 DANIEL WEBSTER HIGHWAY\",\n    \"Consignee Address 2\": \"apt 345\",\n    \"Consignee City\": \"MERRIMACK\",\n    \"Consignee State\": \"NH\",\n    \"Consignee Zip\": 3054,\n    \"Consignee Country\": \"US\",\n    \"Consignee Phone\": \"603 429-9700\",\n    \"Consignee Contact\": \"Marilyn King\",\n    \"Consignee Email\": \"mking@solidscape.com\",\n    \"Special Instructions\": \"INSIDE PICKUP LIFTGATE REQURIED\",\n    \"Shipment Line List\": [\n      {\n        \"Description\": \"TestTestTestTest Test Test 12345678iubvsdbvojbvjbsovbsovosv\",\n        \"Weight\": \"5\",\n        \"Height\": \"4.0\",\n        \"Length\": \"2.0\",\n        \"Width\": \"3.0\",\n        \"Pieces\": \"4\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"in\",\n        \"PieceType\": \"CYL\",\n        \"Hazmat\": \"1\"\n      },\n      {\n        \"Description\": \"TestTestTestTest Test Test TestTest\",\n        \"Weight\": \"20\",\n        \"Height\": \"5\",\n        \"Length\": \"30\",\n        \"Width\": \"10\",\n        \"Pieces\": \"20\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"cm\",\n        \"PieceType\": \"SKD\",\n        \"Hazmat\": \"0\"\n      },\n      {\n        \"Description\": \"TestTest 4578 TestTestboubsovbosvbobdjobvoavbovebv\",\n        \"Weight\": \"20\",\n        \"Height\": \"5\",\n        \"Length\": \"30\",\n        \"Width\": \"10\",\n        \"Pieces\": \"20\",\n        \"WeightUOMV3\": \"lb\",\n        \"DimUOMV3\": \"cm\",\n        \"PieceType\": \"SKD\",\n        \"Hazmat\": \"0\"\n      }\n    ],\n    \"Reference List\": [\n      {\n        \"Reference No\": \"RMA 32768\"\n      }\n    ],\n    \"New Shipment Accessorials List\": [\n      {\n        \"Code\": \"PALL\"\n      },\n      {\n        \"Code\": \"SHRNK\"\n      },\n      {\n        \"Code\": \"WEEK\"\n      },\n      {\n        \"Code\": \"HOLPU\"\n      },\n      {\n        \"Code\": \"LIMPU\"\n      }\n    ]\n  }\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/create/shipment\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/oShipData"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/oShipData"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/shipment/detail": {
+      "get": {
+        "operationId": "shipment/detail",
+        "summary": "Shipment Details",
+        "tags": ["Shipment"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/shipment/detail?file_nbr=3659394\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.1/shipment/detail?file_nbr=3659394' \\\n--header 'x-api-key: <X-API-KEY>'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/shipment/detail?file_nbr=3659394\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "house_bill_nbr",
+            "in": "query",
+            "description": "ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "file_nbr",
+            "in": "query",
+            "description": "ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/ShipmentDetails"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/shipment/info": {
+      "get": {
+        "operationId": "shipment/info",
+        "summary": "Shipment Info",
+        "tags": ["Shipment"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/shipment/info?house_bill_nbr=5865331\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.1/shipment/info?house_bill_nbr=5865331' \\\n--header 'x-api-key: <X-API-KEY>'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/shipment/info?house_bill_nbr=5865331\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "house_bill_nbr",
+            "in": "query",
+            "description": "ID ",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "file_nbr",
+            "in": "query",
+            "description": "ID ",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/ShipmentInfoDetails"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/rating": {
+      "post": {
+        "operationId": "rating",
+        "summary": "Rating",
+        "tags": ["Shipment"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/rating\"\n\npayload = json.dumps({\n  \"RatingInput\": {\n    \"OriginZip\": \"75067\",\n    \"DestinationZip\": \"79906\",\n    \"PickupTime\": \"2021-09-30T17:00:01\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 1,\n      \"CommodityLengthIN\": 2,\n      \"CommodityWidthIN\": 3,\n      \"CommodityHeightIN\": 123\n    }\n  ],\n  \"New Shipment Accessorials List\": [\n    {\n      \"Code\": \"PALL\"\n    }\n  ]\n})\nheaders = {\n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request POST 'https://dev-api.omnilogistics.com/v1.1/rating' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"RatingInput\": {\n        \"OriginZip\": \"75067\",\n        \"DestinationZip\": \"79906\",\n        \"PickupTime\": \"2021-09-30T17:00:01\"\n    },\n    \"CommodityInput\": [\n        {\n            \"CommodityPieces\": 2,\n            \"CommodityWeightLB\": 1,\n            \"CommodityLengthIN\": 2,\n            \"CommodityWidthIN\": 3,\n            \"CommodityHeightIN\": 123\n        }\n    ],\n    \"New Shipment Accessorials List\": [\n        {\n            \"Code\": \"PALL\"\n        }\n    ]\n}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n  \"RatingInput\": {\n    \"OriginZip\": \"75067\",\n    \"DestinationZip\": \"79906\",\n    \"PickupTime\": \"2021-09-30T17:00:01\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 1,\n      \"CommodityLengthIN\": 2,\n      \"CommodityWidthIN\": 3,\n      \"CommodityHeightIN\": 123\n    }\n  ],\n  \"New Shipment Accessorials List\": [\n    {\n      \"Code\": \"PALL\"\n    }\n  ]\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/rating\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ratingInput"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/RatingResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/invoice/detail": {
+      "get": {
+        "operationId": "invoice/detail",
+        "summary": "Invoice",
+        "tags": ["Invoice & Bill"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/invoice/detail?house_bill_nbr=5865228\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.1/invoice/detail?house_bill_nbr=5865228' \\\n--header 'x-api-key: <X-API-KEY>'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/invoice/detail?house_bill_nbr=5865228\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "house_bill_nbr",
+            "in": "query",
+            "description": "ID ",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "file_nbr",
+            "in": "query",
+            "description": "ID ",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/InvoiceDetails"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/billoflading?file_nbr={file_nbr}": {
+      "get": {
+        "operationId": "billoflading",
+        "summary": "Bill of Lading",
+        "tags": ["Invoice & Bill"],
+        "consumes": ["application/json"],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.1/billoflading?house_bill_nbr=5865232\"\n\npayload=\"<file contents here>\"\nheaders = {\n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'text/plain'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.1/billoflading?house_bill_nbr=5865232' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar file = \"<file contents here>\";\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  body: file,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.1/billoflading?house_bill_nbr=5865232\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_nbr",
+            "in": "path",
+            "description": "ID ",
+            "required": "true",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/Billoflading"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "User name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "description": "User Status",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "oShipData": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ShipQuoteNo": {
+                  "description": "ShipQuoteNo",
+                  "type": "string"
+                },
+                "Housebill": {
+                  "description": "Housebill",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InvalidRequest": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errorDescription": {
+                  "description": "Error msg",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Unauthorized",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AuthTokenMissing": {
+        "description": "Missing Authentication Token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Error msg",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipmentDetails": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "shipmentDetails": {
+                  "description": "Shipment Details",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubShipmentDetails"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubShipmentDetails": {
+        "type": "object",
+        "properties": {
+          "File Number": {
+            "description": "File Number",
+            "type": "string"
+          },
+          "File Date": {
+            "description": "File Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Handling Station": {
+            "description": "Handling Station",
+            "type": "string"
+          },
+          "Master Waybill": {
+            "description": "Master Waybill",
+            "type": "string"
+          },
+          "House Waybill": {
+            "description": "House Waybill",
+            "type": "string"
+          },
+          "Origin Port": {
+            "description": "Origin Port",
+            "type": "string"
+          },
+          "Destination Port": {
+            "description": "Destination Port",
+            "type": "string"
+          },
+          "Shipper Name": {
+            "description": "Shipper Name",
+            "type": "string"
+          },
+          "Consignee Name": {
+            "description": "Consignee Name",
+            "type": "string"
+          },
+          "Pieces": {
+            "description": "Pieces",
+            "type": "number"
+          },
+          "Actual Weight LBS": {
+            "description": "Actual Weight LBS",
+            "type": "number",
+            "format": "float"
+          },
+          "Actual Weight KGS": {
+            "description": "Actual Weight KGS",
+            "type": "number",
+            "format": "float"
+          },
+          "Chargeable Weight LBS": {
+            "description": "Chargeable Weight LBS",
+            "type": "number",
+            "format": "float"
+          },
+          "Chargeable Weight KGS": {
+            "description": "Chargeable Weight LBS",
+            "type": "number",
+            "format": "float"
+          },
+          "Pickup Date": {
+            "description": "PickupDate",
+            "type": "string",
+            "format": "date"
+          },
+          "Pod Date": {
+            "description": "Pod Date",
+            "type": "string",
+            "format": "date"
+          },
+          "ETA Date": {
+            "description": "ETA Date",
+            "type": "string",
+            "format": "date"
+          },
+          "ETD Date": {
+            "description": "ETD Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Scheduled Delivery Date": {
+            "description": "Scheduled Delivery Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Service Level Description": {
+            "description": "Service Level Description",
+            "type": "string"
+          },
+          "Service Level Code": {
+            "description": "Service Level Code",
+            "type": "string"
+          },
+          "Current Status": {
+            "description": "Current Status",
+            "type": "string"
+          },
+          "Current Status Desc": {
+            "description": "Current Status Desc",
+            "type": "string"
+          },
+          "Bill To Customer": {
+            "description": "Bill To Customer",
+            "type": "string"
+          },
+          "Control Customer": {
+            "description": "Bill To Customer",
+            "type": "string"
+          }
+        }
+      },
+      "ShipmentInfoDetails": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "shipmentInfo": {
+                  "description": "shipmentInfo",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubInfoDetails"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubInfoDetails": {
+        "type": "object",
+        "properties": {
+          "File Number": {
+            "description": "File Number",
+            "type": "string"
+          },
+          "File Date": {
+            "description": "File Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Handling Station": {
+            "description": "Handling Station",
+            "type": "string"
+          },
+          "Master Waybill": {
+            "description": "Master Waybill",
+            "type": "string"
+          },
+          "House Waybill": {
+            "description": "House Waybill",
+            "type": "string"
+          },
+          "Origin Port": {
+            "description": "Origin Port",
+            "type": "string"
+          },
+          "Destination Port": {
+            "description": "Destination Port",
+            "type": "string"
+          },
+          "Shipper Name": {
+            "description": "Shipper Name",
+            "type": "string"
+          },
+          "Consignee Name": {
+            "description": "Consignee Name",
+            "type": "string"
+          },
+          "Pod Date": {
+            "description": "Pod Date",
+            "type": "string",
+            "format": "date"
+          },
+          "ETA Date": {
+            "description": "ETA Date",
+            "type": "string",
+            "format": "date"
+          },
+          "ETD Date": {
+            "description": "ETD Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Scheduled Delivery Date": {
+            "description": "Scheduled Delivery Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Service Level Description": {
+            "description": "Service Level Description",
+            "type": "string"
+          },
+          "Service Level Code": {
+            "description": "Service Level Code",
+            "type": "string"
+          },
+          "Mode": {
+            "description": "Mode",
+            "type": "string"
+          },
+          "Current Status": {
+            "description": "Current Status",
+            "type": "string"
+          },
+          "Current Status Desc": {
+            "description": "Current Status Desc",
+            "type": "string"
+          },
+          "Bill To Customer": {
+            "description": "Bill To Customer",
+            "type": "string"
+          }
+        }
+      },
+      "InvoiceDetails": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "invoiceDetails": {
+                  "description": "invoice Object",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubInvoiceDetails"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubInvoiceDetails": {
+        "type": "object",
+        "properties": {
+          "File Number": {
+            "description": "File Number",
+            "type": "string"
+          },
+          "House Bill Number": {
+            "description": "House Bill Number",
+            "type": "string"
+          },
+          "Handling Station": {
+            "description": "Handling Station",
+            "type": "string"
+          },
+          "Invoice Number": {
+            "description": "Invoice Number",
+            "type": "string"
+          },
+          "Invoice Seq Number": {
+            "description": "Invoice Seq Number",
+            "type": "integer"
+          },
+          "Bill To Customer": {
+            "description": "Bill To Customer",
+            "type": "string"
+          },
+          "Controlling Customer": {
+            "description": "Controlling Customer",
+            "type": "string"
+          },
+          "Invoice Date": {
+            "description": "Invoice Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Due Date": {
+            "description": "Due Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Charges": {
+            "description": "Charges",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Charge Code Desc": {
+                  "description": "Charge Code Desc",
+                  "type": "string"
+                },
+                "Total": {
+                  "description": "Total",
+                  "type": "number",
+                  "format": "float"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RatingResponse": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RatingOutputArray"
+              }
+            }
+          }
+        }
+      },
+      "RatingOutputArray": {
+        "type": "object",
+        "properties": {
+          "ServiceLevelID": {
+            "description": "ServiceLevelID",
+            "type": "string"
+          },
+          "StandardFreightCharge": {
+            "description": "StandardFreightCharge",
+            "type": "string"
+          },
+          "StandardTotalRate": {
+            "description": "StandardTotalRate",
+            "type": "string"
+          },
+          "Message": {
+            "description": "Message",
+            "type": "string"
+          },
+          "AccessorialOutput": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessorialOutput"
+            }
+          }
+        }
+      },
+      "AccessorialOutput": {
+        "type": "object",
+        "properties": {
+          "AccessorialCode": {
+            "description": "AccessorialCode",
+            "type": "string"
+          },
+          "AccessorialDesc": {
+            "description": "AccessorialDesc",
+            "type": "string"
+          },
+          "AccessorialCharge": {
+            "description": "AccessorialCharge",
+            "type": "number"
+          }
+        }
+      },
+      "Billoflading": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hawb": {
+                  "description": "Billoflading Object",
+                  "type": "object",
+                  "properties": {
+                    "File Number": {
+                      "description": "File Number",
+                      "type": "string"
+                    },
+                    "b64str": {
+                      "description": "b64str",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "oShipData": {
+        "description": "Request Body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "oShipData": {
+                  "$ref": "#/components/requestBodies/SuboShipData"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SuboShipData": {
+        "type": "object",
+        "properties": {
+          "Ready Date": {
+            "description": "Ready Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Service Level": {
+            "description": "Service Level",
+            "type": "string"
+          },
+          "Close Time": {
+            "description": "Close Time",
+            "type": "string",
+            "format": "date"
+          },
+          "Close Date": {
+            "description": "Close Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Shipper Name": {
+            "description": "Shipper Name",
+            "type": "string"
+          },
+          "Shipper Address 1": {
+            "description": "Shipper Address 1",
+            "type": "string"
+          },
+          "Shipper Address 2": {
+            "description": "Shipper Address 2",
+            "type": "string"
+          },
+          "Shipper City": {
+            "description": "Shipper City",
+            "type": "string"
+          },
+          "Shipper State": {
+            "description": "Shipper State",
+            "type": "string"
+          },
+          "Shipper Zip": {
+            "description": "Shipper Zip",
+            "type": "integer"
+          },
+          "Shipper Country": {
+            "description": "Shipper Country",
+            "type": "string"
+          },
+          "Shipper Phone": {
+            "description": "Shipper Phone",
+            "type": "integer"
+          },
+          "Shipper Contact": {
+            "description": "Shipper Contact",
+            "type": "string"
+          },
+          "Shipper Email": {
+            "description": "Shipper Email",
+            "type": "string",
+            "format": "email"
+          },
+          "Consignee Name": {
+            "description": "Consignee Name",
+            "type": "string"
+          },
+          "Consignee Address 1": {
+            "description": "Consignee Address 1",
+            "type": "string"
+          },
+          "Consignee Address 2": {
+            "description": "Consignee Address 2",
+            "type": "string"
+          },
+          "Consignee City": {
+            "description": "Consignee City",
+            "type": "string"
+          },
+          "Consignee State": {
+            "description": "Consignee State",
+            "type": "string"
+          },
+          "Consignee Zip": {
+            "description": "Consignee Zip",
+            "type": "integer"
+          },
+          "Consignee Country": {
+            "description": "Consignee Country",
+            "type": "string"
+          },
+          "Consignee Phone": {
+            "description": "Consignee Phone",
+            "type": "integer"
+          },
+          "Consignee Contact": {
+            "description": "Consignee Contact",
+            "type": "string"
+          },
+          "Consignee Email": {
+            "description": "Consignee Email",
+            "type": "string",
+            "format": "email"
+          },
+          "Special Instructions": {
+            "description": "Special Instructions",
+            "type": "string"
+          },
+          "Shipment Line List": {
+            "description": "Shipment Line List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/requestBodies/ShipmentLineList"
+            }
+          },
+          "Reference List": {
+            "description": "Reference List",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Reference No": {
+                  "description": "Reference No",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "New Shipment Accessorials List": {
+            "description": "New Shipment Accessorials List",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Code": {
+                  "description": "Code",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipmentLineList": {
+        "type": "object",
+        "properties": {
+          "Description": {
+            "description": "Description",
+            "type": "string"
+          },
+          "Weight": {
+            "description": "Weight",
+            "type": "number",
+            "format": "float"
+          },
+          "Height": {
+            "description": "Height",
+            "type": "number",
+            "format": "float"
+          },
+          "Length": {
+            "description": "Length",
+            "type": "number",
+            "format": "float"
+          },
+          "Width": {
+            "description": "Width",
+            "type": "number",
+            "format": "float"
+          },
+          "Pieces": {
+            "description": "Pieces",
+            "type": "integer"
+          },
+          "WeightUOMV3": {
+            "description": "WeightUOMV3",
+            "type": "string"
+          },
+          "DimUOMV3": {
+            "description": "DimUOMV3",
+            "type": "string"
+          },
+          "PieceType": {
+            "description": "PieceType",
+            "type": "string"
+          },
+          "Hazmat": {
+            "description": "Hazmat",
+            "type": "string"
+          }
+        }
+      },
+      "ratingInput": {
+        "description": "Request Body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "RatingInput": {
+                  "$ref": "#/components/requestBodies/SubRatingList"
+                },
+                "CommodityInput": {
+                  "$ref": "#/components/requestBodies/SubCommodityObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubRatingList": {
+        "type": "object",
+        "properties": {
+          "OriginZip": {
+            "description": "Origin Zip",
+            "type": "string"
+          },
+          "DestinationZip": {
+            "description": "Destination Zip",
+            "type": "string"
+          },
+          "PickupTime": {
+            "description": "Pick Up Time",
+            "type": "string"
+          }
+        }
+      },
+      "SubCommodityObject": {
+        "type": "object",
+        "properties": {
+          "CommodityInput": {
+            "$ref": "#/components/requestBodies/SubCommodityInput"
+          }
+        }
+      },
+      "SubCommodityInput": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "CommodityPieces": {
+              "description": "Commodity Pieces",
+              "type": "number"
+            },
+            "CommodityWeightLB": {
+              "description": "Commodity Weight LB",
+              "type": "number"
+            },
+            "CommodityLengthIN": {
+              "description": "Commodity Weight LB",
+              "type": "number"
+            },
+            "CommodityWidthIN": {
+              "description": "Commodity WidthIN",
+              "type": "number"
+            },
+            "CommodityHeightIN": {
+              "description": "Commodity HeightIN",
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.",
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}

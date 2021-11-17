@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ReDoc</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="redoc-container"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.48/bundles/redoc.standalone.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      let searchParams = new URLSearchParams(window.location.search);
+      let host = window.location.protocol + "//" + window.location.host;
+
+      let s = document.createElement("script");
+      s.setAttribute("src", host + "/try.js");
+      document.body.appendChild(s);
+
+      let openapi = "v1";
+      let version = (openapi = searchParams.get("version") ?? "v1");
+
+      (function initOpenApi() {
+        try {
+          initTry(host + `/` + openapi + "/openapi.json");
+          loadme(version);
+        } catch (error) {
+          setTimeout(() => {
+            initOpenApi();
+          }, 1000);
+        }
+      })();
+    </script>
+
+    <script>
+      function loadme(version) {
+        let selectInsert = $("div.sc-AxhCb.iWvlZG.api-info");
+        if (selectInsert.length == 0) {
+          setTimeout(() => {
+            loadme(version);
+          }, 1000);
+        } else {
+          selectInsert.append(`
+            <div style="margin-top:10px">
+              <label style="float: left;margin-right:10px"> Select version</label>
+              <select
+                style="float: left; width: 80px"
+                name="apiV"
+                id="apiV"
+                class="form-select form-select-sm"
+                aria-label=".form-select-sm example"
+              >
+              <option value="v1">v1</option>
+                <option value="v1.1">v1.1</option>
+                <option value="v1.3">v1.3</option>
+              </select>
+            </div>
+          `);
+          $("#apiV").val(version).change();
+        }
+      }
+      $(document).on("change", "#apiV", function () {
+        window.location.href =
+          window.location.origin +
+          window.location.pathname +
+          "?version=" +
+          $(this).val();
+      });
+    </script>
+    <script>
+      $(document).on("click", ".auth.authorize.button", function () {
+        console.log("ok tested");
+
+        const $swaggerBox = $(".swaggerBox");
+        const $modal = $(".swagger-ui .dialog-ux .modal-ux");
+        const input = $(".auth-container input:text").val();
+
+        if (input.length > 0) {
+          setTimeout(() => {
+            $(".swagger-ui .auth-btn-wrapper .btn-done").click();
+            showMsg("success", "Successfull", "API Key attached");
+          }, 1000);
+          // const data = { username: "example" };
+          // $(
+          //   ".swagger-ui .auth-btn-wrapper .btn-done, .swagger-ui .dialog-ux .modal-ux-header .close-modal"
+          // ).click(function () {
+          //   $swaggerBox.addClass("hide").css({
+          //     visibility: "",
+          //   });
+          //   $modal.css({
+          //     visibility: "",
+          //   });
+          // });
+
+          // fetch(
+          //   "https://dev-api.omnilogistics.com/" +
+          //     version +
+          //     "/shipment/info?house_bill_nbr=5865228",
+          //   {
+          //     method: "GET",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //       "x-api-key": input,
+          //     },
+          //   }
+          // )
+          //   .then(async (response) => {
+          //     return {
+          //       status: response.status,
+          //       response: await response.json(),
+          //     };
+          //   })
+          //   .then((data) => {
+          //     // console.log("Success:", data);
+          //     if (
+          //       data.status == 401 ||
+          //       (data.status == 400 &&
+          //         data.response.hasOwnProperty("errorDescription") &&
+          //         data.response.errorDescription == "Invalid API Key")
+          //     ) {
+          //       $(".auth").click();
+          //       showMsg("error", "Error", "Invalid API Key");
+          //       modalShow();
+          //     } else {
+          //       modalHide();
+          //       showMsg("success", "Successfull", "API Key verified");
+          //     }
+          //   })
+          //   .catch((error) => {
+          //     console.error("Error:", error);
+          //     $(".auth").click();
+          //     showMsg("error", "Error", "Api key is not valid");
+          //     modalShow();
+          //   });
+        }
+      });
+
+      function modalShow() {
+        console.log("modal show");
+        $(".swaggerBox").removeClass("hide").css({
+          visibility: "hidden",
+          height: "",
+          left: "",
+          top: "",
+          width: "",
+        });
+        $(".swagger-ui .auth-wrapper .authorize.unlocked").click();
+        $(".swagger-ui .dialog-ux .modal-ux").css({
+          visibility: "visible",
+        });
+      }
+      function modalHide() {
+        $(".swaggerBox").addClass("hide").css({
+          visibility: "",
+        });
+        $(".swagger-ui .dialog-ux .modal-ux").css({
+          visibility: "",
+        });
+      }
+      function showMsg(type = "error", title, msg) {
+        Swal.fire({
+          icon: type,
+          title: title,
+          text: msg,
+        });
+      }
+    </script>
+  </body>
+</html>
