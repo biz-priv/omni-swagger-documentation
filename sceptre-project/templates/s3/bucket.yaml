@@ -10,6 +10,9 @@ Parameters:
     Description: Not mandatory. If not provided, default AES256 encryption will be used
   BucketName:
     Type: String
+  IndexDocument:
+    Type: String
+    Default: "index.html"
 Conditions:
   HasKmsId: !Not [!Equals [!Ref KmsId, ""]]
 Resources:
@@ -29,8 +32,26 @@ Resources:
       BucketName: !Join ["-", [!Ref BucketName, !Ref Environment]]
       VersioningConfiguration:
         Status: "Enabled"
+      WebsiteConfiguration:
+        IndexDocument: !Ref IndexDocument
+  
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Principal: "*"
+            Resource: !Join ['', [!GetAtt Bucket.Arn, '/*']]
+
 Outputs:
   Name:
     Value: !Ref Bucket
   Arn:
     Value: !GetAtt Bucket.Arn
+  Url: 
+    Value: !GetAtt Bucket.WebsiteURL

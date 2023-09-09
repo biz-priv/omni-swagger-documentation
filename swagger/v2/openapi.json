@@ -3,7 +3,7 @@
 	"info": {
 		"title": "Omni Dev Api's",
 		"description": "Api Documentation",
-		"version": "v1.3",
+		"version": "v2",
 		"x-logo": {
 			"url": "https://serverless-redoc.s3.amazonaws.com/logo.png",
 			"backgroundColor": "#FFFFFF",
@@ -12,7 +12,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://dev-api.omnilogistics.com/v1.3"
+			"url": "https://dev-api.omnilogistics.com/v2"
 		}
 	],
 	"tags": [
