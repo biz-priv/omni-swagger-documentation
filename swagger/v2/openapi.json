@@ -24,7 +24,7 @@
 		"/shipment/addmilestone": {
 			"post": {
 				"operationId": "shipment/addmilestone",
-				"summary": "Shipment add milestone",
+				"summary": "add milestone",
 				"tags": ["Shipment"],
 				"consumes": ["application/json"],
 				"x-codeSamples": [
@@ -42,11 +42,11 @@
 					}
 				],
 				"requestBody": {
-					"$ref": "#/components/requestBodies/ratingInput"
+					"$ref": "#/components/requestBodies/addMilestone"
 				},
 				"responses": {
 					"200": {
-						"$ref": "#/components/schemas/RatingResponse"
+						"$ref": "#/components/schemas/AddMilestoneResponse"
 					},
 					"400": {
 						"$ref": "#/components/schemas/InvalidRequest"
@@ -112,20 +112,18 @@
 				}
 			},
 			"AddMilestoneResponse": {
-				"description": "Missing Authentication Token",
+				"description": "Success Response",
 				"content": {
 					"application/json": {
 						"schema": {
 							"type": "object",
 							"properties": {
 								"addMilestoneResponse": {
-									"schema": {
-										"type": "object",
-										"properties": {
-											"message": {
-												"description": "Message",
-												"type": "string"
-											}
+									"type": "object",
+									"properties": {
+										"message": {
+											"description": "Message",
+											"type": "string"
 										}
 									}
 								}
@@ -163,9 +161,10 @@
 						"type": "string"
 					},
 					"eventTime": {
-						"description": "Ready Date",
+						"description": "eventTime",
 						"type": "string",
-						"format": "date"
+						"format": "datetime",
+						"optional": true
 					}
 				}
 			}
