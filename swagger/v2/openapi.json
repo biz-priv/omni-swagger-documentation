@@ -166,6 +166,11 @@
 						"format": "datetime",
 						"optional": true
 					}
+				},
+				"example": {
+					"housebill": "85673791233",
+					"statusCode": "CAN",
+        			"eventTime": "2023-07-13T23:15:00-05:00"
 				}
 			}
 		},
