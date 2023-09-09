@@ -5,7 +5,7 @@
     "description": "Api Documentation",
     "version": "v1.3",
     "x-logo": {
-      "url": "https://serverless-redoc.s3.amazonaws.com/logo.png",
+      "url": "https://omni-redoc-bucket-dev.s3.amazonaws.com/logo.png",
       "backgroundColor": "#FFFFFF",
       "altText": "Bizcloud logo"
     }
