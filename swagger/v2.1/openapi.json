@@ -1,0 +1,207 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Omni Dev Api's",
+        "description": "Api Documentation",
+        "version": "v2.1",
+        "x-logo": {
+            "url": "https://omni-redoc-bucket-dev.s3.amazonaws.com/logo.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Bizcloud logo"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://dev-api.omnilogistics.com/v2.1"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Shipment"
+        }
+    ],
+    "paths": {
+        "/shipment/addmilestone": {
+            "post": {
+                "operationId": "shipment/addmilestone",
+                "summary": "Add Milestone",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n  import json\n\n url = \"https://api.omnilogistics.com/v2.1/shipment/addmilestone\"\n\n  payload = json.dumps({\n     \"addMilestoneRequest\": {\n   \"housebill\": \"5742880\",\n   \"statusCode\": \"LOC\",    \"eventTime\": \"2023-09-11T05:00:00-0400\",\n  \"latitude\": 35.89722,\n   \"longitude\": 84.18\n  }\n   })\n  headers = {\n   'Content-Type': 'application/json',\n 'x-api-key': 'VluXslPllK8X7eBwd1i84atbuxhgz94S9VPdfGBH'\n     }\n\n   response = requests.request(\"POST\", url, headers=headers, data=payload)\n\n   print(response.text)\n  "
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://api.omnilogistics.com/v2.1/shipment/addmilestone' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: VluXslPllK8X7eBwd1i84atbuxhgz94S9VPdfGBH' \\\n--data '{\n \"addMilestoneRequest\": {\n    \"housebill\": \"5742880\",\n   \"statusCode\": \"LOC\",\n  \"eventTime\": \"2023-09-11T05:00:00-0400\",\n  \"latitude\": 35.89722,\n   \"longitude\": 84.18 \n }\n }'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\n  let data = JSON.stringify({\n   \"addMilestoneRequest\": {\n  \"housebill\": \"5742880\",\n   \"statusCode\": \"LOC\",\n  \"eventTime\": \"2023-09-11T05:00:00-0400\",\n  \"latitude\": 35.89722,\n   \"longitude\": 84.18\n  }\n   });\n\n let config = {\n    method: 'post',\n maxBodyLength: Infinity,\n    url: 'https://api.omnilogistics.com/v2.1/shipment/addmilestone',\n    headers: { \n 'Content-Type': 'application/json', \n  'x-api-key': 'VluXslPllK8X7eBwd1i84atbuxhgz94S9VPdfGBH'\n   },\n  data : data\n };\n\n  axios.request(config)\n .then((response) => {\n console.log(JSON.stringify(response.data));\n   })\n.catch((error) => {\n    console.log(error);\n });\n   "
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/addMilestone"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/AddMilestoneResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "InvalidRequest": {
+                "description": "Invalid request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "errorDescription": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Unauthorized": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthorized",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AuthTokenMissing": {
+                "description": "Missing Authentication Token",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AddMilestoneResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "addMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/addMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "addMilestoneProperties": {
+                "type": "object",
+                "properties": {
+                    "housebill": {
+                        "description": "House bill number",
+                        "type": "string"
+                    },
+                    "statusCode": {
+                        "description": "Status code eg. 'CAN'",
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "description": "eventTime",
+                        "type": "string",
+                        "format": "datetime",
+                        "optional": true
+                    },
+                    "latitude": {
+                        "description": "latitude",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "longitude": {
+                        "description": "longitude",
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "example": {
+                    "housebill": "5742880",
+                    "statusCode": "LOC",
+                    "eventTime": "2023-09-11T05:00:00-0400",
+                    "latitude": 35.89722,
+                    "longitude": 84.18
+                }
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.",
+                "type": "apiKey",
+                "name": "x-api-key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ]
+}
