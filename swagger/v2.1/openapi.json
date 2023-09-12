@@ -12,7 +12,7 @@
     },
     "servers": [
         {
-            "url": "https://dev-api.omnilogistics.com/v2.1"
+            "url": "https://dev-api.omnilogistics.com"
         }
     ],
     "tags": [
@@ -21,9 +21,9 @@
         }
     ],
     "paths": {
-        "/shipment/addmilestone": {
+        "/v2.1/shipment/addmilestone": {
             "post": {
-                "operationId": "/shipment/addmilestone",
+                "operationId": "/v2.1/shipment/addmilestone",
                 "summary": "Add Milestone",
                 "tags": [
                     "Shipment"
@@ -34,7 +34,7 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests    \n  import json \n\n    url = \"https://dev-api.omnilogistics.com/v2.1/shipment/addmilestone\"  \n  payload = json.dumps({  \n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\", \n    \"statusCode\": \"DEL\",  \n    \"eventTime\": \"2023-07-13T23:15:00-05:00\",\n    \"signatory\": \"some guy\"\n  }   \n  })\nheaders = { \n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'application/json'   \n} \n\n    response = requests.request(\"POST\", url, headers=headers, data=payload)   \n\n    print(response.text)\n"
+                        "source": "import requests    \nimport json \n\n    url = \"https://dev-api.omnilogistics.com/v2.1/shipment/addmilestone\"  \n  payload = json.dumps({  \n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\", \n    \"statusCode\": \"DEL\",  \n    \"eventTime\": \"2023-07-13T23:15:00-05:00\",\n    \"signatory\": \"some guy\"\n  }   \n  })\nheaders = { \n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'application/json'   \n} \n\n    response = requests.request(\"POST\", url, headers=headers, data=payload)   \n\n    print(response.text)\n"
                     },
                     {
                         "lang": "Curl",
