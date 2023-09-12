@@ -12,7 +12,7 @@
     },
     "servers": [
         {
-            "url": "https://dev-api.omnilogistics.com"
+            "url": "https://dev-api.omnilogistics.com/v2.1"
         }
     ],
     "tags": [
@@ -21,9 +21,9 @@
         }
     ],
     "paths": {
-        "/v2.1/shipment/addmilestone": {
+        "/shipment/addmilestone": {
             "post": {
-                "operationId": "/v2.1/shipment/addmilestone",
+                "operationId": "/shipment/addmilestone",
                 "summary": "Add Milestone",
                 "tags": [
                     "Shipment"
