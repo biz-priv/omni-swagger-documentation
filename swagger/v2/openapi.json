@@ -1,191 +1,301 @@
 {
-	"openapi": "3.0.0",
-	"info": {
-		"title": "Omni Dev Api's",
-		"description": "Api Documentation",
-		"version": "v2",
-		"x-logo": {
-			"url": "https://omni-redoc-bucket-dev.s3.amazonaws.com/logo.png",
-			"backgroundColor": "#FFFFFF",
-			"altText": "Bizcloud logo"
-		}
-	},
-	"servers": [
-		{
-			"url": "https://dev-api.omnilogistics.com/v2"
-		}
-	],
-	"tags": [
-		{
-			"name": "Shipment"
-		}
-	],
-	"paths": {
-		"/shipment/addmilestone": {
-			"post": {
-				"operationId": "shipment/addmilestone",
-				"summary": "Add Milestone",
-				"tags": ["Shipment"],
-				"consumes": ["application/json"],
-				"x-codeSamples": [
-					{
-						"lang": "Python",
-						"source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/addmilestone\"\n\npayload = json.dumps({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\",\n    \"statusCode\": \"CAN\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n})\nheaders = {\n  'x-api-key': 'Fnh0D3mQsT9go5rQBzPPu1Rw9cejwcud33qpbJKQ',\n  'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)"
-					},
-					{
-						"lang": "Curl",
-						"source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone' --header 'x-api-key: <X-API-KEY>' --header 'Content-Type: application/json' --data '{\"addMilestoneRequest\":{\"housebill\":\"85673791233\",\"statusCode\":\"CAN\",\"eventTime\":\"2023-07-13T23:15:00-05:00\"}}'"
-					},
-					{
-						"lang": "JavaScript",
-						"source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\",\n    \"statusCode\": \"CAN\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone',\n  headers: { \n    'x-api-key': '<X-API-KEY>', \n    'Content-Type': 'application/json'\n  },\n  data: data\n};\n\naxios.request(config)\n  .then((response) => {\n    console.log(JSON.stringify(response.data));\n  })\n  .catch((error) => {\n    console.log(error);\n  });"
-					}
-				],
-				"requestBody": {
-					"$ref": "#/components/requestBodies/addMilestone"
-				},
-				"responses": {
-					"200": {
-						"$ref": "#/components/schemas/AddMilestoneResponse"
-					},
-					"400": {
-						"$ref": "#/components/schemas/InvalidRequest"
-					},
-					"401": {
-						"$ref": "#/components/schemas/Unauthorized"
-					},
-					"403": {
-						"$ref": "#/components/schemas/AuthTokenMissing"
-					}
-				}
-			}
-		}
-	},
-	"components": {
-		"schemas": {
-			"InvalidRequest": {
-				"description": "Invalid request",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"properties": {
-								"errorDescription": {
-									"description": "Error msg",
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"Unauthorized": {
-				"description": "Unauthorized",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"properties": {
-								"message": {
-									"description": "Unauthorized",
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"AuthTokenMissing": {
-				"description": "Missing Authentication Token",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"properties": {
-								"message": {
-									"description": "Error msg",
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"AddMilestoneResponse": {
-				"description": "Success Response",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"properties": {
-								"addMilestoneResponse": {
-									"type": "object",
-									"properties": {
-										"message": {
-											"description": "Message",
-											"type": "string"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"requestBodies": {
-			"addMilestone": {
-				"description": "Request Body",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"properties": {
-								"addMilestoneRequest": {
-									"$ref": "#/components/requestBodies/addMilestoneProperties"
-								}
-							}
-						}
-					}
-				}
-			},
-			"addMilestoneProperties": {
-				"type": "object",
-				"properties": {
-					"housebill": {
-						"description": "House bill number",
-						"type": "string"
-					},
-					"statusCode": {
-						"description": "Status code eg. 'CAN'",
-						"type": "string"
-					},
-					"eventTime": {
-						"description": "eventTime",
-						"type": "string",
-						"format": "datetime",
-						"optional": true
-					}
-				},
-				"example": {
-					"housebill": "85673791233",
-					"statusCode": "CAN",
-        			"eventTime": "2023-07-13T23:15:00-05:00"
-				}
-			}
-		},
-		"securitySchemes": {
-			"ApiKeyAuth": {
-				"description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.",
-				"type": "apiKey",
-				"name": "x-api-key",
-				"in": "header"
-			}
-		}
-	},
-	"security": [
-		{
-			"ApiKeyAuth": []
-		}
-	]
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Omni Dev Api's",
+        "description": "Api Documentation",
+        "version": "v2",
+        "x-logo": {
+            "url": "https://omni-redoc-bucket-dev.s3.amazonaws.com/logo.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Bizcloud logo"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://dev-api.omnilogistics.com"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Shipment"
+        },
+        {
+            "name": "ivia"
+        }
+    ],
+    "paths": {
+        "/v2/shipment/addmilestone": {
+            "post": {
+                "operationId": "/v2/shipment/addmilestone",
+                "summary": "Add Milestone",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/addmilestone\"\n\npayload = json.dumps({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\",\n    \"statusCode\": \"CAN\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n})\nheaders = {\n  'x-api-key': '<X-API-KEY>',\n  'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone' --header 'x-api-key: <X-API-KEY>' --header 'Content-Type: application/json' --data '{\"addMilestoneRequest\":{\"housebill\":\"85673791233\",\"statusCode\":\"CAN\",\"eventTime\":\"2023-07-13T23:15:00-05:00\"}}'"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\",\n    \"statusCode\": \"CAN\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone',\n  headers: { \n    'x-api-key': '<X-API-KEY>', \n    'Content-Type': 'application/json'\n  },\n  data: data\n};\n\naxios.request(config)\n  .then((response) => {\n    console.log(JSON.stringify(response.data));\n  })\n  .catch((error) => {\n    console.log(error);\n  });"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/addMilestone"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/AddMilestoneResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/ivia/v2/shipment/addmilestone": {
+            "post": {
+                "operationId": "/ivia/v2/shipment/addmilestone",
+                "summary": "Add Milestone",
+                "tags": [
+                    "ivia"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source":"import requests\n  import json\n\n url = \"https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone\"\n\n      payload = json.dumps({\n \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n    \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n }\n   })\n    headers {\n   'Content-Type': 'application/json',\n 'x-api-key': 'aFTy56NGER5MXnxVooKTs6LSEZmevlsqhyEbRFqd'\n }\n\n   response = requests.request(\"POST\", url, headers=headers, data=payload)\n\n print(response.text)\n  "
+                    },
+                    {
+                        "lang": "Curl",
+                        "source":"curl --location 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone' \\\n --header 'Content-Type: application/json' \\\n --header 'x-api-key: aFTy56NGER5MXnxVooKTs6LSEZmevlsqhyEbRFqd' \\\n  --data '{\n  \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n  \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n     }\n     }'\n "
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source":"const axios = require('axios');\n let data = JSON.stringify({\n \"addMilestoneRequest\": {\n \"houseBill\": \"8424015\",\n     \"statusCode\": \"TTC\",\n     \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n   }\n });\n\n let config = {\n   method: 'post',\n   maxBodyLength: Infinity,\n   url: 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone',\n   headers: { \n     'Content-Type': 'application/json', \n     'x-api-key': 'aFTy56NGER5MXnxVooKTs6LSEZmevlsqhyEbRFqd'\n   },\n   data : data\n };\n\n axios.request(config)\n .then((response) => {\n   console.log(JSON.stringify(response.data));\n })\n .catch((error) => {\n   console.log(error);\n });\n "
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/iviaaddMilestone"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/iviaAddMilestoneResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "InvalidRequest": {
+                "description": "Invalid request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "errorDescription": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Unauthorized": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthorized",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AuthTokenMissing": {
+                "description": "Missing Authentication Token",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AddMilestoneResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "iviaAddMilestoneResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "addMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/addMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "iviaaddMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/iviaaddMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "addMilestoneProperties": {
+                "type": "object",
+                "properties": {
+                    "housebill": {
+                        "description": "House bill number",
+                        "type": "string"
+                    },
+                    "statusCode": {
+                        "description": "Status code eg. 'CAN'",
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "description": "eventTime",
+                        "type": "string",
+                        "format": "datetime",
+                        "optional": true
+                    }
+                },
+                "example": {
+                    "housebill": "85673791233",
+                    "statusCode": "CAN",
+                    "eventTime": "2023-07-13T23:15:00-05:00"
+                }
+            },
+            "iviaaddMilestoneProperties": {
+                "type": "object",
+                "properties": {
+                    "housebill": {
+                        "description": "House bill number",
+                        "type": "string"
+                    },
+                    "statusCode": {
+                        "description": "Status code eg. 'CAN'",
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "description": "eventTime",
+                        "type": "string",
+                        "format": "datetime",
+                        "optional": true
+                    }
+                },
+                "example": {
+                    "houseBill": "8424015",
+                    "statusCode": "TTC",
+                    "eventTime": "2023-03-27T:13:24:16-05:00"
+                }
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.",
+                "type": "apiKey",
+                "name": "x-api-key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ]
 }
