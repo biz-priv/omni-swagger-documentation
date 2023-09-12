@@ -23,7 +23,7 @@
     "paths": {
         "/v2.1/shipment/addmilestone": {
             "post": {
-                "operationId": "/v2.1shipment/addmilestone",
+                "operationId": "/v2.1/shipment/addmilestone",
                 "summary": "Add Milestone",
                 "tags": [
                     "Shipment"
