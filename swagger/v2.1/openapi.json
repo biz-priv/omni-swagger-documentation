@@ -65,7 +65,7 @@
             }
         },
         "/v2.1/shipment/getdocument": {
-            "post": {
+            "get": {
                 "operationId": "/v2.1/shipment/getdocument",
                 "summary": "Get Document",
                 "tags": [
