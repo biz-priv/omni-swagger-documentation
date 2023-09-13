@@ -49,11 +49,43 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/addMilestone"
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "Payload 1": {
+                                    "value": {
+                                        "$ref": "#/components/requestBodies/addMilestone"
+                                    }
+                                },
+                                "Payload 2": {
+                                    "value": {
+                                        "$ref": "#/components/requestBodies/addMilestone"
+                                    }
+                                }
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "$ref": "#/components/schemas/AddMilestoneResponse"
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Response 1": {
+                                        "value": {
+                                            "$ref": "#/components/schemas/AddMilestoneResponse"
+                                        }
+                                    },
+                                    "Response 2": {
+                                        "value": {
+                                            "$ref": "#/components/schemas/AddMilestoneResponse"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
