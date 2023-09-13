@@ -49,12 +49,40 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/addMilestone"
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/components/requestBodies/addMilestone"
+                                    },
+                                    {
+                                        "$ref": "#/components/requestBodies/addMilestone1"
+                                    }
+                                ]
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "$ref": "#/components/schemas/AddMilestoneResponse"
-                    },
+                        "description": "Successful response",
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/AddMilestoneResponse"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/AddMilestoneResponse1"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
                     },
@@ -182,6 +210,27 @@
                     }
                 }
             },
+            "AddMilestoneResponse1": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "iviaAddMilestoneResponse": {
                 "description": "Success Response",
                 "content": {
@@ -206,6 +255,21 @@
         },
         "requestBodies": {
             "addMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/addMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "addMilestone1": {
                 "description": "Request Body",
                 "content": {
                     "application/json": {
