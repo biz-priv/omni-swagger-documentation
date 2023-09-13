@@ -52,15 +52,17 @@
                     "required": true,
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/components/requestBodies/addMilestone"
-                                    },
-                                    {
-                                        "$ref": "#/components/requestBodies/addMilestone1"
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "field1": "Value for field 1"
                                     }
-                                ]
+                                },
+                                "example2": {
+                                    "value": {
+                                        "field2": 42
+                                    }
+                                }
                             }
                         }
                     }
@@ -69,20 +71,22 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                          "application/json": {
-                            "schema": {
-                              "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/AddMilestoneResponse"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/AddMilestoneResponse1"
+                            "application/json": {
+                                "examples": {
+                                    "responseExample1": {
+                                        "value": {
+                                            "responseField1": "Response value 1"
+                                        }
+                                    },
+                                    "responseExample2": {
+                                        "value": {
+                                            "responseField2": true
+                                        }
+                                    }
                                 }
-                              ]
                             }
-                          }
                         }
-                      },
+                    },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
                     },
@@ -108,15 +112,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source":"import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone\"\n\npayload = json.dumps({\n \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n    \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n }\n   })\n    headers {\n   'Content-Type': 'application/json',\n 'x-api-key': '<X-API-KEY>'\n }\n\n   response = requests.request(\"POST\", url, headers=headers, data=payload)\n\n print(response.text)\n  "
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone\"\n\npayload = json.dumps({\n \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n    \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n }\n   })\n    headers {\n   'Content-Type': 'application/json',\n 'x-api-key': '<X-API-KEY>'\n }\n\n   response = requests.request(\"POST\", url, headers=headers, data=payload)\n\n print(response.text)\n  "
                     },
                     {
                         "lang": "Curl",
-                        "source":"curl --location 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone' \\\n --header 'Content-Type: application/json' \\\n --header 'x-api-key: <X-API-KEY>' \\\n  --data '{\n  \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n  \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n     }\n     }'\n "
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone' \\\n --header 'Content-Type: application/json' \\\n --header 'x-api-key: <X-API-KEY>' \\\n  --data '{\n  \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n  \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n     }\n     }'\n "
                     },
                     {
                         "lang": "JavaScript",
-                        "source":"const axios = require('axios');\n let data = JSON.stringify({\n \"addMilestoneRequest\": {\n \"houseBill\": \"8424015\",\n     \"statusCode\": \"TTC\",\n     \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n   }\n });\n\n let config = {\n   method: 'post',\n   maxBodyLength: Infinity,\n   url: 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone',\n   headers: { \n     'Content-Type': 'application/json', \n     'x-api-key': '<X-API-KEY>'\n   },\n   data : data\n };\n\n axios.request(config)\n .then((response) => {\n   console.log(JSON.stringify(response.data));\n })\n .catch((error) => {\n   console.log(error);\n });\n "
+                        "source": "const axios = require('axios');\n let data = JSON.stringify({\n \"addMilestoneRequest\": {\n \"houseBill\": \"8424015\",\n     \"statusCode\": \"TTC\",\n     \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n   }\n });\n\n let config = {\n   method: 'post',\n   maxBodyLength: Infinity,\n   url: 'https://dev-api.omnilogistics.com/ivia/v2/shipment/addmilestone',\n   headers: { \n     'Content-Type': 'application/json', \n     'x-api-key': '<X-API-KEY>'\n   },\n   data : data\n };\n\n axios.request(config)\n .then((response) => {\n   console.log(JSON.stringify(response.data));\n })\n .catch((error) => {\n   console.log(error);\n });\n "
                     }
                 ],
                 "requestBody": {
