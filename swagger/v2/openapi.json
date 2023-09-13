@@ -54,10 +54,22 @@
                         "application/json": {
                             "examples": {
                                 "Payload 1": {
-                                    "$ref": "#/components/requestBodies/addMilestone"
+                                    "value": {
+                                        "addMilestoneRequest": {
+                                            "housebill": "85673791233",
+                                            "statusCode": "CAN",
+                                            "eventTime": "2023-07-13T23:15:00-05:00"
+                                        }
+                                    }
                                 },
                                 "Payload 2": {
-                                    "$ref": "#/components/requestBodies/addMilestone"
+                                    "value": {
+                                        "addMilestoneRequest": {
+                                            "housebill": "85673791233",
+                                            "statusCode": "CAN",
+                                            "eventTime": "2023-07-13T23:15:00-05:00"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -70,10 +82,18 @@
                             "application/json": {
                                 "examples": {
                                     "Response 1": {
-                                        "$ref": "#/components/schemas/AddMilestoneResponse"
+                                        "value": {
+                                            "addMilestoneResponse": {
+                                                "message": "Success"
+                                            }
+                                        }
                                     },
                                     "Response 2": {
-                                        "$ref": "#/components/schemas/AddMilestoneResponse"
+                                        "value": {
+                                            "addMilestoneResponse": {
+                                                "message": "Success"
+                                            }
+                                        }
                                     }
                                 }
                             }
