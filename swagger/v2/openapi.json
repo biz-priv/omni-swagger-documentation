@@ -21,6 +21,9 @@
         },
         {
             "name": "ivia"
+        },
+        {
+            "name": "WMS"
         }
     ],
     "paths": {
@@ -53,7 +56,7 @@
                     "content": {
                         "application/json": {
                             "examples": {
-                                "Payload 1": {
+                                "CAN Payload": {
                                     "value": {
                                         "addMilestoneRequest": {
                                             "housebill": "85673791233",
@@ -62,11 +65,32 @@
                                         }
                                     }
                                 },
-                                "Payload 2": {
+                                "LOC Payoad": {
+                                    "value": {
+                                        "addMilestoneRequest": {
+                                            "housebill": "5742880",
+                                            "statusCode": "LOC",
+                                            "eventTime": "2023-09-11T05:00:00-0400",
+                                            "latitude": 35.89722,
+                                            "longitude": 84.18
+                                        }
+                                    }
+                                },
+                                "DELL Payload": {
                                     "value": {
                                         "addMilestoneRequest": {
                                             "housebill": "85673791233",
-                                            "statusCode": "CAN",
+                                            "statusCode": "DEL",
+                                            "eventTime": "2023-07-13T23:15:00-05:00",
+                                            "signatory": "some guy"
+                                        }
+                                    }
+                                },
+                                "AAD Payload": {
+                                    "value": {
+                                        "addMilestoneRequest": {
+                                            "housebill": "8567276",
+                                            "statusCode": "AAD",
                                             "eventTime": "2023-07-13T23:15:00-05:00"
                                         }
                                     }
@@ -81,14 +105,28 @@
                         "content": {
                             "application/json": {
                                 "examples": {
-                                    "Response 1": {
+                                    "CAN Response": {
                                         "value": {
                                             "addMilestoneResponse": {
                                                 "message": "Success"
                                             }
                                         }
                                     },
-                                    "Response 2": {
+                                    "LOC Response": {
+                                        "value": {
+                                            "addMilestoneResponse": {
+                                                "message": "Success"
+                                            }
+                                        }
+                                    },
+                                    "DELL Response": {
+                                        "value": {
+                                            "addMilestoneResponse": {
+                                                "message": "Success"
+                                            }
+                                        }
+                                    },
+                                    "AAD Response": {
                                         "value": {
                                             "addMilestoneResponse": {
                                                 "message": "Success"
@@ -141,6 +179,49 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/iviaAddMilestoneResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/v2/wms/order": {
+            "post": {
+                "operationId": "/v2/wms/order",
+                "summary": "WMS order",
+                "tags": [
+                    "WMS"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": ""
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": ""
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": ""
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Order"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/OrderResponse"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -246,6 +327,27 @@
                         }
                     }
                 }
+            },
+            "OrderResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "requestBodies": {
@@ -273,6 +375,74 @@
                             "properties": {
                                 "addMilestoneRequest": {
                                     "$ref": "#/components/requestBodies/iviaaddMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Order": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ShipTo": {
+                                    "$ref": "#/components/requestBodies/ShipTo"
+                                },
+                                "BillTo": {
+                                    "$ref": "#/components/requestBodies/BillTo"
+                                },
+                                "LineItem": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/requestBodies/LineItem"
+                                    }
+                                },
+                                "CustomerReference": {
+                                    "description": "Customer Reference",
+                                    "type": "string"
+                                },
+                                "PONumber": {
+                                    "description": "PO Number",
+                                    "type": "string"
+                                },
+                                "FreightTerms": {
+                                    "description": "Freight Terms",
+                                    "type": "string"
+                                },
+                                "Forwarder": {
+                                    "description": "Forwarder",
+                                    "type": "string"
+                                },
+                                "ShipDate": {
+                                    "description": "Ship Date",
+                                    "type": "string"
+                                },
+                                "Currency": {
+                                    "description": "Currency",
+                                    "type": "string"
+                                },
+                                "ShippingNotes": {
+                                    "description": "Shipping Notes",
+                                    "type": "string"
+                                },
+                                "ShippingMethod": {
+                                    "description": "Shipping Method",
+                                    "type": "string"
+                                },
+                                "LocationId": {
+                                    "description": "Location Id",
+                                    "type": "string"
+                                },
+                                "ForwarderAccount": {
+                                    "description": "Forwarder Account",
+                                    "type": "string"
+                                },
+                                "SONumber": {
+                                    "description": "SO Number",
+                                    "type": "string"
                                 }
                             }
                         }
@@ -325,6 +495,125 @@
                     "houseBill": "8424015",
                     "statusCode": "TTC",
                     "eventTime": "2023-03-27T:13:24:16-05:00"
+                }
+            },
+            "ShipTo": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "description": "Name",
+                        "type": "string"
+                    },
+                    "Street": {
+                        "description": "Street",
+                        "type": "string"
+                    },
+                    "Street2": {
+                        "description": "Street 2",
+                        "type": "string"
+                    },
+                    "Street3": {
+                        "description": "Street 3",
+                        "type": "string"
+                    },
+                    "City": {
+                        "description": "City",
+                        "type": "string"
+                    },
+                    "State": {
+                        "description": "State",
+                        "type": "string"
+                    },
+                    "Phone": {
+                        "description": "Phone",
+                        "type": "string"
+                    },
+                    "Attention": {
+                        "description": "Attention",
+                        "type": "string"
+                    },
+                    "Zipcode": {
+                        "description": "Zip Code",
+                        "type": "string"
+                    },
+                    "CountryCode": {
+                        "description": "Country Code",
+                        "type": "string"
+                    }
+                }
+            },
+            "BillTo": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "description": "Name",
+                        "type": "string"
+                    },
+                    "Street": {
+                        "description": "Street",
+                        "type": "string"
+                    },
+                    "Street2": {
+                        "description": "Street 2",
+                        "type": "string"
+                    },
+                    "Street3": {
+                        "description": "Street 3",
+                        "type": "string"
+                    },
+                    "City": {
+                        "description": "City",
+                        "type": "string"
+                    },
+                    "State": {
+                        "description": "State",
+                        "type": "string"
+                    },
+                    "Phone": {
+                        "description": "Phone",
+                        "type": "string"
+                    },
+                    "Attention": {
+                        "description": "Attention",
+                        "type": "string"
+                    },
+                    "Zipcode": {
+                        "description": "Zip Code",
+                        "type": "string"
+                    },
+                    "CountryCode": {
+                        "description": "Country Code",
+                        "type": "string"
+                    }
+                }
+            },
+            "LineItem": {
+                "type": "object",
+                "properties": {
+                    "StockCode": {
+                        "description": "Stock Code",
+                        "type": "string"
+                    },
+                    "PartNumber": {
+                        "description": "Part Number",
+                        "type": "string"
+                    },
+                    "Line": {
+                        "description": "Line",
+                        "type": "string"
+                    },
+                    "Quantity": {
+                        "description": "Quantity",
+                        "type": "string"
+                    },
+                    "Price": {
+                        "description": "Price",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "Description",
+                        "type": "string"
+                    }
                 }
             }
         },
