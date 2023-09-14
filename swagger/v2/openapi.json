@@ -234,6 +234,56 @@
                     }
                 }
             }
+        },
+        "/v2/wms/orderstatus": {
+            "get": {
+                "operationId": "/v2/wms/orderstatus",
+                "summary": "WMS Order Status",
+                "tags": [
+                    "WMS"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n\nurl = \"https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935' \\\n--header 'x-api-key: <X-API-KEY>'"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "orderNumber",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/OrderStatusResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -586,6 +636,143 @@
                                                     "key": {
                                                         "description": "key",
                                                         "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "OrderStatusResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "wmsOrderStatusResponse": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "orderNumber": {
+                                                "description": "Order Number",
+                                                "type": "string"
+                                            },
+                                            "customerOrderNumber": {
+                                                "description": "customer Order Number",
+                                                "type": "string"
+                                            },
+                                            "orderStatus": {
+                                                "description": "order Status",
+                                                "type": "string"
+                                            },
+                                            "carrier": {
+                                                "description": "carrier",
+                                                "type": "string"
+                                            },
+                                            "trackingNumber": {
+                                                "description": "tracking Number",
+                                                "type": "string"
+                                            },
+                                            "shipDate": {
+                                                "description": "ship Date",
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "warehouse": {
+                                                "description": "ware house",
+                                                "type": "string"
+                                            },
+                                            "shipTo": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "description": "name",
+                                                        "type": "string"
+                                                    },
+                                                    "contact": {
+                                                        "description": "contact",
+                                                        "type": "string"
+                                                    },
+                                                    "city": {
+                                                        "description": "city",
+                                                        "type": "string"
+                                                    },
+                                                    "state": {
+                                                        "description": "state",
+                                                        "type": "string"
+                                                    },
+                                                    "zip": {
+                                                        "description": "zip",
+                                                        "type": "string"
+                                                    },
+                                                    "country": {
+                                                        "description": "country",
+                                                        "type": "string"
+                                                    },
+                                                    "phone": {
+                                                        "description": "phone",
+                                                        "type": "string"
+                                                    },
+                                                    "address": {
+                                                        "description": "address",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "customerReference": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "refType": {
+                                                            "description": "ref Type ",
+                                                            "type": "string"
+                                                        },
+                                                        "refNumber": {
+                                                            "description": "ref Number",
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "orderLines": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "lineNumber": {
+                                                            "description": "line Number",
+                                                            "type": "integer"
+                                                        },
+                                                        "partNumber": {
+                                                            "description": "part Number",
+                                                            "type": "string"
+                                                        },
+                                                        "serialNumber": {
+                                                            "description": "serial Number",
+                                                            "type": "string"
+                                                        },
+                                                        "partAttribute1": {
+                                                            "description": "part Attribute1",
+                                                            "type": "string"
+                                                        },
+                                                        "partAttribute2": {
+                                                            "description": "part Attribute 2",
+                                                            "type": "string"
+                                                        },
+                                                        "quantity": {
+                                                            "type": "quantity"
+                                                        },
+                                                        "description": {
+                                                            "description": "description",
+                                                            "type": "string"
+                                                        }
                                                     }
                                                 }
                                             }
