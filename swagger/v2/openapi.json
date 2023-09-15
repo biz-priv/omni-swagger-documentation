@@ -65,27 +65,6 @@
                                         }
                                     }
                                 },
-                                "LOC Payoad": {
-                                    "value": {
-                                        "addMilestoneRequest": {
-                                            "housebill": "5742880",
-                                            "statusCode": "LOC",
-                                            "eventTime": "2023-09-11T05:00:00-0400",
-                                            "latitude": 35.89722,
-                                            "longitude": 84.18
-                                        }
-                                    }
-                                },
-                                "DELL Payload": {
-                                    "value": {
-                                        "addMilestoneRequest": {
-                                            "housebill": "85673791233",
-                                            "statusCode": "DEL",
-                                            "eventTime": "2023-07-13T23:15:00-05:00",
-                                            "signatory": "some guy"
-                                        }
-                                    }
-                                },
                                 "AAD Payload": {
                                     "value": {
                                         "addMilestoneRequest": {
@@ -106,20 +85,6 @@
                             "application/json": {
                                 "examples": {
                                     "CAN Response": {
-                                        "value": {
-                                            "addMilestoneResponse": {
-                                                "message": "Success"
-                                            }
-                                        }
-                                    },
-                                    "LOC Response": {
-                                        "value": {
-                                            "addMilestoneResponse": {
-                                                "message": "Success"
-                                            }
-                                        }
-                                    },
-                                    "DELL Response": {
                                         "value": {
                                             "addMilestoneResponse": {
                                                 "message": "Success"
@@ -284,6 +249,49 @@
                     }
                 }
             }
+        },
+        "/v2/shipment/addDocument": {
+            "post": {
+                "operationId": "/v2/shipment/addDocument",
+                "summary": "Shipment AddDocument",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/addDocument\"\n\npayload = json.dumps({\n  \"documentUploadRequest\": {\n    \"housebill\": \"7593713\",\n    \"contentType\": \"application/pdf\",\n    \"docType\": \"HCPOD\",\n    \"b64str\": \"<b64str>\"\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/addDocument' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n    \"documentUploadRequest\": {\n        \"housebill\": \"7593713\",\n        \"contentType\": \"application/pdf\",\n        \"docType\": \"HCPOD\",\n        \"b64str\": \"<b64str>\"\n    }\n}'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"documentUploadRequest\": {\n    \"housebill\": \"7593713\",\n    \"contentType\": \"application/pdf\",\n    \"docType\": \"HCPOD\",\n    \"b64str\": \"<b64str>\"\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/shipment/addDocument',\n  headers: { \n    'Content-Type': 'application/json', \n    'x-api-key': '<X-API-KEY>'\n  },\n  data : data\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/addDocument"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/addDocumentresponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -365,6 +373,27 @@
                             "type": "object",
                             "properties": {
                                 "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "addDocumentresponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "documentUploadResponse": {
                                     "type": "object",
                                     "properties": {
                                         "message": {
@@ -885,6 +914,21 @@
                     }
                 }
             },
+            "addDocument": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/addDocumentProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "addMilestoneProperties": {
                 "type": "object",
                 "properties": {
@@ -1050,6 +1094,33 @@
                         "description": "Description",
                         "type": "string"
                     }
+                }
+            },
+            "addDocumentProperties": {
+                "type": "object",
+                "properties": {
+                    "housebill": {
+                        "description": "House bill number",
+                        "type": "string"
+                    },
+                    "contentType": {
+                        "description": "content Type",
+                        "type": "string"
+                    },
+                    "docType": {
+                        "description": "document Type",
+                        "type": "string"
+                    },
+                    "b64str": {
+                        "description": "base 64",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "housebill": "7593713",
+                    "contentType": "application/pdf",
+                    "docType": "HCPOD",
+                    "b64str": "<b64str>"
                 }
             }
         },
