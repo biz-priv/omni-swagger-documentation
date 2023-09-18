@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://dev-api.omnilogistics.com/v1"
+      "url": "https://dev-api.omnilogistics.com"
     }
   ],
   "tags": [
@@ -25,9 +25,9 @@
     }
   ],
   "paths": {
-    "/create/shipment": {
+    "/v1/create/shipment": {
       "post": {
-        "operationId": "create/shipment",
+        "operationId": "/v1create/shipment",
         "summary": "Create Shipment",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -64,9 +64,9 @@
         }
       }
     },
-    "/shipment/detail": {
+    "/v1/shipment/detail": {
       "get": {
-        "operationId": "shipment/detail",
+        "operationId": "/v1shipment/detail",
         "summary": "Shipment Details",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -118,9 +118,9 @@
         }
       }
     },
-    "/shipment/info": {
+    "/v1/shipment/info": {
       "get": {
-        "operationId": "shipment/info",
+        "operationId": "/v1shipment/info",
         "summary": "Shipment Info",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -172,9 +172,9 @@
         }
       }
     },
-    "/rating": {
+    "/v1/rating": {
       "post": {
-        "operationId": "rating",
+        "operationId": "/v1rating",
         "summary": "Rating",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -211,9 +211,9 @@
         }
       }
     },
-    "/invoice/detail": {
+    "/v1/invoice/detail": {
       "get": {
-        "operationId": "invoice/detail",
+        "operationId": "/v1invoice/detail",
         "summary": "Invoice",
         "tags": ["Invoice & Bill"],
         "consumes": ["application/json"],
@@ -265,9 +265,9 @@
         }
       }
     },
-    "/billoflading?file_nbr={file_nbr}": {
+    "/v1/billoflading?file_nbr={file_nbr}": {
       "get": {
-        "operationId": "billoflading",
+        "operationId": "/v1billoflading",
         "summary": "Bill of Lading",
         "tags": ["Invoice & Bill"],
         "consumes": ["application/json"],
