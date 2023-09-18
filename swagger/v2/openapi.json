@@ -335,6 +335,49 @@
                     }
                 }
             }
+        },
+        "/v2/shipment/create": {
+            "post": {
+                "operationId": "/v2/shipment/create",
+                "summary": "Shipment Create",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/create\"\n\npayload = json.dumps({\n  \"shipmentCreateRequest\": {\n    \"serviceLevel\": \"EC\",\n    \"readyTime\": \"2023-06-30T09:00:00Z\",\n    \"closeTime\": \"2023-06-30T17:00:00Z\",\n    \"insuredValue\": 1234.56,\n    \"mode\": \"DOM\",\n    \"incoterm\": \"EXW\",\n    \"billTo\": \"3\",\n    \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n    \"shipper\": {\n      \"name\": \"Test Shipper Inc.\",\n      \"address\": \"2423 PLEASANT RD\",\n      \"address2\": \"\",\n      \"city\": \"Someplace\",\n      \"state\": \"GA\",\n      \"zip\": \"31234\",\n      \"country\": \"US\",\n      \"contact\": \"Test Person\",\n      \"phone\": \"8135551514\",\n      \"email\": \"test@gmail.com\"\n    },\n    \"consignee\": {\n      \"name\": \"Anonyco\",\n      \"address\": \"651 W 57th St\",\n      \"address2\": \"\",\n      \"city\": \"New New York\",\n      \"state\": \"NY\",\n      \"zip\": \"10019\",\n      \"country\": \"US\",\n      \"contact\": \"B. Rodriguez\",\n      \"phone\": \"2125552254\",\n      \"email\": \"matt@planetexpress.us\"\n    },\n    \"shipmentLines\": [\n      {\n        \"description\": \"EQUIPMENT\",\n        \"pieces\": 4,\n        \"pieceType\": \"PCE\",\n        \"weight\": 15,\n        \"weightUOM\": \"LB\",\n        \"length\": 12,\n        \"width\": 15,\n        \"height\": 10,\n        \"dimUOM\": \"IN\",\n        \"hazmat\": False\n      }\n    ],\n    \"customerReference\": [\n      {\n        \"refParty\": \"Shipper\",\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refParty\": \"BillTo\",\n        \"refType\": \"REF\",\n        \"refNumber\": \"DEF456\"\n      }\n    ],\n    \"accessorialList\": [\n      \"PALL\",\n      \"SHRNK\"\n    ]\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/create' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data-raw '{\n  \"shipmentCreateRequest\": {\n    \"serviceLevel\": \"EC\",\n    \"readyTime\": \"2023-06-30T09:00:00Z\",\n    \"closeTime\": \"2023-06-30T17:00:00Z\",\n    \"insuredValue\": 1234.56,\n    \"mode\": \"DOM\",\n    \"incoterm\": \"EXW\",\n    \"billTo\": \"3\",\n    \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n    \"shipper\": {\n      \"name\": \"Test Shipper Inc.\",\n      \"address\": \"2423 PLEASANT RD\",\n      \"address2\": \"\",\n      \"city\": \"Someplace\",\n      \"state\": \"GA\",\n      \"zip\": \"31234\",\n      \"country\": \"US\",\n      \"contact\": \"Test Person\",\n      \"phone\": \"8135551514\",\n      \"email\": \"test@gmail.com\"\n    },\n    \"consignee\": {\n      \"name\": \"Anonyco\",\n      \"address\": \"651 W 57th St\",\n      \"address2\": \"\",\n      \"city\": \"New New York\",\n      \"state\": \"NY\",\n      \"zip\": \"10019\",\n      \"country\": \"US\",\n      \"contact\": \"B. Rodriguez\",\n      \"phone\": \"2125552254\",\n      \"email\": \"matt@planetexpress.us\"\n    },\n    \"shipmentLines\": [\n      {\n        \"description\": \"EQUIPMENT\",\n        \"pieces\": 4,\n        \"pieceType\": \"PCE\",\n        \"weight\": 15,\n        \"weightUOM\": \"LB\",\n        \"length\": 12,\n        \"width\": 15,\n        \"height\": 10,\n        \"dimUOM\": \"IN\",\n        \"hazmat\": false\n      }\n    ],\n    \"customerReference\": [\n      {\n        \"refParty\": \"Shipper\",\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refParty\": \"BillTo\",\n        \"refType\": \"REF\",\n        \"refNumber\": \"DEF456\"\n      }\n    ],\n    \"accessorialList\": [\n      \"PALL\",\n      \"SHRNK\"\n    ]\n  }\n}'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"shipmentCreateRequest\": {\n    \"serviceLevel\": \"EC\",\n    \"readyTime\": \"2023-06-30T09:00:00Z\",\n    \"closeTime\": \"2023-06-30T17:00:00Z\",\n    \"insuredValue\": 1234.56,\n    \"mode\": \"DOM\",\n    \"incoterm\": \"EXW\",\n    \"billTo\": \"3\",\n    \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n    \"shipper\": {\n      \"name\": \"Test Shipper Inc.\",\n      \"address\": \"2423 PLEASANT RD\",\n      \"address2\": \"\",\n      \"city\": \"Someplace\",\n      \"state\": \"GA\",\n      \"zip\": \"31234\",\n      \"country\": \"US\",\n      \"contact\": \"Test Person\",\n      \"phone\": \"8135551514\",\n      \"email\": \"test@gmail.com\"\n    },\n    \"consignee\": {\n      \"name\": \"Anonyco\",\n      \"address\": \"651 W 57th St\",\n      \"address2\": \"\",\n      \"city\": \"New New York\",\n      \"state\": \"NY\",\n      \"zip\": \"10019\",\n      \"country\": \"US\",\n      \"contact\": \"B. Rodriguez\",\n      \"phone\": \"2125552254\",\n      \"email\": \"matt@planetexpress.us\"\n    },\n    \"shipmentLines\": [\n      {\n        \"description\": \"EQUIPMENT\",\n        \"pieces\": 4,\n        \"pieceType\": \"PCE\",\n        \"weight\": 15,\n        \"weightUOM\": \"LB\",\n        \"length\": 12,\n        \"width\": 15,\n        \"height\": 10,\n        \"dimUOM\": \"IN\",\n        \"hazmat\": false\n      }\n    ],\n    \"customerReference\": [\n      {\n        \"refParty\": \"Shipper\",\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refParty\": \"BillTo\",\n        \"refType\": \"REF\",\n        \"refNumber\": \"DEF456\"\n      }\n    ],\n    \"accessorialList\": [\n      \"PALL\",\n      \"SHRNK\"\n    ]\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/shipment/create',\n  headers: { \n    'Content-Type': 'application/json', \n    'x-api-key': '<X-API-KEY>'\n  },\n  data : data\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/ShipmentCreateRequest"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/ShipmentCreateResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -460,14 +503,39 @@
                                 "shipmentCreateResponse": {
                                     "type": "object",
                                     "properties": {
-                                        "fileNumber":{
+                                        "fileNumber": {
                                             "description": "File Number",
-                                            "type":"string"
-                                         },
-                                         "housebill":{
+                                            "type": "string"
+                                        },
+                                        "housebill": {
                                             "description": "House Bill",
-                                            "type":"string"
-                                         }
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ShipmentCreateResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "shipmentCreateResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "fileNumber": {
+                                            "description": "File Number",
+                                            "type": "string"
+                                        },
+                                        "housebill": {
+                                            "description": "House Bill",
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -1012,6 +1080,21 @@
                     }
                 }
             },
+            "ShipmentCreateRequest": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ShipmentCreateRequest": {
+                                    "$ref": "#/components/requestBodies/ShipmentCreateProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "addMilestoneProperties": {
                 "type": "object",
                 "properties": {
@@ -1518,6 +1601,338 @@
                         "booth": "999a",
                         "decorator": "Decorations Inc",
                         "contact": "B.Rodriquez",
+                        "phone": "2125552254",
+                        "email": "matt@planetexpress.us"
+                    },
+                    "shipmentLines": [
+                        {
+                            "description": "EQUIPMENT",
+                            "pieces": 4,
+                            "pieceType": "PCE",
+                            "weight": 15,
+                            "weightUOM": "LB",
+                            "length": 12,
+                            "width": 15,
+                            "height": 10,
+                            "dimUOM": "IN",
+                            "hazmat": false
+                        }
+                    ],
+                    "customerReference": [
+                        {
+                            "refParty": "Shipper",
+                            "refType": "PO",
+                            "refNumber": "ABC123"
+                        },
+                        {
+                            "refParty": "BillTo",
+                            "refType": "REF",
+                            "refNumber": "DEF456"
+                        }
+                    ],
+                    "accessorialList": [
+                        "PALL",
+                        "SHRNK"
+                    ]
+                }
+            },
+            "ShipmentCreateProperties": {
+                "type": "object",
+                "properties": {
+                    "serviceLevel": {
+                        "description": "Service Level",
+                        "type": "string"
+                    },
+                    "readyTime": {
+                        "description": "Ready Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "closeTime": {
+                        "description": "Close Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowFrom": {
+                        "description": "Delivery Window From",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowTo": {
+                        "description": "Delivery Window To",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "delBy": {
+                        "description": "Del By",
+                        "type": "string"
+                    },
+                    "UserID": {
+                        "description": "User ID",
+                        "type": "string"
+                    },
+                    "insuredValue": {
+                        "description": "Insured Value",
+                        "type": "number"
+                    },
+                    "mode": {
+                        "description": "mode",
+                        "type": "string"
+                    },
+                    "incoterm": {
+                        "description": "incoterm",
+                        "type": "string"
+                    },
+                    "customerNumber": {
+                        "description": "Customer Number",
+                        "type": "string"
+                    },
+                    "projectCode": {
+                        "description": "Project Code",
+                        "type": "string"
+                    },
+                    "billTo": {
+                        "description": "Bill To",
+                        "type": "string"
+                    },
+                    "specialInstructions": {
+                        "description": "Special Instructions",
+                        "type": "string"
+                    },
+                    "controllingStation": {
+                        "description": "Controlling Station",
+                        "type": "string"
+                    },
+                    "shipper": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address 2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "consignee": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address 2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "Contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "Phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "shipmentLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "Description",
+                                    "type": "string"
+                                },
+                                "pieces": {
+                                    "description": "Pieces",
+                                    "type": "integer"
+                                },
+                                "pieceType": {
+                                    "description": "Piece Type",
+                                    "type": "string"
+                                },
+                                "weight": {
+                                    "description": "Weight",
+                                    "type": "number"
+                                },
+                                "weightUOM": {
+                                    "description": "Weight UOM",
+                                    "type": "string"
+                                },
+                                "length": {
+                                    "description": "Length",
+                                    "type": "number"
+                                },
+                                "width": {
+                                    "description": "Width",
+                                    "type": "number"
+                                },
+                                "height": {
+                                    "description": "Height",
+                                    "type": "number"
+                                },
+                                "dimUOM": {
+                                    "description": "Dim UOM",
+                                    "type": "string"
+                                },
+                                "hazmat": {
+                                    "description": "hazmat",
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refParty": {
+                                    "description": "Ref Party",
+                                    "type": "string"
+                                },
+                                "refType": {
+                                    "description": "Ref Type",
+                                    "type": "string"
+                                },
+                                "refNumber": {
+                                    "description": "Ref Number",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "accessorialList": {
+                        "type": "array",
+                        "items": {
+                            "description": "Accessorial List",
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "serviceLevel": "EC",
+                    "readyTime": "2023-06-30T09:00:00Z",
+                    "closeTime": "2023-06-30T17:00:00Z",
+                    "insuredValue": 1234.56,
+                    "mode": "DOM",
+                    "incoterm": "EXW",
+                    "billTo": "3",
+                    "specialInstructions": "DRIVER WILL NEED PALLET WRAP",
+                    "shipper": {
+                        "name": "Test Shipper Inc.",
+                        "address": "2423 PLEASANT RD",
+                        "address2": "",
+                        "city": "Someplace",
+                        "state": "GA",
+                        "zip": "31234",
+                        "country": "US",
+                        "contact": "Test Person",
+                        "phone": "8135551514",
+                        "email": "test@gmail.com"
+                    },
+                    "consignee": {
+                        "name": "Anonyco",
+                        "address": "651 W 57th St",
+                        "address2": "",
+                        "city": "New New York",
+                        "state": "NY",
+                        "zip": "10019",
+                        "country": "US",
+                        "contact": "B. Rodriguez",
                         "phone": "2125552254",
                         "email": "matt@planetexpress.us"
                     },
