@@ -27,7 +27,7 @@
   "paths": {
     "/v1/create/shipment": {
       "post": {
-        "operationId": "/v1create/shipment",
+        "operationId": "/v1/create/shipment",
         "summary": "Create Shipment",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -66,7 +66,7 @@
     },
     "/v1/shipment/detail": {
       "get": {
-        "operationId": "/v1shipment/detail",
+        "operationId": "/v1/shipment/detail",
         "summary": "Shipment Details",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -120,7 +120,7 @@
     },
     "/v1/shipment/info": {
       "get": {
-        "operationId": "/v1shipment/info",
+        "operationId": "/v1/shipment/info",
         "summary": "Shipment Info",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -174,7 +174,7 @@
     },
     "/v1/rating": {
       "post": {
-        "operationId": "/v1rating",
+        "operationId": "/v1/rating",
         "summary": "Rating",
         "tags": ["Shipment"],
         "consumes": ["application/json"],
@@ -213,7 +213,7 @@
     },
     "/v1/invoice/detail": {
       "get": {
-        "operationId": "/v1invoice/detail",
+        "operationId": "/v1/invoice/detail",
         "summary": "Invoice",
         "tags": ["Invoice & Bill"],
         "consumes": ["application/json"],
@@ -267,7 +267,7 @@
     },
     "/v1/billoflading?file_nbr={file_nbr}": {
       "get": {
-        "operationId": "/v1billoflading",
+        "operationId": "/v1/billoflading",
         "summary": "Bill of Lading",
         "tags": ["Invoice & Bill"],
         "consumes": ["application/json"],
