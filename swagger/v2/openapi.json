@@ -250,6 +250,49 @@
                 }
             }
         },
+        "/v2/wms/asn": {
+            "post": {
+                "operationId": "/v2/wms/asn",
+                "summary": "WMS asn",
+                "tags": [
+                    "WMS"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/asn\"\n\npayload = json.dumps({\n  \"wmsAsnRequest\": {\n    \"customerReceiptNumber\": \"ABC123\",\n    \"warehouse\": \"PHL\",\n    \"trackingNumber\": \"016-12345678\",\n    \"arrivalDate\": \"2022-04-01\",\n    \"customerReference\": [\n      {\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refType\": \"AUT\",\n        \"refNumber\": \"ABC444\"\n      }\n    ],\n    \"receiptLines\": [\n      {\n        \"lineNumber\": 1,\n        \"partNumber\": \"PART007\",\n        \"quantity\": 2000\n      }\n    ]\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/asn' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n    \"wmsAsnRequest\": {\n        \"customerReceiptNumber\": \"ABC123\",\n        \"warehouse\": \"PHL\",\n        \"trackingNumber\": \"016-12345678\",\n        \"arrivalDate\": \"2022-04-01\",\n        \"customerReference\": [\n            {\n                \"refType\": \"PO\",\n                \"refNumber\": \"ABC123\"\n            },\n            {\n                \"refType\": \"AUT\",\n                \"refNumber\": \"ABC444\"\n            }\n        ],\n        \"receiptLines\": [\n            {\n                \"lineNumber\": 1,\n                \"partNumber\": \"PART007\",\n                \"quantity\": 2000\n            }\n        ]\n    }\n}'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"wmsAsnRequest\": {\n    \"customerReceiptNumber\": \"ABC123\",\n    \"warehouse\": \"PHL\",\n    \"trackingNumber\": \"016-12345678\",\n    \"arrivalDate\": \"2022-04-01\",\n    \"customerReference\": [\n      {\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refType\": \"AUT\",\n        \"refNumber\": \"ABC444\"\n      }\n    ],\n    \"receiptLines\": [\n      {\n        \"lineNumber\": 1,\n        \"partNumber\": \"PART007\",\n        \"quantity\": 2000\n      }\n    ]\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/wms/asn',\n  headers: { \n    'Content-Type': 'application/json', \n    'x-api-key': '<X-API-KEY>'\n  },\n  data : data\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/asn"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/asnResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
         "/v2/shipment/addDocument": {
             "post": {
                 "operationId": "/v2/shipment/addDocument",
@@ -534,6 +577,31 @@
                                         },
                                         "housebill": {
                                             "description": "House Bill",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "asnResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "wmsAsnResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "receiptNumber": {
+                                            "description": "Receipt Number",
+                                            "type": "string"
+                                        },
+                                        "customerReceiptNumber": {
+                                            "description": "Customer Receipt Number",
                                             "type": "string"
                                         }
                                     }
@@ -981,6 +1049,21 @@
                     }
                 }
             },
+            "asn": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "wmsAsnRequest": {
+                                    "$ref": "#/components/requestBodies/asnProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "Order": {
                 "description": "Request Body",
                 "content": {
@@ -1141,6 +1224,99 @@
                     "houseBill": "8424015",
                     "statusCode": "TTC",
                     "eventTime": "2023-03-27T:13:24:16-05:00"
+                }
+            },
+            "asnProperties": {
+                "type": "object",
+                "properties": {
+                    "WMSAsnRequest": {
+                        "type": "object",
+                        "properties": {
+                            "wmsAsnRequest": {
+                                "type": "object",
+                                "properties": {
+                                    "customerReceiptNumber": {
+                                        "type": "string",
+                                        "description": "The customer's receipt number."
+                                    },
+                                    "warehouse": {
+                                        "type": "string",
+                                        "description": "The warehouse code."
+                                    },
+                                    "trackingNumber": {
+                                        "type": "string",
+                                        "description": "The tracking number associated with the ASN."
+                                    },
+                                    "arrivalDate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "description": "The expected arrival date in YYYY-MM-DD format."
+                                    },
+                                    "customerReference": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "refType": {
+                                                    "type": "string",
+                                                    "description": "The type of customer reference (e.g., PO, AUT)."
+                                                },
+                                                "refNumber": {
+                                                    "type": "string",
+                                                    "description": "The reference number."
+                                                }
+                                            }
+                                        },
+                                        "description": "Customer references associated with the ASN."
+                                    },
+                                    "receiptLines": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "lineNumber": {
+                                                    "type": "integer",
+                                                    "description": "The line number of the receipt."
+                                                },
+                                                "partNumber": {
+                                                    "type": "string",
+                                                    "description": "The part number associated with the receipt line."
+                                                },
+                                                "quantity": {
+                                                    "type": "integer",
+                                                    "description": "The quantity of the part received."
+                                                }
+                                            }
+                                        },
+                                        "description": "Details of the receipt lines."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "customerReceiptNumber": "ABC123",
+                    "warehouse": "PHL",
+                    "trackingNumber": "016-12345678",
+                    "arrivalDate": "2022-04-01",
+                    "customerReference": [
+                        {
+                            "refType": "PO",
+                            "refNumber": "ABC123"
+                        },
+                        {
+                            "refType": "AUT",
+                            "refNumber": "ABC444"
+                        }
+                    ],
+                    "receiptLines": [
+                        {
+                            "lineNumber": 1,
+                            "partNumber": "PART007",
+                            "quantity": 2000
+                        }
+                    ]
                 }
             },
             "ShipTo": {
