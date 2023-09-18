@@ -1229,70 +1229,60 @@
             "asnProperties": {
                 "type": "object",
                 "properties": {
-                    "WMSAsnRequest": {
-                        "type": "object",
-                        "properties": {
-                            "wmsAsnRequest": {
-                                "type": "object",
-                                "properties": {
-                                    "customerReceiptNumber": {
-                                        "type": "string",
-                                        "description": "The customer's receipt number."
-                                    },
-                                    "warehouse": {
-                                        "type": "string",
-                                        "description": "The warehouse code."
-                                    },
-                                    "trackingNumber": {
-                                        "type": "string",
-                                        "description": "The tracking number associated with the ASN."
-                                    },
-                                    "arrivalDate": {
-                                        "type": "string",
-                                        "format": "date",
-                                        "description": "The expected arrival date in YYYY-MM-DD format."
-                                    },
-                                    "customerReference": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "refType": {
-                                                    "type": "string",
-                                                    "description": "The type of customer reference (e.g., PO, AUT)."
-                                                },
-                                                "refNumber": {
-                                                    "type": "string",
-                                                    "description": "The reference number."
-                                                }
-                                            }
-                                        },
-                                        "description": "Customer references associated with the ASN."
-                                    },
-                                    "receiptLines": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "lineNumber": {
-                                                    "type": "integer",
-                                                    "description": "The line number of the receipt."
-                                                },
-                                                "partNumber": {
-                                                    "type": "string",
-                                                    "description": "The part number associated with the receipt line."
-                                                },
-                                                "quantity": {
-                                                    "type": "integer",
-                                                    "description": "The quantity of the part received."
-                                                }
-                                            }
-                                        },
-                                        "description": "Details of the receipt lines."
-                                    }
+                    "customerReceiptNumber": {
+                        "type": "string",
+                        "description": "The customer's receipt number."
+                    },
+                    "warehouse": {
+                        "type": "string",
+                        "description": "The warehouse code."
+                    },
+                    "trackingNumber": {
+                        "type": "string",
+                        "description": "The tracking number associated with the ASN."
+                    },
+                    "arrivalDate": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The expected arrival date in YYYY-MM-DD format."
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refType": {
+                                    "type": "string",
+                                    "description": "The type of customer reference (e.g., PO, AUT)."
+                                },
+                                "refNumber": {
+                                    "type": "string",
+                                    "description": "The reference number."
                                 }
                             }
-                        }
+                        },
+                        "description": "Customer references associated with the ASN."
+                    },
+                    "receiptLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "lineNumber": {
+                                    "type": "integer",
+                                    "description": "The line number of the receipt."
+                                },
+                                "partNumber": {
+                                    "type": "string",
+                                    "description": "The part number associated with the receipt line."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "The quantity of the part received."
+                                }
+                            }
+                        },
+                        "description": "Details of the receipt lines."
                     }
                 },
                 "example": {

@@ -22,6 +22,9 @@
     {
       "name": "Invoice & Bill",
       "description": "Invoice & Bill"
+    },
+    {
+      "name": "WMS"
     }
   ],
   "paths": {
@@ -29,8 +32,12 @@
       "post": {
         "operationId": "/v1/create/shipment",
         "summary": "Create Shipment",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -68,8 +75,12 @@
       "get": {
         "operationId": "/v1/shipment/detail",
         "summary": "Shipment Details",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -122,8 +133,12 @@
       "get": {
         "operationId": "/v1/shipment/info",
         "summary": "Shipment Info",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -176,8 +191,12 @@
       "post": {
         "operationId": "/v1/rating",
         "summary": "Rating",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -215,8 +234,12 @@
       "get": {
         "operationId": "/v1/invoice/detail",
         "summary": "Invoice",
-        "tags": ["Invoice & Bill"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Invoice & Bill"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -269,8 +292,12 @@
       "get": {
         "operationId": "/v1/billoflading",
         "summary": "Bill of Lading",
-        "tags": ["Invoice & Bill"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Invoice & Bill"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -299,6 +326,49 @@
         "responses": {
           "200": {
             "$ref": "#/components/schemas/Billoflading"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/v1.0/wms/asn": {
+      "post": {
+        "operationId": "/v1.0/wms/asn",
+        "summary": "WMS asn",
+        "tags": [
+          "WMS"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1.0/wms/asn\"\n\npayload = json.dumps({\n  \"asn_header\": {\n    \"unique_asn_id\": \"ABC123\",\n    \"location_id\": \"PHL\",\n    \"tracking_number\": \"1Z999999999999\",\n    \"arrival_date\": \"2022-05-01\",\n    \"asn_detail\": [\n      {\n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      },\n      {\n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      }\n    ],\n    \"po_number\": \"PO123\",\n    \"receipt_type\": \"Return\"\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1.0/wms/asn' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\n--data '{\n  \"asn_header\": {\n    \"unique_asn_id\": \"ABC123\",\n    \"location_id\": \"PHL\",\n    \"tracking_number\": \"1Z999999999999\",\n    \"arrival_date\": \"2022-05-01\",\n    \"asn_detail\": [\n      { \n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      },\n      {\n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      }\n    ],\n    \"po_number\": \"PO123\",\n    \"receipt_type\": \"Return\"\n  }\n}\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"asn_header\": {\n    \"unique_asn_id\": \"ABC123\",\n    \"location_id\": \"PHL\",\n    \"tracking_number\": \"1Z999999999999\",\n    \"arrival_date\": \"2022-05-01\",\n    \"asn_detail\": [\n      {\n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      },\n      {\n        \"quantity\": 10,\n        \"lot_number\": \"LOT1234\",\n        \"serial_number\": \"S12345\",\n        \"line_number\": 1,\n        \"part_number\": \"PART007\"\n      }\n    ],\n    \"po_number\": \"PO123\",\n    \"receipt_type\": \"Return\"\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v1.0/wms/asn',\n  headers: { \n    'Content-Type': 'application/json', \n    'x-api-key': '<X-API-KEY>'\n  },\n  data : data\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/asn"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/asnResponse"
           },
           "400": {
             "$ref": "#/components/schemas/InvalidRequest"
@@ -797,6 +867,26 @@
             }
           }
         }
+      },
+      "asnResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Msg": {
+                  "description": "Message",
+                  "type": "string"
+                },
+                "OmniOrderNumber": {
+                  "description": "Omni Order Number",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "requestBodies": {
@@ -958,6 +1048,95 @@
           }
         }
       },
+      "asnProperties": {
+        "type": "object",
+        "properties": {
+          "asn_header": {
+            "type": "object",
+            "properties": {
+              "unique_asn_id": {
+                "type": "string",
+                "description": "The unique identifier for the ASN."
+              },
+              "location_id": {
+                "type": "string",
+                "description": "The location ID where the ASN is received."
+              },
+              "tracking_number": {
+                "type": "string",
+                "description": "The tracking number associated with the ASN."
+              },
+              "arrival_date": {
+                "type": "string",
+                "format": "date",
+                "description": "The expected arrival date in YYYY-MM-DD format."
+              },
+              "asn_detail": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "quantity": {
+                      "type": "integer",
+                      "description": "The quantity of items in the ASN line."
+                    },
+                    "lot_number": {
+                      "type": "string",
+                      "description": "The lot number associated with the items in the ASN line."
+                    },
+                    "serial_number": {
+                      "type": "string",
+                      "description": "The serial number associated with the items in the ASN line."
+                    },
+                    "line_number": {
+                      "type": "integer",
+                      "description": "The line number of the ASN."
+                    },
+                    "part_number": {
+                      "type": "string",
+                      "description": "The part number associated with the ASN line."
+                    }
+                  }
+                }
+              },
+              "po_number": {
+                "type": "string",
+                "description": "The purchase order (PO) number associated with the ASN."
+              },
+              "receipt_type": {
+                "type": "string",
+                "description": "The type of receipt (e.g., Return)."
+              }
+            }
+          }
+        },
+        "example": {
+          "asn_header": {
+            "unique_asn_id": "ABC123",
+            "location_id": "PHL",
+            "tracking_number": "1Z999999999999",
+            "arrival_date": "2022-05-01",
+            "asn_detail": [
+              {
+                "quantity": 10,
+                "lot_number": "LOT1234",
+                "serial_number": "S12345",
+                "line_number": 1,
+                "part_number": "PART007"
+              },
+              {
+                "quantity": 10,
+                "lot_number": "LOT1234",
+                "serial_number": "S12345",
+                "line_number": 1,
+                "part_number": "PART007"
+              }
+            ],
+            "po_number": "PO123",
+            "receipt_type": "Return"
+          }
+        }
+      },
       "ShipmentLineList": {
         "type": "object",
         "properties": {
@@ -1024,6 +1203,16 @@
                   "$ref": "#/components/requestBodies/AccessorialsList"
                 }
               }
+            }
+          }
+        }
+      },
+      "asn": {
+        "description": "Request Body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/requestBodies/asnProperties"
             }
           }
         }
