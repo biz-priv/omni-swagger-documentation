@@ -443,6 +443,49 @@
           }
         }
       }
+    },
+    "/v1.0/wms/order": {
+      "post": {
+        "operationId": "/v1.0/wms/order",
+        "summary": "WMS order",
+        "tags": [
+          "WMS"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1.0/wms/order\"\n\npayload = json.dumps({\n  \"ShipTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"BillTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"LineItem\": [\n    {\n      \"StockCode\": \"FGI\",\n      \"PartNumber\": \"RS-F2-DRGR-02\",\n      \"Line\": \"1\",\n      \"Quantity\": \"3\",\n      \"Price\": \"149.00\",\n      \"Description\": \"\"\n    }\n  ],\n  \"CustomerReference\": \"IF474579A\",\n  \"PONumber\": \"\",\n  \"FreightTerms\": \"DAP\",\n  \"Forwarder\": \"UPS\",\n  \"ShipDate\": \"2022-08-23\",\n  \"Currency\": \"USD\",\n  \"ShippingNotes\": \"\",\n  \"ShippingMethod\": \"Ground\",\n  \"LocationId\": \"PHL\",\n  \"ForwarderAccount\": \"\",\n  \"SONumber\": \"US-007203173\"\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1.0/wms/order' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"ShipTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"BillTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"LineItem\": [\n    {\n      \"StockCode\": \"FGI\",\n      \"PartNumber\": \"RS-F2-DRGR-02\",\n      \"Line\": \"1\",\n      \"Quantity\": \"3\",\n      \"Price\": \"149.00\",\n      \"Description\": \"\"\n    }\n  ],\n  \"CustomerReference\": \"IF474579A\",\n  \"PONumber\": \"\",\n  \"FreightTerms\": \"DAP\",\n  \"Forwarder\": \"UPS\",\n  \"ShipDate\": \"2022-08-23\",\n  \"Currency\": \"USD\",\n  \"ShippingNotes\": \"\",\n  \"ShippingMethod\": \"Ground\",\n  \"LocationId\": \"PHL\",\n  \"ForwarderAccount\": \"\",\n  \"SONumber\": \"US-007203173\"\n}\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"ShipTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"BillTo\": {\n    \"Name\": \"Johnson Orthodontics\",\n    \"Street\": \"18947 John J Williams Hwy Unit 310\",\n    \"Street2\": \"\",\n    \"Street3\": \"\",\n    \"City\": \"Rehoboth Beach\",\n    \"State\": \"DE\",\n    \"Phone\": \"3026455554\",\n    \"Attention\": \"Dr. Jonathan Johnson\",\n    \"Zipcode\": \"19971\",\n    \"CountryCode\": \"US\"\n  },\n  \"LineItem\": [\n    {\n      \"StockCode\": \"FGI\",\n      \"PartNumber\": \"RS-F2-DRGR-02\",\n      \"Line\": \"1\",\n      \"Quantity\": \"3\",\n      \"Price\": \"149.00\",\n      \"Description\": \"\"\n    }\n  ],\n  \"CustomerReference\": \"IF474579A\",\n  \"PONumber\": \"\",\n  \"FreightTerms\": \"DAP\",\n  \"Forwarder\": \"UPS\",\n  \"ShipDate\": \"2022-08-23\",\n  \"Currency\": \"USD\",\n  \"ShippingNotes\": \"\",\n  \"ShippingMethod\": \"Ground\",\n  \"LocationId\": \"PHL\",\n  \"ForwarderAccount\": \"\",\n  \"SONumber\": \"US-007203173\"\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.0/wms/order\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/order"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/orderResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -968,125 +1011,144 @@
           }
         }
       },
+      "orderResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Msg": {
+                  "description": "Message",
+                  "type": "string"
+                },
+                "OmniOrderNumber": {
+                  "description": "Omni Order Number",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
       "OrderInfoItem": {
         "type": "object",
         "properties": {
-            "OmniOrderNumber": {
-                "type": "string",
-                "description": "Omni order number."
-            },
-            "OrderStatus": {
-                "type": "string",
-                "description": "status of the order."
-            },
-            "CustomerReference": {
-                "type": "string",
-                "description": "customer's reference number."
-            },
-            "SONumber": {
-                "type": "string",
-                "description": "sales order number."
-            },
-            "Forwarder": {
-                "type": "string",
-                "description": "forwarder"
-            },
-            "ShipDate": {
-                "type": "string",
-                "format": "date-time",
-                "description": "ship date"
-            },
-            "TrackingNumber": {
-                "type": "string",
-                "description": "tracking number"
-            },
-            "LocationId": {
-                "type": "string",
-                "description": "location ID"
-            },
-            "Weight": {
-                "type": "string",
-                "description": "weight"
-            },
-            "LineItem": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/LineItem"
-                }
-            },
-            "ShipTo": {
-                "type": "object",
-                "properties": {
-                    "Name": {
-                        "type": "string",
-                        "description": "name"
-                    },
-                    "Attention": {
-                        "type": "string",
-                        "description": "attention"
-                    },
-                    "Street": {
-                        "type": "string",
-                        "description": "street"
-                    },
-                    "City": {
-                        "type": "string",
-                        "description": "city"
-                    },
-                    "State": {
-                        "type": "string",
-                        "description": "state"
-                    },
-                    "Zipcode": {
-                        "type": "string",
-                        "description": "The postal code"
-                    },
-                    "CountryCode": {
-                        "type": "string",
-                        "description": "country code"
-                    },
-                    "Phone": {
-                        "type": "string",
-                        "description": "phone number"
-                    }
-                }
+          "OmniOrderNumber": {
+            "type": "string",
+            "description": "Omni order number."
+          },
+          "OrderStatus": {
+            "type": "string",
+            "description": "status of the order."
+          },
+          "CustomerReference": {
+            "type": "string",
+            "description": "customer's reference number."
+          },
+          "SONumber": {
+            "type": "string",
+            "description": "sales order number."
+          },
+          "Forwarder": {
+            "type": "string",
+            "description": "forwarder"
+          },
+          "ShipDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ship date"
+          },
+          "TrackingNumber": {
+            "type": "string",
+            "description": "tracking number"
+          },
+          "LocationId": {
+            "type": "string",
+            "description": "location ID"
+          },
+          "Weight": {
+            "type": "string",
+            "description": "weight"
+          },
+          "LineItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LineItem"
             }
+          },
+          "ShipTo": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string",
+                "description": "name"
+              },
+              "Attention": {
+                "type": "string",
+                "description": "attention"
+              },
+              "Street": {
+                "type": "string",
+                "description": "street"
+              },
+              "City": {
+                "type": "string",
+                "description": "city"
+              },
+              "State": {
+                "type": "string",
+                "description": "state"
+              },
+              "Zipcode": {
+                "type": "string",
+                "description": "The postal code"
+              },
+              "CountryCode": {
+                "type": "string",
+                "description": "country code"
+              },
+              "Phone": {
+                "type": "string",
+                "description": "phone number"
+              }
+            }
+          }
         }
-    },
-    "LineItem": {
+      },
+      "LineItem": {
         "type": "object",
         "properties": {
-            "StockCode": {
-                "type": "string",
-                "description": "stock code"
-            },
-            "PartNumber": {
-                "type": "string",
-                "description": " part number"
-            },
-            "SerialNumber": {
-                "type": "string",
-                "description": "serial number"
-            },
-            "LotNumber": {
-                "type": "string",
-                "description": "lot number"
-            },
-            "Line": {
-                "type": "string",
-                "description": "line number"
-            },
-            "Quantity": {
-                "type": "string",
-                "description": "quantity"
-            },
-            "Description": {
-                "type": "string",
-                "description": "description"
-            }
-        } 
-    }
-    
+          "StockCode": {
+            "type": "string",
+            "description": "stock code"
+          },
+          "PartNumber": {
+            "type": "string",
+            "description": " part number"
+          },
+          "SerialNumber": {
+            "type": "string",
+            "description": "serial number"
+          },
+          "LotNumber": {
+            "type": "string",
+            "description": "lot number"
+          },
+          "Line": {
+            "type": "string",
+            "description": "line number"
+          },
+          "Quantity": {
+            "type": "string",
+            "description": "quantity"
+          },
+          "Description": {
+            "type": "string",
+            "description": "description"
+          }
+        }
+      }
     },
     "requestBodies": {
       "oShipData": {
@@ -1244,6 +1306,70 @@
                 }
               }
             }
+          }
+        }
+      },
+      "orderProperties": {
+        "type": "object",
+        "properties": {
+          "ShipTo": {
+            "$ref": "#/components/requestBodies/Address",
+            "description": "Shipping address information."
+          },
+          "BillTo": {
+            "$ref": "#/components/requestBodies/Address",
+            "description": "Billing address information."
+          },
+          "LineItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/requestBodies/LineItem"
+            }
+          },
+          "CustomerReference": {
+            "type": "string",
+            "description": "Customer's reference number."
+          },
+          "PONumber": {
+            "type": "string",
+            "description": "Purchase order number."
+          },
+          "FreightTerms": {
+            "type": "string",
+            "description": "Freight terms for the order."
+          },
+          "Forwarder": {
+            "type": "string",
+            "description": "Forwarder for shipping."
+          },
+          "ShipDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Shipping date (ISO 8601 format)."
+          },
+          "Currency": {
+            "type": "string",
+            "description": "Currency for the order."
+          },
+          "ShippingNotes": {
+            "type": "string",
+            "description": "Additional shipping notes."
+          },
+          "ShippingMethod": {
+            "type": "string",
+            "description": "Shipping method."
+          },
+          "LocationId": {
+            "type": "string",
+            "description": "Location ID."
+          },
+          "ForwarderAccount": {
+            "type": "string",
+            "description": "Forwarder account number."
+          },
+          "SONumber": {
+            "type": "string",
+            "description": "Sales order number."
           }
         }
       },
@@ -1416,6 +1542,16 @@
           }
         }
       },
+      "order": {
+        "description": "Request Body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/requestBodies/orderProperties"
+            }
+          }
+        }
+      },
       "SubRatingList": {
         "type": "object",
         "properties": {
@@ -1470,6 +1606,80 @@
               "description": "Commodity HeightIN",
               "type": "number"
             }
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "The name of the recipient."
+          },
+          "Street": {
+            "type": "string",
+            "description": "The street address."
+          },
+          "Street2": {
+            "type": "string",
+            "description": "Additional street address information (optional)."
+          },
+          "Street3": {
+            "type": "string",
+            "description": "Additional street address information (optional)."
+          },
+          "City": {
+            "type": "string",
+            "description": "The city."
+          },
+          "State": {
+            "type": "string",
+            "description": "The state or province."
+          },
+          "Zipcode": {
+            "type": "string",
+            "description": "The postal code."
+          },
+          "CountryCode": {
+            "type": "string",
+            "description": "The country code."
+          },
+          "Phone": {
+            "type": "string",
+            "description": "The phone number."
+          },
+          "Attention": {
+            "type": "string",
+            "description": "Attention line for the recipient (optional)."
+          }
+        }
+      },
+      "LineItem": {
+        "type": "object",
+        "properties": {
+          "StockCode": {
+            "type": "string",
+            "description": "The stock code."
+          },
+          "PartNumber": {
+            "type": "string",
+            "description": "The part number."
+          },
+          "Line": {
+            "type": "string",
+            "description": "The line number."
+          },
+          "Quantity": {
+            "type": "string",
+            "description": "The quantity."
+          },
+          "Price": {
+            "type": "string",
+            "description": "The price."
+          },
+          "Description": {
+            "type": "string",
+            "description": "The description."
           }
         }
       }
