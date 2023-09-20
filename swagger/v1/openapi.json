@@ -381,6 +381,68 @@
           }
         }
       }
+    },
+    "/v1.0/wms/orderstatus": {
+      "get": {
+        "operationId": "/v1.0/wms/orderstatus",
+        "summary": "WMS Order Status",
+        "tags": [
+          "WMS"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.0/wms/orderstatus?DateFrom=2023-02-16T09:00:00&DateTo=2023-02-16T19:00:01\"\n\npayload = {}\nheaders = {\n  'x-api-key': 'swFiKzLyet9THuIY1i84y2WjZWGlUUCk9GArUjk7'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1.0/wms/orderstatus?DateFrom=2023-02-16T09%3A00%3A00&DateTo=2023-02-16T19%3A00%3A01' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.0/wms/orderstatus?DateFrom=2023-02-16T09:00:00&DateTo=2023-02-16T19:00:01\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "description": "Start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "description": "End date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/WMSorderstatus"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -868,6 +930,24 @@
           }
         }
       },
+      "WMSorderstatus": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "OrderInfo": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderInfoItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "asnResponse": {
         "description": "Success Response",
         "content": {
@@ -887,7 +967,126 @@
             }
           }
         }
-      }
+      },
+      "OrderInfoItem": {
+        "type": "object",
+        "properties": {
+            "OmniOrderNumber": {
+                "type": "string",
+                "description": "Omni order number."
+            },
+            "OrderStatus": {
+                "type": "string",
+                "description": "status of the order."
+            },
+            "CustomerReference": {
+                "type": "string",
+                "description": "customer's reference number."
+            },
+            "SONumber": {
+                "type": "string",
+                "description": "sales order number."
+            },
+            "Forwarder": {
+                "type": "string",
+                "description": "forwarder"
+            },
+            "ShipDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ship date"
+            },
+            "TrackingNumber": {
+                "type": "string",
+                "description": "tracking number"
+            },
+            "LocationId": {
+                "type": "string",
+                "description": "location ID"
+            },
+            "Weight": {
+                "type": "string",
+                "description": "weight"
+            },
+            "LineItem": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/LineItem"
+                }
+            },
+            "ShipTo": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "type": "string",
+                        "description": "name"
+                    },
+                    "Attention": {
+                        "type": "string",
+                        "description": "attention"
+                    },
+                    "Street": {
+                        "type": "string",
+                        "description": "street"
+                    },
+                    "City": {
+                        "type": "string",
+                        "description": "city"
+                    },
+                    "State": {
+                        "type": "string",
+                        "description": "state"
+                    },
+                    "Zipcode": {
+                        "type": "string",
+                        "description": "The postal code"
+                    },
+                    "CountryCode": {
+                        "type": "string",
+                        "description": "country code"
+                    },
+                    "Phone": {
+                        "type": "string",
+                        "description": "phone number"
+                    }
+                }
+            }
+        }
+    },
+    "LineItem": {
+        "type": "object",
+        "properties": {
+            "StockCode": {
+                "type": "string",
+                "description": "stock code"
+            },
+            "PartNumber": {
+                "type": "string",
+                "description": " part number"
+            },
+            "SerialNumber": {
+                "type": "string",
+                "description": "serial number"
+            },
+            "LotNumber": {
+                "type": "string",
+                "description": "lot number"
+            },
+            "Line": {
+                "type": "string",
+                "description": "line number"
+            },
+            "Quantity": {
+                "type": "string",
+                "description": "quantity"
+            },
+            "Description": {
+                "type": "string",
+                "description": "description"
+            }
+        } 
+    }
+    
     },
     "requestBodies": {
       "oShipData": {
