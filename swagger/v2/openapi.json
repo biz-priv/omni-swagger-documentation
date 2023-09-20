@@ -250,6 +250,68 @@
                 }
             }
         },
+        "/v2/wms/receipt": {
+            "get": {
+                "operationId": "//v2/wms/receipt",
+                "summary": "WMS Receipt",
+                "tags": [
+                    "WMS"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-03-21T21:20:00\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11%3A00%3A00&dateTo=2023-03-21T21%3A20%3A00' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-03-21T21:20:00',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "dateFrom",
+                        "in": "query",
+                        "description": "Start date and time for the date range (e.g., 2023-03-20T11:00:00)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "dateTo",
+                        "in": "query",
+                        "description": "End date and time for the date range (e.g., 2023-03-21T21:20:00)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/ReceiptResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
         "/v2/wms/asn": {
             "post": {
                 "operationId": "/v2/wms/asn",
@@ -1014,6 +1076,107 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "ReceiptResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "WMSReceiptResponse": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReceiptItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ReceiptItem": {
+                "type": "object",
+                "properties": {
+                    "receiptNumber": {
+                        "type": "string",
+                        "description": "The receipt number."
+                    },
+                    "customerReceiptNumber": {
+                        "type": "string",
+                        "description": "The customer's receipt number."
+                    },
+                    "receiptStatus": {
+                        "type": "string",
+                        "description": "The status of the receipt."
+                    },
+                    "carrier": {
+                        "type": "string",
+                        "description": "The carrier information."
+                    },
+                    "trackingNumber": {
+                        "type": "string",
+                        "description": "The tracking number associated with the receipt."
+                    },
+                    "receiptDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The receipt date in ISO 8601 format."
+                    },
+                    "warehouse": {
+                        "type": "string",
+                        "description": "The warehouse where the receipt is located."
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {},
+                        "description": "Customer references associated with the receipt."
+                    },
+                    "receiptLines": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ReceiptLine"
+                        },
+                        "description": "Details of the receipt lines."
+                    }
+                }
+            },
+            "ReceiptLine": {
+                "type": "object",
+                "properties": {
+                    "lineNumber": {
+                        "type": "integer",
+                        "description": "The line number of the receipt."
+                    },
+                    "partNumber": {
+                        "type": "string",
+                        "description": "The part number associated with the receipt line."
+                    },
+                    "serialNumber": {
+                        "type": "string",
+                        "description": "The serial number associated with the receipt line."
+                    },
+                    "partAttribute1": {
+                        "type": "string",
+                        "description": "Additional attribute for the part."
+                    },
+                    "partAttribute2": {
+                        "type": "string",
+                        "description": "Additional attribute for the part."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The quantity of the part received."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the part."
+                    },
+                    "holdCode": {
+                        "type": "string",
+                        "description": "Hold code associated with the part."
                     }
                 }
             }
