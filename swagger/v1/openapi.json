@@ -1056,20 +1056,20 @@
             "properties": {
               "unique_asn_id": {
                 "type": "string",
-                "description": "The unique identifier for the ASN."
+                "description": "The unique ASN ID"
               },
               "location_id": {
                 "type": "string",
-                "description": "The location ID where the ASN is received."
+                "description": "location ID"
               },
               "tracking_number": {
                 "type": "string",
-                "description": "The tracking number associated with the ASN."
+                "description": "tracking number"
               },
               "arrival_date": {
                 "type": "string",
                 "format": "date",
-                "description": "The expected arrival date in YYYY-MM-DD format."
+                "description": "Tarrival date"
               },
               "asn_detail": {
                 "type": "array",
@@ -1078,34 +1078,34 @@
                   "properties": {
                     "quantity": {
                       "type": "integer",
-                      "description": "The quantity of items in the ASN line."
+                      "description": "quantity"
                     },
                     "lot_number": {
                       "type": "string",
-                      "description": "The lot number associated with the items in the ASN line."
+                      "description": "Tlot number"
                     },
                     "serial_number": {
                       "type": "string",
-                      "description": "The serial number associated with the items in the ASN line."
+                      "description": "serial number"
                     },
                     "line_number": {
                       "type": "integer",
-                      "description": "The line number of the ASN."
+                      "description": "line number"
                     },
                     "part_number": {
                       "type": "string",
-                      "description": "The part number associated with the ASN line."
+                      "description": "part number"
                     }
                   }
                 }
               },
               "po_number": {
                 "type": "string",
-                "description": "The purchase order (PO) number associated with the ASN."
+                "description": "purchase order (PO) number"
               },
               "receipt_type": {
                 "type": "string",
-                "description": "The type of receipt (e.g., Return)."
+                "description": "type of receipt"
               }
             }
           }

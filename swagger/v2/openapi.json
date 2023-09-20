@@ -278,7 +278,7 @@
                     {
                         "name": "dateFrom",
                         "in": "query",
-                        "description": "Start date and time for the date range (e.g., 2023-03-20T11:00:00)",
+                        "description": "Start date and time",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -288,7 +288,7 @@
                     {
                         "name": "dateTo",
                         "in": "query",
-                        "description": "End date and time for the date range (e.g., 2023-03-21T21:20:00)",
+                        "description": "End date and time",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -1106,40 +1106,40 @@
                     },
                     "customerReceiptNumber": {
                         "type": "string",
-                        "description": "The customer's receipt number."
+                        "description": "customer's receipt number."
                     },
                     "receiptStatus": {
                         "type": "string",
-                        "description": "The status of the receipt."
+                        "description": "status of the receipt."
                     },
                     "carrier": {
                         "type": "string",
-                        "description": "The carrier information."
+                        "description": "carrier"
                     },
                     "trackingNumber": {
                         "type": "string",
-                        "description": "The tracking number associated with the receipt."
+                        "description": "tracking number"
                     },
                     "receiptDate": {
                         "type": "string",
                         "format": "date-time",
-                        "description": "The receipt date in ISO 8601 format."
+                        "description": "receipt date"
                     },
                     "warehouse": {
                         "type": "string",
-                        "description": "The warehouse where the receipt is located."
+                        "description": "warehouse"
                     },
                     "customerReference": {
                         "type": "array",
                         "items": {},
-                        "description": "Customer references associated with the receipt."
+                        "description": "Customer references"
                     },
                     "receiptLines": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ReceiptLine"
-                        },
-                        "description": "Details of the receipt lines."
+                        }
+                        
                     }
                 }
             },
@@ -1148,35 +1148,35 @@
                 "properties": {
                     "lineNumber": {
                         "type": "integer",
-                        "description": "The line number of the receipt."
+                        "description": "line number"
                     },
                     "partNumber": {
                         "type": "string",
-                        "description": "The part number associated with the receipt line."
+                        "description": "part number"
                     },
                     "serialNumber": {
                         "type": "string",
-                        "description": "The serial number associated with the receipt line."
+                        "description": "serial number"
                     },
                     "partAttribute1": {
                         "type": "string",
-                        "description": "Additional attribute for the part."
+                        "description": "Additional attribute"
                     },
                     "partAttribute2": {
                         "type": "string",
-                        "description": "Additional attribute for the part."
+                        "description": "Additional attribute"
                     },
                     "quantity": {
                         "type": "integer",
-                        "description": "The quantity of the part received."
+                        "description": "quantity"
                     },
                     "description": {
                         "type": "string",
-                        "description": "Description of the part."
+                        "description": "Description"
                     },
                     "holdCode": {
                         "type": "string",
-                        "description": "Hold code associated with the part."
+                        "description": "Hold code"
                     }
                 }
             }
@@ -1394,20 +1394,20 @@
                 "properties": {
                     "customerReceiptNumber": {
                         "type": "string",
-                        "description": "The customer's receipt number."
+                        "description": "customer's receipt number."
                     },
                     "warehouse": {
                         "type": "string",
-                        "description": "The warehouse code."
+                        "description": "warehouse"
                     },
                     "trackingNumber": {
                         "type": "string",
-                        "description": "The tracking number associated with the ASN."
+                        "description": "tracking number"
                     },
                     "arrivalDate": {
                         "type": "string",
                         "format": "date",
-                        "description": "The expected arrival date in YYYY-MM-DD format."
+                        "description": "arrival date"
                     },
                     "customerReference": {
                         "type": "array",
@@ -1416,15 +1416,14 @@
                             "properties": {
                                 "refType": {
                                     "type": "string",
-                                    "description": "The type of customer reference (e.g., PO, AUT)."
+                                    "description": "customer reference"
                                 },
                                 "refNumber": {
                                     "type": "string",
-                                    "description": "The reference number."
+                                    "description": "reference number."
                                 }
                             }
-                        },
-                        "description": "Customer references associated with the ASN."
+                        }
                     },
                     "receiptLines": {
                         "type": "array",
@@ -1433,19 +1432,18 @@
                             "properties": {
                                 "lineNumber": {
                                     "type": "integer",
-                                    "description": "The line number of the receipt."
+                                    "description": "line number"
                                 },
                                 "partNumber": {
                                     "type": "string",
-                                    "description": "The part number associated with the receipt line."
+                                    "description": "part number"
                                 },
                                 "quantity": {
                                     "type": "integer",
-                                    "description": "The quantity of the part received."
+                                    "description": "quantity"
                                 }
                             }
-                        },
-                        "description": "Details of the receipt lines."
+                        }
                     }
                 },
                 "example": {
