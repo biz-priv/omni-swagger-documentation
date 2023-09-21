@@ -547,7 +547,7 @@
           },
           {
             "lang": "Curl",
-            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/proofofdelivery?house_bill_nbr=5869785' \\\n--header 'x-api-key: Rooxp9YQWT6o10WziF3D1as9PV4gozbm5hpiXpxI'\n"
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/proofofdelivery?house_bill_nbr=5869785' \\\n--header 'x-api-key: <X-API-KEY>'\n"
           },
           {
             "lang": "JavaScript",
