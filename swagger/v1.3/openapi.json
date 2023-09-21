@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://dev-api.omnilogistics.com/v1.3"
+      "url": "https://dev-api.omnilogistics.com"
     }
   ],
   "tags": [
@@ -25,12 +25,16 @@
     }
   ],
   "paths": {
-    "/create/shipment": {
+    "/v1.3/create/shipment": {
       "post": {
-        "operationId": "create/shipment",
+        "operationId": "/v1.3/create/shipment",
         "summary": "Create Shipment",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -64,12 +68,16 @@
         }
       }
     },
-    "/shipment/detail": {
+    "/v1.3/shipment/detail": {
       "get": {
-        "operationId": "shipment/detail",
+        "operationId": "/v1.3/shipment/detail",
         "summary": "Shipment Details",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -118,12 +126,16 @@
         }
       }
     },
-    "/shipment/info": {
+    "/v1.3/shipment/info": {
       "get": {
-        "operationId": "shipment/info",
+        "operationId": "/v1.3/shipment/info",
         "summary": "Shipment Info",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -172,12 +184,16 @@
         }
       }
     },
-    "/rating": {
+    "/v1.3/rating": {
       "post": {
-        "operationId": "rating",
+        "operationId": "/v1.3/rating",
         "summary": "Rating",
-        "tags": ["Shipment"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -211,12 +227,16 @@
         }
       }
     },
-    "/invoice/detail": {
+    "/v1.3/invoice/detail": {
       "get": {
-        "operationId": "invoice/detail",
+        "operationId": "/v1.3/invoice/detail",
         "summary": "Invoice",
-        "tags": ["Invoice & Bill"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Invoice & Bill"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -265,12 +285,16 @@
         }
       }
     },
-    "/billoflading?file_nbr={file_nbr}": {
+    "/v1.3/billoflading?file_nbr={file_nbr}": {
       "get": {
-        "operationId": "billoflading",
+        "operationId": "/v1.3/billoflading",
         "summary": "Bill of Lading",
-        "tags": ["Invoice & Bill"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Invoice & Bill"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -299,6 +323,57 @@
         "responses": {
           "200": {
             "$ref": "#/components/schemas/Billoflading"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/v1.3/proofofdelivery": {
+      "get": {
+        "operationId": "/v1.3/proofofdelivery",
+        "summary": "Proof of Delivery",
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.3/proofofdelivery?house_bill_nbr=5869785\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1.3/proofofdelivery?house_bill_nbr=5869785' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.3/proofofdelivery?house_bill_nbr=5869785\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "house_bill_nbr",
+            "in": "query",
+            "description": "house bill number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/proofofdelivery"
           },
           "400": {
             "$ref": "#/components/schemas/InvalidRequest"
@@ -802,6 +877,31 @@
                     },
                     "b64str": {
                       "description": "b64str",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "proofofdelivery": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hcpod": {
+                  "type": "object",
+                  "properties": {
+                    "File Number": {
+                      "description": "File Number",
+                      "type": "string"
+                    },
+                    "b64str": {
+                      "description": "File Number",
                       "type": "string"
                     }
                   }
