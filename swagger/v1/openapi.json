@@ -529,6 +529,57 @@
           }
         }
       }
+    },
+    "/v1/proofofdelivery": {
+      "get": {
+        "operationId": "/v1/proofofdelivery",
+        "summary": "Proof of Delivery",
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1/proofofdelivery?house_bill_nbr=5869785\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/proofofdelivery?house_bill_nbr=5869785' \\\n--header 'x-api-key: Rooxp9YQWT6o10WziF3D1as9PV4gozbm5hpiXpxI'\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1/proofofdelivery?house_bill_nbr=5869785\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "house_bill_nbr",
+            "in": "query",
+            "description": "house bill number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/proofofdelivery"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -584,6 +635,31 @@
                 "msg": {
                   "description": "message",
                   "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "proofofdelivery": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hcpod": {
+                  "type": "object",
+                  "properties": {
+                    "File Number": {
+                      "description": "File Number",
+                      "type": "string"
+                    },
+                    "b64str": {
+                      "description": "File Number",
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -1240,9 +1316,9 @@
           }
         }
       },
-      "UploadPODDocumentproperties":{
+      "UploadPODDocumentproperties": {
         "type": "object",
-        "properties":{
+        "properties": {
           "Housebill": {
             "description": "House Bill",
             "type": "string"
