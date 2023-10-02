@@ -390,47 +390,6 @@
   },
   "components": {
     "schemas": {
-      "ApiResponse": {
-        "description": "Invalid request",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "description": "User name",
-                  "type": "string",
-                  "minLength": 1
-                },
-                "status": {
-                  "description": "User Status",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "oShipData": {
-        "description": "Success",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ShipQuoteNo": {
-                  "description": "ShipQuoteNo",
-                  "type": "string"
-                },
-                "Housebill": {
-                  "description": "Housebill",
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
       "InvalidRequest": {
         "description": "Invalid request",
         "content": {
@@ -472,6 +431,47 @@
               "properties": {
                 "message": {
                   "description": "Error msg",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ApiResponse": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "User name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "description": "User Status",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "oShipData": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ShipQuoteNo": {
+                  "description": "ShipQuoteNo",
+                  "type": "string"
+                },
+                "Housebill": {
+                  "description": "Housebill",
                   "type": "string"
                 }
               }
