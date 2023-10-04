@@ -487,6 +487,49 @@
                     }
                 }
             }
+        },
+        "/v2.1/shipment/rate": {
+            "post": {
+                "operationId": "/v2.1/shipment/rate",
+                "summary": "Shipment Rate",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2.1/shipment/rate\"\n\npayload = json.dumps({\n  \"shipmentRateRequest\": {\n    \"pickupTime\": \"2023-11-11T17:00:00\",\n    \"shipperZip\": \"40118\",\n    \"consigneeZip\": \"60502\",\n    \"shipmentLines\": [\n      {\n        \"pieces\": 3,\n        \"pieceType\": \"PCE\",\n        \"weight\": 225,\n        \"weightUOM\": \"lb\",\n        \"length\": 20,\n        \"width\": 20,\n        \"height\": 30,\n        \"dimUOM\": \"in\",\n        \"hazmat\": False\n      }\n    ],\n    \"accessorialList\": []\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2.1/shipment/rate' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n        \"shipmentRateRequest\": {\n            \"pickupTime\": \"2023-11-11T17:00:00\",\n            \"shipperZip\": \"40118\",\n            \"consigneeZip\": \"60502\",\n            \"shipmentLines\": [\n                {\n                    \"pieces\": 3,\n                    \"pieceType\": \"PCE\",\n                    \"weight\": 225,\n                    \"weightUOM\": \"lb\",\n                    \"length\": 20,\n                    \"width\": 20,\n                    \"height\": 30,\n                    \"dimUOM\": \"in\",\n                    \"hazmat\": false\n                }\n            ],\n            \"accessorialList\": []\n        }\n    }'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"shipmentRateRequest\": {\n    \"pickupTime\": \"2023-11-11T17:00:00\",\n    \"shipperZip\": \"40118\",\n    \"consigneeZip\": \"60502\",\n    \"shipmentLines\": [\n      {\n        \"pieces\": 3,\n        \"pieceType\": \"PCE\",\n        \"weight\": 225,\n        \"weightUOM\": \"lb\",\n        \"length\": 20,\n        \"width\": 20,\n        \"height\": 30,\n        \"dimUOM\": \"in\",\n        \"hazmat\": false\n      }\n    ],\n    \"accessorialList\": []\n  }\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2.1/shipment/rate\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/ShipmentRate"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/ShipmentRateResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1089,6 +1132,53 @@
                         "type": "string"
                     }
                 }
+            },
+            "ShipmentRateResponse": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ShipmentRateResponse": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "serviceLevel": {
+                                                "type": "object"
+                                            },
+                                            "estimatedDelivery": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "description": "Estimated Delivery"
+                                            },
+                                            "totalRate": {
+                                                "type": "number",
+                                                "description": "Total Rate"
+                                            },
+                                            "freightCharge": {
+                                                "type": "number",
+                                                "description": "Freight Charge"
+                                            },
+                                            "accessorialList": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "description": "Accessorial List"
+                                            },
+                                            "message": {
+                                                "type": "string",
+                                                "description": "Message"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "requestBodies": {
@@ -1116,6 +1206,87 @@
                             "properties": {
                                 "addMilestoneRequest": {
                                     "$ref": "#/components/requestBodies/addMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ShipmentRate": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ShipmentRateRequest": {
+                                    "type": "object",
+                                    "properties": {
+                                        "pickupTime": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "description": "Pickup time"
+                                        },
+                                        "shipperZip": {
+                                            "type": "string",
+                                            "description": "Shipper Zip"
+                                        },
+                                        "consigneeZip": {
+                                            "type": "string",
+                                            "description": "Consignee Zip"
+                                        },
+                                        "shipmentLines": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "pieces": {
+                                                        "type": "integer",
+                                                        "description": "Pieces"
+                                                    },
+                                                    "pieceType": {
+                                                        "type": "string",
+                                                        "description": "Piece Type"
+                                                    },
+                                                    "weight": {
+                                                        "type": "number",
+                                                        "description": "Weight"
+                                                    },
+                                                    "weightUOM": {
+                                                        "type": "string",
+                                                        "description": "Weight UOM"
+                                                    },
+                                                    "length": {
+                                                        "type": "number",
+                                                        "description": "Length"
+                                                    },
+                                                    "width": {
+                                                        "type": "number",
+                                                        "description": "Width"
+                                                    },
+                                                    "height": {
+                                                        "type": "number",
+                                                        "description": "Height"
+                                                    },
+                                                    "dimUOM": {
+                                                        "type": "string",
+                                                        "description": "Dimension UOM"
+                                                    },
+                                                    "hazmat": {
+                                                        "type": "boolean",
+                                                        "description": "hazmat"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "accessorialList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "Accessoria lList"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
