@@ -312,6 +312,68 @@
                 }
             }
         },
+        "/v2/wms/adjustment": {
+            "get": {
+                "operationId": "//v2/wms/adjustment",
+                "summary": "WMS Adjustment",
+                "tags": [
+                    "WMS"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/adjustment?dateFrom=2023-04-05T11:17:00Z&dateTo=2023-04-08T21:18:00Z\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/adjustment?dateFrom=2023-04-05T11%3A17%3A00Z&dateTo=2023-04-08T21%3A18%3A00Z' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/wms/adjustment?dateFrom=2023-04-05T11:17:00Z&dateTo=2023-04-08T21:18:00Z\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "dateFrom",
+                        "in": "query",
+                        "description": "Start date and time",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "dateTo",
+                        "in": "query",
+                        "description": "End date and time",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/AdjustmentResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
         "/v2/wms/asn": {
             "post": {
                 "operationId": "/v2/wms/asn",
@@ -873,6 +935,64 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/ShipmentListResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/v2/shipment/getdocument": {
+            "get": {
+                "operationId": "/v2/shipment/getdocument",
+                "summary": "Get Document",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/getdocument?housebill=SAT5810973-00&docType=BI\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/getdocument?housebill=SAT5810973-00&docType=BI' \\\n--header 'x-api-key: <X-API-KEY>'"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/shipment/getdocument?housebill=SAT5810973-00&docType=BI',\n  headers: { \n    'x-api-key': 'Fnh0D3mQsT9go5rQBzPPu1Rw9cejwcud33qpbJKQ'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "housebill",
+                        "in": "query",
+                        "description": "ID ",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "docType",
+                        "in": "query",
+                        "description": "ID ",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/getDocumentResponse"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -1581,6 +1701,106 @@
                     }
                 }
             },
+            "AdjustmentResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "adjustmentResponse": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/adjustmentItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "adjustmentItem": {
+                "type": "object",
+                "properties": {
+                    "adjustmentNumber": {
+                        "type": "string",
+                        "description": "Adjustment Number"
+                    },
+                    "adjustmentReference": {
+                        "type": "string",
+                        "description": "Adjustment Reference"
+                    },
+                    "adjustmentStatus": {
+                        "type": "string",
+                        "description": "Adjustment Status"
+                    },
+                    "activityTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Activity Time"
+                    },
+                    "warehouse": {
+                        "type": "string",
+                        "description": "Ware house"
+                    },
+                    "adjustmentLines": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdjustmentLine"
+                        }
+                    }
+                }
+            },
+            "AdjustmentLine": {
+                "type": "object",
+                "properties": {
+                    "lineNumber": {
+                        "type": "integer",
+                        "description": "Line number"
+                    },
+                    "partNumber": {
+                        "type": "string",
+                        "description": "Part number"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description"
+                    },
+                    "serialNumber": {
+                        "type": "string",
+                        "description": "Serial number"
+                    },
+                    "partAttribute1": {
+                        "type": "string",
+                        "description": "Additional attribute"
+                    },
+                    "partAttribute2": {
+                        "type": "string",
+                        "description": "Additional attribute"
+                    },
+                    "arrivalDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Arrival date"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "Quantity"
+                    },
+                    "holdCode": {
+                        "type": "string",
+                        "description": "Hold code"
+                    },
+                    "adjustmentReason": {
+                        "type": "string",
+                        "description": "Adjustment Reason"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "comment"
+                    }
+                }
+            },
             "ApiResponse": {
                 "description": "Invalid request",
                 "content": {
@@ -2175,6 +2395,55 @@
                     },
                     "Number": {
                         "type": "integer"
+                    }
+                }
+            },
+            "getDocumentResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "getDocumentResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "housebill": {
+                                            "description": "housebill",
+                                            "type": "string"
+                                        },
+                                        "fileNumber": {
+                                            "description": "fileNumber",
+                                            "type": "string"
+                                        },
+                                        "documents": {
+                                            "description": "documents",
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/documents"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "documents": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "description": "filename",
+                        "type": "string"
+                    },
+                    "docType": {
+                        "description": "docType ",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "url",
+                        "type": "string"
                     }
                 }
             }
