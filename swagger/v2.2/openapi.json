@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Omni Dev Api's",
+        "description": "Api Documentation",
+        "version": "v2.2",
+        "x-logo": {
+            "url": "https://omni-redoc-bucket-dev.s3.amazonaws.com/logo.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Bizcloud logo"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://dev-api.omnilogistics.com"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Shipment"
+        },
+        {
+            "name": "Invoice & Bill",
+            "description": "Invoice & Bill"
+        },
+        {
+            "name": "WMS"
+        }
+    ],
+    "paths": {
+        "/v2.2/shipment/addmilestone": {
+            "post": {
+                "operationId": "/v2.2/shipment/addmilestone",
+                "summary": "Shipment AddMilestone",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2.2/shipment/addmilestone\"\n\npayload = json.dumps({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"8567276\",\n    \"statusCode\": \"AAD\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2.2/shipment/addmilestone' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: 7HDsIVa2Ke5VPRwIAwtqI8U9q2wO2tZY18ib6Cpn' \\\n--data '{\n  \"addMilestoneRequest\": {\n    \"housebill\": \"8567276\",\n    \"statusCode\": \"AAD\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n}'\n"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"addMilestoneRequest\": {\n    \"housebill\": \"8567276\",\n    \"statusCode\": \"AAD\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2.2/shipment/addmilestone\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/addMilestone"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/addMilestoneResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "InvalidRequest": {
+                "description": "Invalid request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "errorDescription": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Unauthorized": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthorized",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AuthTokenMissing": {
+                "description": "Missing Authentication Token",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "description": "Error msg",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ApiResponse": {
+                "description": "Invalid request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "User name",
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "status": {
+                                    "description": "User Status",
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "addMilestoneResponse": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Message"
+                                        },
+                                        "id": {
+                                            "type": "string",
+                                            "description": "Id"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "addMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "type": "object",
+                                    "properties": {
+                                        "housebill": {
+                                            "type": "string",
+                                            "description": "Housebill"
+                                        },
+                                        "statusCode": {
+                                            "type": "string",
+                                            "description": "Status code"
+                                        },
+                                        "eventTime": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "description": "milestone event"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "description": "For this sample, you can use the api key `x-api-key` to test the authorization filters.",
+                "type": "apiKey",
+                "name": "x-api-key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ]
+}

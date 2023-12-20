@@ -25,6 +25,12 @@
     },
     {
       "name": "WMS"
+    },
+    {
+      "name": "P44-Location"
+    },
+    {
+      "name": "Eventing"
     }
   ],
   "paths": {
@@ -668,7 +674,7 @@
       }
     },
     "/v1/shipment/list/{customerID}": {
-      "post": {
+      "get": {
         "operationId": "/v1/shipment/list/{customerID}",
         "summary": "Shipment List",
         "tags": [
@@ -694,6 +700,216 @@
         "responses": {
           "200": {
             "$ref": "#/components/schemas/ShipmentListResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/v1/location/updates": {
+      "post": {
+        "operationId": "/v1/location/updates",
+        "summary": "Location Update",
+        "tags": [
+          "P44-Location"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1/location/updates\"\n\npayload = json.dumps({\n  \"UTCTimestamp\": \"2023-11-30T14:55:37\",\n  \"housebill\": \"c1\",\n  \"location\": {\n    \"latitude\": 40.692818931491324,\n    \"longitude\": -73.6032160744071\n  },\n  \"correlationId\": \"69d6ee8762784b2b8c63c\"\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/location/updates' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"UTCTimestamp\": \"2023-11-30T14:55:37\",\n  \"housebill\": \"c1\",\n  \"location\": {\n    \"latitude\": 40.692818931491324,\n    \"longitude\": -73.6032160744071\n  },\n  \"correlationId\": \"69d6ee8762784b2b8c63c\"\n}'\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"UTCTimestamp\": \"2023-11-30T14:55:37\",\n  \"housebill\": \"c1\",\n  \"location\": {\n    \"latitude\": 40.692818931491324,\n    \"longitude\": -73.6032160744071\n  },\n  \"correlationId\": \"69d6ee8762784b2b8c63c\"\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1/location/updates\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/locationUpdates"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/locationUpdatesResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/eventing/v1/events": {
+      "get": {
+        "operationId": "/eventing/v1/events",
+        "summary": "Get Event Types",
+        "tags": [
+          "Eventing"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/eventing/v1/events\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/eventing/v1/events' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/eventing/v1/events\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/eventsResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/eventing/v1/webhook": {
+      "post": {
+        "operationId": "/eventing/v1/webhook",
+        "summary": "Create Subscription",
+        "tags": [
+          "Eventing"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/eventing/v1/webhook\"\n\npayload = json.dumps({\n  \"EventType\": \"ShipmentAndMilestone\",\n  \"Endpoint\": \"https://carrier-webhook.narvar.com/v1/events/tracking-data/omni-dell\",\n  \"SharedSecret\": \"1234\",\n  \"Preference\": \"fullPayload\"\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/eventing/v1/webhook' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"EventType\": \"ShipmentAndMilestone\",\n  \"Endpoint\": \"https://carrier-webhook.narvar.com/v1/events/tracking-data/omni-dell\",\n  \"SharedSecret\": \"1234\",\n  \"Preference\": \"fullPayload\"\n}"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"EventType\": \"ShipmentAndMilestone\",\n  \"Endpoint\": \"https://carrier-webhook.narvar.com/v1/events/tracking-data/omni-dell\",\n  \"SharedSecret\": \"1234\",\n  \"Preference\": \"fullPayload\"\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/eventing/v1/webhook\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/getWebhook"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/getWebhookResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "/eventing/v1/webhook",
+        "summary": "Delete Subscription",
+        "tags": [
+          "Eventing"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/eventing/v1/webhook\"\n\npayload = json.dumps({\n  \"EventType\": \"event name\",\n  \"Endpoint\": \"https endpoint\"\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"DELETE\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+          },
+          {
+            "lang": "Curl",
+            "source": "curl --location 'https://dev-api.omnilogistics.com/eventing/v1/webhook' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"EventType\": \"ShipmentAndMilestone\",\n  \"Endpoint\": \"https endpoint\",\n}"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"EventType\": \"event name\",\n  \"Endpoint\": \"https endpoint\"\n});\n\nvar requestOptions = {\n  method: 'DELETE',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/eventing/v1/webhook\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/deleteWebhook"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/deleteWebhookResponse"
+          },
+          "400": {
+            "$ref": "#/components/schemas/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/schemas/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/schemas/AuthTokenMissing"
+          }
+        }
+      }
+    },
+    "/v1/shipment/ltlrate": {
+      "post": {
+        "operationId": "/v1/shipment/ltlrate",
+        "summary": "Shipment LTI Rate",
+        "tags": [
+          "Shipment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": ""
+          },
+          {
+            "lang": "Curl",
+            "source": ""
+          },
+          {
+            "lang": "JavaScript",
+            "source": ""
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/shipmentLtiRate"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/shipmentLtiRateResponse"
           },
           "400": {
             "$ref": "#/components/schemas/InvalidRequest"
@@ -861,6 +1077,344 @@
                 }
               }
             }
+          }
+        }
+      },
+      "locationUpdatesResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "locationUpdateResponse": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "message"
+                    },
+                    "correlationId": {
+                      "type": "string",
+                      "description": "Correlation ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "eventsResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Event Types": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "CustomerInvoices",
+                      "ShipmentAndMilestone",
+                      "Milestone",
+                      "ShipmentUpdates"
+                    ]
+                  }
+                }
+              },
+              "example": {
+                "Event Types": [
+                  "CustomerInvoices",
+                  "ShipmentAndMilestone",
+                  "Milestone",
+                  "ShipmentUpdates"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "getWebhookResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Message",
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Subscription successfully added"
+              }
+            }
+          }
+        }
+      },
+      "deleteWebhookResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Message",
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Unsubscribed successfully."
+              }
+            }
+          }
+        }
+      },
+      "shipmentLtiRateResponse": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "transactionId": {
+                  "type": "string",
+                  "description": "Transaction Id"
+                },
+                "ltlRateResponse": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LTLRateDetails"
+                  }
+                }
+              },
+              "example": {
+                "transactionId": "12345678-9abc-def0-1234-56789abcdef1",
+                "ltlRateResponse": [
+                  {
+                    "carrier": "SAIA",
+                    "serviceLevel": "",
+                    "serviceLevelDescription": "",
+                    "quoteNumber": "250859945",
+                    "transitDays": 2,
+                    "totalRate": 376.73,
+                    "accessorialList": []
+                  },
+                  {
+                    "carrier": "XPOL",
+                    "serviceLevel": "",
+                    "serviceLevelDescription": "",
+                    "quoteNumber": "6608106631939",
+                    "transitDays": 2,
+                    "totalRate": 250.4,
+                    "accessorialList": [
+                      {
+                        "code": "FSC",
+                        "description": "FUEL SURCHARGE  36.75%",
+                        "charge": 67.29
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "FWDA",
+                    "serviceLevel": "0",
+                    "serviceLevelDescription": "",
+                    "transitDays": 4,
+                    "totalRate": 180.69,
+                    "message": "",
+                    "accessorialList": [
+                      {
+                        "code": "PUL",
+                        "description": "PICKUP",
+                        "charge": 0
+                      },
+                      {
+                        "code": "DEL",
+                        "description": "DELIVERY",
+                        "charge": 0
+                      },
+                      {
+                        "code": "LTL",
+                        "description": "LINEHAUL",
+                        "charge": 0
+                      },
+                      {
+                        "code": "FSC",
+                        "description": "FSC",
+                        "charge": 29.61
+                      },
+                      {
+                        "code": "050",
+                        "description": "CLASS 50",
+                        "charge": 151.08
+                      },
+                      {
+                        "code": "LHS",
+                        "description": "STATION SURCHARGE",
+                        "charge": 0
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "RDFS",
+                    "serviceLevel": "",
+                    "serviceLevelDescription": "",
+                    "quoteNumber": "5074950",
+                    "transitDays": 3,
+                    "totalRate": 185.97,
+                    "accessorialList": [
+                      {
+                        "code": "MIN",
+                        "description": "MIN",
+                        "charge": 109.3
+                      },
+                      {
+                        "code": "HND",
+                        "description": "Linehaul Surcharge",
+                        "charge": 35.96
+                      },
+                      {
+                        "code": "FSC",
+                        "description": "Fuel Surcharge - 37.25%",
+                        "charge": 40.71
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "FEXF",
+                    "serviceLevel": "FEDEX_FREIGHT_PRIORITY",
+                    "serviceLevelDescription": "",
+                    "transitDays": 2,
+                    "quoteNumber": "1050300425",
+                    "totalRate": 189.03,
+                    "accessorialList": [
+                      {
+                        "code": "FUEL",
+                        "description": "Fuel Surcharge",
+                        "charge": 48.8
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "FEXF",
+                    "serviceLevel": "FEDEX_FREIGHT_ECONOMY",
+                    "serviceLevelDescription": "",
+                    "transitDays": 6,
+                    "quoteNumber": "1050300378",
+                    "totalRate": 175.81,
+                    "accessorialList": [
+                      {
+                        "code": "FUEL",
+                        "description": "Fuel Surcharge",
+                        "charge": 45.39
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "EXLA",
+                    "quoteNumber": "LJ7RDF4",
+                    "serviceLevel": "99",
+                    "serviceLevelDescription": "LTL Standard Transit",
+                    "transitDays": 8,
+                    "totalRate": 281.36,
+                    "message": "",
+                    "accessorialList": [
+                      {
+                        "code": "FSC",
+                        "description": "Fuel Surcharge",
+                        "charge": 47.67
+                      }
+                    ]
+                  },
+                  {
+                    "carrier": "EXLA",
+                    "quoteNumber": "XJ7RDF4",
+                    "serviceLevel": "97",
+                    "serviceLevelDescription": "Guaranteed Exclusive Use",
+                    "transitDays": 1,
+                    "totalRate": 7910,
+                    "message": "",
+                    "accessorialList": []
+                  },
+                  {
+                    "carrier": "EXLA",
+                    "quoteNumber": "VJ7RDF4",
+                    "serviceLevel": "94",
+                    "serviceLevelDescription": "Volume and Truckload Basic",
+                    "transitDays": 8,
+                    "totalRate": 1150,
+                    "message": "",
+                    "accessorialList": []
+                  },
+                  {
+                    "carrier": "ODFL",
+                    "serviceLevel": "",
+                    "serviceLevelDescription": "",
+                    "transitDays": 3,
+                    "quoteNumber": "923769301",
+                    "totalRate": 434.86,
+                    "accessorialList": []
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "LTLRateDetails": {
+        "type": "object",
+        "properties": {
+          "carrier": {
+            "type": "string",
+            "description": "Carrier"
+          },
+          "serviceLevel": {
+            "type": "string",
+            "description": "Service Level"
+          },
+          "serviceLevelDescription": {
+            "type": "string",
+            "description": "Service Level Description"
+          },
+          "quoteNumber": {
+            "type": "string",
+            "description": "Quote Number"
+          },
+          "transitDays": {
+            "type": "integer",
+            "description": "Transit Days"
+          },
+          "totalRate": {
+            "type": "number",
+            "description": "Total Rate"
+          },
+          "accessorialList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Accessorial"
+            }
+          }
+        }
+      },
+      "Accessorial": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Code"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description"
+          },
+          "charge": {
+            "type": "number",
+            "description": "Charge"
           }
         }
       },
@@ -2572,6 +3126,185 @@
             "PALL",
             "SHRNK"
           ]
+        }
+      },
+      "locationUpdates": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "UTCTimestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "UTC Timestamp"
+                },
+                "housebill": {
+                  "type": "string",
+                  "description": "Housebill number"
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "format": "double",
+                      "description": "Latitude"
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "double",
+                      "description": "Longitude"
+                    }
+                  }
+                },
+                "correlationId": {
+                  "type": "string",
+                  "description": "Correlation ID"
+                }
+              }
+            }
+          }
+        }
+      },
+      "getWebhook": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "EventType": {
+                  "type": "string",
+                  "description": "Event Type"
+                },
+                "Endpoint": {
+                  "type": "string",
+                  "description": "End Point"
+                },
+                "SharedSecret": {
+                  "type": "string",
+                  "description": "Shared Secret"
+                },
+                "Preference": {
+                  "type": "string",
+                  "description": "Preference"
+                }
+              }
+            }
+          }
+        }
+      },
+      "deleteWebhook": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "EventType": {
+                  "type": "string",
+                  "description": "Event Type"
+                },
+                "Endpoint": {
+                  "type": "string",
+                  "description": "End Point"
+                }
+              }
+            }
+          }
+        }
+      },
+      "shipmentLtiRate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "LTLRateRequest": {
+                  "$ref": "#/components/requestBodies/LTLRateRequestBody"
+                }
+              }
+            }
+          }
+        }
+      },
+      "LTLRateRequestBody": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "Reference"
+          },
+          "pickupTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Pickup Time"
+          },
+          "shipperZip": {
+            "type": "string",
+            "description": "Shipper Zip"
+          },
+          "consigneeZip": {
+            "type": "string",
+            "description": "Consignee Zip"
+          },
+          "shipmentLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/requestBodies/ShipmentLine"
+            }
+          },
+          "accessorialList": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Accessorial List"
+            }
+          }
+        }
+      },
+      "ShipmentLine": {
+        "type": "object",
+        "properties": {
+          "pieces": {
+            "type": "integer",
+            "description": "Pieces"
+          },
+          "pieceType": {
+            "type": "string",
+            "description": "Piece Type"
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight"
+          },
+          "weightUOM": {
+            "type": "string",
+            "description": "Weight UOM"
+          },
+          "length": {
+            "type": "number",
+            "description": "Length"
+          },
+          "width": {
+            "type": "number",
+            "description": "Width"
+          },
+          "height": {
+            "type": "number",
+            "description": "Height"
+          },
+          "dimUOM": {
+            "type": "string",
+            "description": "dim UOM"
+          },
+          "hazmat": {
+            "type": "boolean",
+            "description": "Hazmat"
+          },
+          "freightClass": {
+            "type": "integer",
+            "description": "Freight Class"
+          }
         }
       }
     },

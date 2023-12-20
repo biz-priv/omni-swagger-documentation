@@ -909,7 +909,7 @@
             }
         },
         "/v2/shipment/list/{customerID}": {
-            "post": {
+            "get": {
                 "operationId": "/v2/shipment/list/{customerID}",
                 "summary": "Shipment List",
                 "tags": [
@@ -993,6 +993,49 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/getDocumentResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/v2/shipment/vendorinvoice": {
+            "post": {
+                "operationId": "/v2/shipment/vendorinvoice",
+                "summary": "Shipment vendor invoice",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/vendorinvoice\"\n\npayload = json.dumps({\n  \"vendorInvoiceRequest\": {\n    \"fileNumber\": \"4753804\",\n    \"vendorReference\": \"987654\",\n    \"vendorId\": \"ABOVE&\"\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/vendorinvoice' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n   \"vendorInvoiceRequest\": {\n       \"fileNumber\": \"4753804\",\n       \"vendorReference\": \"987654\",\n       \"vendorId\": \"ABOVE&\"\n   }\n}"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"vendorInvoiceRequest\": {\n    \"fileNumber\": \"4753804\",\n    \"vendorReference\": \"987654\",\n    \"vendorId\": \"ABOVE&\"\n  }\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/vendorinvoice\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/ShipmentVendorInvoice"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/ShipmentVendorInvoiceResponse"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -2446,6 +2489,26 @@
                         "type": "string"
                     }
                 }
+            },
+            "ShipmentVendorInvoiceResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "id",
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "description": "message",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "requestBodies": {
@@ -3712,6 +3775,43 @@
                             }
                         }
                     }
+                }
+            },
+            "ShipmentVendorInvoice": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "vendorInvoiceRequest": {
+                                    "$ref": "#/components/requestBodies/ShipmentVendorInvoiceProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ShipmentVendorInvoiceProperties": {
+                "type": "object",
+                "properties": {
+                    "fileNumber": {
+                        "description": "File Number",
+                        "type": "string"
+                    },
+                    "vendorReference": {
+                        "description": "VendorvReference",
+                        "type": "string"
+                    },
+                    "vendorId": {
+                        "description": "Vendor Id",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "fileNumber": "4753804",
+                    "vendorReference": "987654",
+                    "vendorId": "ABOVE&"
                 }
             }
         },

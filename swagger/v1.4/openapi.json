@@ -431,7 +431,7 @@
             }
         },
         "/v1.4/shipment/list/{customerID}": {
-            "post": {
+            "get": {
                 "operationId": "/v1.4/shipment/list/{customerID}",
                 "summary": "Shipment List",
                 "tags": [
