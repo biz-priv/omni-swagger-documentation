@@ -20,6 +20,9 @@
             "name": "Shipment"
         },
         {
+            "name": "ivia"
+        },
+        {
             "name": "Invoice & Bill",
             "description": "Invoice & Bill"
         }
@@ -644,6 +647,49 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/addDocumentresponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/ivia/v2.1/shipment/addmilestone": {
+            "post": {
+                "operationId": "/ivia/v2.1/shipment/addmilestone",
+                "summary": "Add Milestone",
+                "tags": [
+                    "ivia"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/ivia/v2.1/shipment/addmilestone\"\n\npayload = json.dumps({\n \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n    \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n }\n   })\n    headers {\n   'Content-Type': 'application/json',\n 'x-api-key': '<X-API-KEY>'\n }\n\n   response = requests.request(\"POST\", url, headers=headers, data=payload)\n\n print(response.text)\n  "
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/ivia/v2.1/shipment/addmilestone' \\\n --header 'Content-Type: application/json' \\\n --header 'x-api-key: <X-API-KEY>' \\\n  --data '{\n  \"addMilestoneRequest\": {\n  \"houseBill\": \"8424015\",\n  \"statusCode\": \"TTC\",\n  \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n     }\n     }'\n "
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "const axios = require('axios');\n let data = JSON.stringify({\n \"addMilestoneRequest\": {\n \"houseBill\": \"8424015\",\n     \"statusCode\": \"TTC\",\n     \"eventTime\": \"2023-03-27T:13:24:16-05:00\"\n   }\n });\n\n let config = {\n   method: 'post',\n   maxBodyLength: Infinity,\n   url: 'https://dev-api.omnilogistics.com/ivia/v2.1/shipment/addmilestone',\n   headers: { \n     'Content-Type': 'application/json', \n     'x-api-key': '<X-API-KEY>'\n   },\n   data : data\n };\n\n axios.request(config)\n .then((response) => {\n   console.log(JSON.stringify(response.data));\n })\n .catch((error) => {\n   console.log(error);\n });\n "
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/iviaaddMilestone"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/iviaAddMilestoneResponse"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -1336,6 +1382,31 @@
                         }
                     }
                 }
+            },
+            "iviaAddMilestoneResponse": {
+                "description": "Success Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "Message",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "description": "id",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "requestBodies": {
@@ -1822,6 +1893,45 @@
                     "contentType": "application/pdf",
                     "docType": "HCPOD",
                     "b64str": "<b64str>"
+                }
+            },
+            "iviaaddMilestone": {
+                "description": "Request Body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "addMilestoneRequest": {
+                                    "$ref": "#/components/requestBodies/iviaaddMilestoneProperties"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "iviaaddMilestoneProperties": {
+                "type": "object",
+                "properties": {
+                    "housebill": {
+                        "description": "House bill number",
+                        "type": "string"
+                    },
+                    "statusCode": {
+                        "description": "Status code eg. 'CAN'",
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "description": "eventTime",
+                        "type": "string",
+                        "format": "datetime",
+                        "optional": true
+                    }
+                },
+                "example": {
+                    "houseBill": "8424015",
+                    "statusCode": "TTC",
+                    "eventTime": "2023-03-27T:13:24:16-05:00"
                 }
             },
             "addMilestoneProperties": {

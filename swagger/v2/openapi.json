@@ -44,7 +44,7 @@
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone' --header 'x-api-key: <X-API-KEY>' --header 'Content-Type: application/json' --data '{\"addMilestoneRequest\":{\"housebill\":\"85673791233\",\"statusCode\":\"CAN\",\"eventTime\":\"2023-07-13T23:15:00-05:00\"}}'"
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/shipment/addmilestone' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"addMilestoneRequest\": {\n    \"housebill\": \"85673791233\",\n    \"statusCode\": \"CAN\",\n    \"eventTime\": \"2023-07-13T23:15:00-05:00\"\n  }\n}'\n"
                     },
                     {
                         "lang": "JavaScript",
@@ -213,24 +213,36 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/orderstatus?dateFrom=2023-10-22T01:30:00-05:00&dateTo=2023-11-24T20:00:00-05:00\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location 'https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935' \\\n--header 'x-api-key: <X-API-KEY>'"
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/orderstatus?dateFrom=2023-10-22T01:30:00-05:00&dateTo=2023-11-24T20:00:00-05:00' \\\n--header 'x-api-key: <X-API-KEY>'"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://api.omnilogistics.com/v2/wms/orderstatus?orderNumber=W00316935',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/wms/orderstatus?dateFrom=2023-10-22T01:30:00-05:00&dateTo=2023-11-24T20:00:00-05:00',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
                     }
                 ],
                 "parameters": [
                     {
-                        "name": "orderNumber",
+                        "name": "dateFrom",
                         "in": "query",
-                        "description": "ID",
+                        "description": "Start date and time",
+                        "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "dateTo",
+                        "in": "query",
+                        "description": "End date and time",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
                         }
                     }
                 ],
@@ -263,15 +275,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-03-21T21:20:00\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-04-21T21:20:00\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11%3A00%3A00&dateTo=2023-03-21T21%3A20%3A00' \\\n--header 'x-api-key: <X-API-KEY>'\n"
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11%3A00%3A00&dateTo=2023-04-21T21%3A20%3A00' \\\n--header 'x-api-key: <X-API-KEY>'\n"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-03-21T21:20:00',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
+                        "source": "const axios = require('axios');\n\nlet config = {\n  method: 'get',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/wms/receipt?dateFrom=2023-03-20T11:00:00&dateTo=2023-04-21T21:20:00',\n  headers: { \n    'x-api-key': '<X-API-KEY>'\n  }\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
                     }
                 ],
                 "parameters": [
@@ -1585,22 +1597,6 @@
                                                     }
                                                 }
                                             },
-                                            "customerReference": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "refType": {
-                                                            "description": "ref Type ",
-                                                            "type": "string"
-                                                        },
-                                                        "refNumber": {
-                                                            "description": "ref Number",
-                                                            "type": "string"
-                                                        }
-                                                    }
-                                                }
-                                            },
                                             "orderLines": {
                                                 "type": "array",
                                                 "items": {
@@ -1696,7 +1692,9 @@
                     },
                     "customerReference": {
                         "type": "array",
-                        "items": {},
+                        "items": {
+                            "$ref": "#/components/schemas/CustomerReference"
+                        },
                         "description": "Customer references"
                     },
                     "receiptLines": {
@@ -1704,6 +1702,19 @@
                         "items": {
                             "$ref": "#/components/schemas/ReceiptLine"
                         }
+                    }
+                }
+            },
+            "CustomerReference": {
+                "type": "object",
+                "properties": {
+                    "refType": {
+                        "type": "string",
+                        "description": "Reference type."
+                    },
+                    "refNumber": {
+                        "type": "string",
+                        "description": "Reference number."
                     }
                 }
             },

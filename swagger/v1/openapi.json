@@ -401,7 +401,7 @@
         "x-codeSamples": [
           {
             "lang": "Python",
-            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.0/wms/orderstatus?DateFrom=2023-02-16T09:00:00&DateTo=2023-02-16T19:00:01\"\n\npayload = {}\nheaders = {\n  'x-api-key': 'swFiKzLyet9THuIY1i84y2WjZWGlUUCk9GArUjk7'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+            "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.0/wms/orderstatus?DateFrom=2023-02-16T09:00:00&DateTo=2023-02-16T19:00:01\"\n\npayload = {}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
           },
           {
             "lang": "Curl",
@@ -510,7 +510,7 @@
           },
           {
             "lang": "Curl",
-            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/uploadpoddocument' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n    \"UploadPODDocument\": {\n      \"Housebill\": \"5881308\",\n      \"b64str\": \"<>b64str\"\n    }\n}'\n"
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/uploadpoddocument' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n    \"UploadPODDocument\": {\n      \"Housebill\": \"5881308\",\n      \"b64str\": \"<b64str>\"\n    }\n}'\n"
           },
           {
             "lang": "JavaScript",
@@ -893,15 +893,15 @@
         "x-codeSamples": [
           {
             "lang": "Python",
-            "source": ""
+            "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1/shipment/ltlrate\"\n\npayload = json.dumps({\n  \"ltlRateRequest\": {\n    \"reference\": \"12345678-9abc-def0-1234-56789abcdef1\",\n    \"pickupTime\": \"2023-11-23T17:00:00\",\n    \"shipperZip\": \"77040\",\n    \"consigneeZip\": \"33467\",\n    \"shipmentLines\": [\n      {\n        \"pieces\": 1,\n        \"pieceType\": \"PCE\",\n        \"weight\": 615,\n        \"weightUOM\": \"lb\",\n        \"length\": 40,\n        \"width\": 48,\n        \"height\": 55,\n        \"dimUOM\": \"in\",\n        \"hazmat\": False,\n        \"freightClass\": 50\n      }\n    ],\n    \"accessorialList\": [\n      \"APPT\",\n      \"INDEL\"\n    ]\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
           },
           {
             "lang": "Curl",
-            "source": ""
+            "source": "curl --location 'https://dev-api.omnilogistics.com/v1/shipment/ltlrate' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n    \"ltlRateRequest\": {\n        \"reference\": \"12345678-9abc-def0-1234-56789abcdef1\",\n        \"pickupTime\": \"2023-11-23T17:00:00\",\n        \"shipperZip\": \"77040\",\n        \"consigneeZip\": \"33467\",\n        \"shipmentLines\": [\n            {\n                \"pieces\": 1,\n                \"pieceType\": \"PCE\",\n                \"weight\": 615,\n                \"weightUOM\": \"lb\",\n                \"length\": 40,\n                \"width\": 48,\n                \"height\": 55,\n                \"dimUOM\": \"in\",\n                \"hazmat\": false,\n                \"freightClass\": 50\n            }\n        ],\n        \"accessorialList\": [\n            \"APPT\",\n            \"INDEL\"\n        ]\n    }\n}'\n"
           },
           {
             "lang": "JavaScript",
-            "source": ""
+            "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"CpC6AEaO6earvSLEAGRgm4ph3jPFj0eU6IUzIQX7\");\n\nvar raw = JSON.stringify({\n  \"ltlRateRequest\": {\n    \"reference\": \"12345678-9abc-def0-1234-56789abcdef1\",\n    \"pickupTime\": \"2023-11-23T17:00:00\",\n    \"shipperZip\": \"77040\",\n    \"consigneeZip\": \"33467\",\n    \"shipmentLines\": [\n      {\n        \"pieces\": 1,\n        \"pieceType\": \"PCE\",\n        \"weight\": 615,\n        \"weightUOM\": \"lb\",\n        \"length\": 40,\n        \"width\": 48,\n        \"height\": 55,\n        \"dimUOM\": \"in\",\n        \"hazmat\": false,\n        \"freightClass\": 50\n      }\n    ],\n    \"accessorialList\": [\n      \"APPT\",\n      \"INDEL\"\n    ]\n  }\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1/shipment/ltlrate\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
           }
         ],
         "requestBody": {
