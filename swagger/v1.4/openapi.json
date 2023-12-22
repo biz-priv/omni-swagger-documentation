@@ -81,15 +81,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=5869787&milestone_history=1&file_nbr=3442857\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=7010249\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=5869787&milestone_history=1&file_nbr=3442857' \\\n--header 'x-api-key: <X-API-KEY>'"
+                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=7010249' \\\n--header 'x-api-key: <X-API-KEY>'"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=5869787&milestone_history=1&file_nbr=3442857\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.4/shipment/detail?house_bill_nbr=7010249\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
                     }
                 ],
                 "parameters": [
@@ -197,15 +197,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1/rating\"\n\npayload = json.dumps({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v1.4/rating\"\n\npayload = json.dumps({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location 'https://dev-api.omnilogistics.com/v1/rating' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n    \"CommodityInput\": [\n      {\n        \"CommodityPieces\": 2,\n        \"CommodityWeightLB\": 100,\n        \"CommodityLengthIN\": 20,\n        \"CommodityWidthIN\": 30,\n        \"CommodityHeightIN\": 5\n      }\n    ]\n}'\n"
+                        "source": "curl --location 'https://dev-api.omnilogistics.com/v1.4/rating' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n    \"CommodityInput\": [\n      {\n        \"CommodityPieces\": 2,\n        \"CommodityWeightLB\": 100,\n        \"CommodityLengthIN\": 20,\n        \"CommodityWidthIN\": 30,\n        \"CommodityHeightIN\": 5\n      }\n    ]\n}'\n"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1/rating\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v1.4/rating\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
                     }
                 ],
                 "requestBody": {
@@ -641,123 +641,45 @@
             "SubShipmentDetails": {
                 "type": "object",
                 "properties": {
-                    "File Number": {
-                        "description": "File Number",
-                        "type": "string"
-                    },
-                    "File Date": {
-                        "description": "File Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Handling Station": {
-                        "description": "Handling Station",
-                        "type": "string"
-                    },
-                    "Master Waybill": {
-                        "description": "Master Waybill",
-                        "type": "string"
-                    },
-                    "House Waybill": {
-                        "description": "House Waybill",
-                        "type": "string"
-                    },
-                    "Origin Port": {
-                        "description": "Origin Port",
-                        "type": "string"
-                    },
-                    "Destination Port": {
-                        "description": "Destination Port",
-                        "type": "string"
-                    },
-                    "Shipper Name": {
-                        "description": "Shipper Name",
-                        "type": "string"
-                    },
-                    "Consignee Name": {
-                        "description": "Consignee Name",
-                        "type": "string"
-                    },
-                    "Pieces": {
-                        "description": "Pieces",
-                        "type": "number"
-                    },
-                    "Actual Weight LBS": {
-                        "description": "Actual Weight LBS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Actual Weight KGS": {
-                        "description": "Actual Weight KGS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Chargeable Weight LBS": {
-                        "description": "Chargeable Weight LBS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Chargeable Weight KGS": {
-                        "description": "Chargeable Weight LBS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Pickup Date": {
-                        "description": "PickupDate",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Pod Date": {
-                        "description": "Pod Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "ETA Date": {
-                        "description": "ETA Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "ETD Date": {
-                        "description": "ETD Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Scheduled Delivery Date": {
-                        "description": "Scheduled Delivery Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Service Level Description": {
-                        "description": "Service Level Description",
-                        "type": "string"
-                    },
-                    "Service Level Code": {
-                        "description": "Service Level Code",
-                        "type": "string"
-                    },
-                    "Current Status": {
-                        "description": "Current Status",
-                        "type": "string"
-                    },
-                    "Current Status Desc": {
-                        "description": "Current Status Desc",
-                        "type": "string"
-                    },
-                    "Current Status Date": {
-                        "description": "Current Status Desc",
-                        "type": "string"
-                    },
-                    "Current Status Date UTC": {
-                        "description": "Current Status Desc",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Bill To Customer": {
-                        "description": "Bill To Customer",
-                        "type": "string"
-                    }
+                  "Service Level Code": {
+                    "description": "Service Level Code",
+                    "type": "string"
+                  },
+                  "Service Level Description": {
+                    "description": "Service Level Description",
+                    "type": "string"
+                  },
+                  "House Waybill": {
+                    "description": "House Waybill",
+                    "type": "string"
+                  },
+                  "File Number": {
+                    "description": "File Number",
+                    "type": "string"
+                  },
+                  "Shipper Name": {
+                    "description": "Shipper Name",
+                    "type": "string"
+                  },
+                  "Consignee Name": {
+                    "description": "Consignee Name",
+                    "type": "string"
+                  },
+                  "Current Status": {
+                    "description": "Current Status",
+                    "type": "string"
+                  },
+                  "Current Status Desc": {
+                    "description": "Current Status Desc",
+                    "type": "string"
+                  },
+                  "File Date": {
+                    "description": "File Date",
+                    "type": "string",
+                    "format": "date"
+                  }
                 }
-            },
+              },
             "ShipmentInfoDetails": {
                 "description": "Success",
                 "content": {
