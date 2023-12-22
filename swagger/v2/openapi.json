@@ -617,15 +617,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=5865331\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=7010249\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=5865331' \\\n--header 'x-api-key: <X-API-KEY>'"
+                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=7010249' \\\n--header 'x-api-key: <X-API-KEY>'"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=5865331\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/info?house_bill_nbr=7010249\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
                     }
                 ],
                 "parameters": [
@@ -2021,33 +2021,20 @@
             "SubInfoDetails": {
                 "type": "object",
                 "properties": {
-                    "File Number": {
-                        "description": "File Number",
+                    "Service Level Code": {
+                        "description": "Service Level Code",
                         "type": "string"
                     },
-                    "File Date": {
-                        "description": "File Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Handling Station": {
-                        "description": "Handling Station",
-                        "type": "string"
-                    },
-                    "Master Waybill": {
-                        "description": "Master Waybill",
+                    "Service Level Description": {
+                        "description": "House Waybill",
                         "type": "string"
                     },
                     "House Waybill": {
                         "description": "House Waybill",
                         "type": "string"
                     },
-                    "Origin Port": {
-                        "description": "Origin Port",
-                        "type": "string"
-                    },
-                    "Destination Port": {
-                        "description": "Destination Port",
+                    "File Number": {
+                        "description": "File Number",
                         "type": "string"
                     },
                     "Shipper Name": {
@@ -2058,38 +2045,6 @@
                         "description": "Consignee Name",
                         "type": "string"
                     },
-                    "Pod Date": {
-                        "description": "Pod Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "ETA Date": {
-                        "description": "ETA Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "ETD Date": {
-                        "description": "ETD Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Scheduled Delivery Date": {
-                        "description": "Scheduled Delivery Date",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "Service Level Description": {
-                        "description": "Service Level Description",
-                        "type": "string"
-                    },
-                    "Service Level Code": {
-                        "description": "Service Level Code",
-                        "type": "string"
-                    },
-                    "Mode": {
-                        "description": "Mode",
-                        "type": "string"
-                    },
                     "Current Status": {
                         "description": "Current Status",
                         "type": "string"
@@ -2098,9 +2053,10 @@
                         "description": "Current Status Desc",
                         "type": "string"
                     },
-                    "Bill To Customer": {
-                        "description": "Bill To Customer",
-                        "type": "string"
+                    "File Date": {
+                        "description": "File Date",
+                        "type": "string",
+                        "format": "date"
                     }
                 }
             },
