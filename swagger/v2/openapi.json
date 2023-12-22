@@ -571,15 +571,15 @@
                 "x-codeSamples": [
                     {
                         "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/detail?file_nbr=3659394\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
                     },
                     {
                         "lang": "Curl",
-                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/detail?file_nbr=3659394' \\\n--header 'x-api-key: <X-API-KEY>'"
+                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962' \\\n--header 'x-api-key: <X-API-KEY>'"
                     },
                     {
                         "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/detail?file_nbr=3659394\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
                     }
                 ],
                 "parameters": [
@@ -1883,130 +1883,210 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "shipmentDetails": {
-                                    "description": "Shipment Details",
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/SubShipmentDetails"
+                                "Items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "shipmentDetailResponse": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ShipmentDetailItem"
+                                            }
+                                        }
                                     }
+                                },
+                                "LastEvaluatedKey": {
+                                    "type": "string",
+                                    "description": "LastEvaluatedKey"
                                 }
                             }
                         }
                     }
                 }
             },
-            "SubShipmentDetails": {
+            "ShipmentDetailItem": {
                 "type": "object",
                 "properties": {
-                    "File Number": {
-                        "description": "File Number",
-                        "type": "string"
-                    },
-                    "File Date": {
-                        "description": "File Date",
+                    "fileNumber": {
                         "type": "string",
-                        "format": "date"
+                        "description": "File number"
                     },
-                    "Handling Station": {
-                        "description": "Handling Station",
-                        "type": "string"
+                    "housebill": {
+                        "type": "string",
+                        "description": "Housebill"
                     },
-                    "Master Waybill": {
-                        "description": "Master Waybill",
-                        "type": "string"
+                    "masterbill": {
+                        "type": "string",
+                        "description": "Masterbill"
                     },
-                    "House Waybill": {
-                        "description": "House Waybill",
-                        "type": "string"
+                    "shipmentDate": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Shipment date"
                     },
-                    "Origin Port": {
-                        "description": "Origin Port",
-                        "type": "string"
+                    "handlingStation": {
+                        "type": "string",
+                        "description": "Handling station"
                     },
-                    "Destination Port": {
-                        "description": "Destination Port",
-                        "type": "string"
+                    "originPort": {
+                        "type": "string",
+                        "description": "Origin port"
                     },
-                    "Shipper Name": {
-                        "description": "Shipper Name",
-                        "type": "string"
+                    "destinationPort": {
+                        "type": "string",
+                        "description": "Destination port"
                     },
-                    "Consignee Name": {
-                        "description": "Consignee Name",
-                        "type": "string"
+                    "shipper": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "Shipper information"
                     },
-                    "Pieces": {
-                        "description": "Pieces",
-                        "type": "number"
+                    "consignee": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "Consignee information"
                     },
-                    "Actual Weight LBS": {
-                        "description": "Actual Weight LBS",
+                    "pieces": {
+                        "type": "integer",
+                        "description": "Number of pieces"
+                    },
+                    "actualWeight": {
                         "type": "number",
-                        "format": "float"
+                        "description": "Actual weight"
                     },
-                    "Actual Weight KGS": {
-                        "description": "Actual Weight KGS",
+                    "chargeableWeight": {
                         "type": "number",
-                        "format": "float"
+                        "description": "Chargeable weight"
                     },
-                    "Chargeable Weight LBS": {
-                        "description": "Chargeable Weight LBS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Chargeable Weight KGS": {
-                        "description": "Chargeable Weight LBS",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Pickup Date": {
-                        "description": "PickupDate",
+                    "weightUOM": {
                         "type": "string",
-                        "format": "date"
+                        "description": "Weight unit of measure"
                     },
-                    "Pod Date": {
-                        "description": "Pod Date",
+                    "pickupTime": {
                         "type": "string",
-                        "format": "date"
+                        "description": "Pickup time"
                     },
-                    "ETA Date": {
-                        "description": "ETA Date",
+                    "estimatedDepartureTime": {
                         "type": "string",
-                        "format": "date"
+                        "description": "Estimated departure time"
                     },
-                    "ETD Date": {
-                        "description": "ETD Date",
+                    "estimatedArrivalTime": {
                         "type": "string",
-                        "format": "date"
+                        "description": "Estimated arrival time"
                     },
-                    "Scheduled Delivery Date": {
-                        "description": "Scheduled Delivery Date",
+                    "scheduledDeliveryTime": {
                         "type": "string",
-                        "format": "date"
+                        "description": "Scheduled delivery time"
                     },
-                    "Service Level Description": {
-                        "description": "Service Level Description",
-                        "type": "string"
+                    "deliveryTime": {
+                        "type": "string",
+                        "description": "Delivery time"
                     },
-                    "Service Level Code": {
-                        "description": "Service Level Code",
-                        "type": "string"
+                    "podName": {
+                        "type": "string",
+                        "description": "POD name"
                     },
-                    "Current Status": {
-                        "description": "Current Status",
-                        "type": "string"
+                    "serviceLevelCode": {
+                        "type": "string",
+                        "description": "Service level code"
                     },
-                    "Current Status Desc": {
-                        "description": "Current Status Desc",
-                        "type": "string"
+                    "serviceLevelDescription": {
+                        "type": "string",
+                        "description": "Service level description"
                     },
-                    "Bill To Customer": {
-                        "description": "Bill To Customer",
-                        "type": "string"
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/detailCustomerReference"
+                        },
+                        "description": "Customer references"
                     },
-                    "Control Customer": {
-                        "description": "Bill To Customer",
-                        "type": "string"
+                    "locations": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string",
+                                    "format": "date-time"
+                                },
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "description": "Locations"
+                    },
+                    "milestones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Milestone"
+                        },
+                        "description": "Milestones"
+                    }
+                }
+            },
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name"
+                    },
+                    "zip": {
+                        "type": "string",
+                        "description": "ZIP code"
+                    },
+                    "country": {
+                        "type": "string",
+                        "description": "Country"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Address"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "City"
+                    }
+                }
+            },
+            "detailCustomerReference": {
+                "type": "object",
+                "properties": {
+                    "refType": {
+                        "type": "string",
+                        "description": "Reference type"
+                    },
+                    "refParty": {
+                        "type": "string",
+                        "description": "Reference party"
+                    },
+                    "refNumber": {
+                        "type": "string",
+                        "description": "Reference number"
+                    }
+                }
+            },
+            "Milestone": {
+                "type": "object",
+                "properties": {
+                    "statusDescription": {
+                        "type": "string",
+                        "description": "Status description"
+                    },
+                    "statusCode": {
+                        "type": "string",
+                        "description": "Status code"
+                    },
+                    "statusTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Status time"
                     }
                 }
             },
