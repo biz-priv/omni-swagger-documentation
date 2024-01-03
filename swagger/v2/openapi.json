@@ -472,49 +472,6 @@
                 }
             }
         },
-        "/v2/create/shipment": {
-            "post": {
-                "operationId": "/v2/create/shipment",
-                "summary": "Create Shipment",
-                "tags": [
-                    "Shipment"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/create/shipment\"\n\npayload = json.dumps({\n  \"shipmentCreateRequest\": {\n    \"serviceLevel\": \"EC\",\n    \"readyTime\": \"2023-01-31T09:00:00-05:00\",\n    \"closeTime\": \"2023-01-31T17:00:00-05:00\",\n    \"deliveryWindowFrom\": \"2023-02-02T14:00:00-04:00\",\n    \"deliveryWindowTo\": \"2022-02-02T16:00:00-04:00\",\n    \"delBy\": \"Between\",\n    \"UserID\": \"WebtrakUserID\",\n    \"insuredValue\": 1234.56,\n    \"mode\": \"DOM\",\n    \"incoterm\": \"EXW\",\n    \"customerNumber\": \"9468\",\n    \"projectCode\": \"ZZZ999\",\n    \"billTo\": \"3\",\n    \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n    \"controllingStation\": \"DFW\",\n    \"shipper\": {\n      \"name\": \"Test Shipper Inc.\",\n      \"address\": \"2423 PLEASANT RD\",\n      \"address2\": \"\",\n      \"city\": \"Someplace\",\n      \"state\": \"GA\",\n      \"zip\": \"31234\",\n      \"country\": \"US\",\n      \"showName\": \"\",\n      \"venueName\": \"\",\n      \"booth\": \"\",\n      \"decorator\": \"\",\n      \"contact\": \"Test Person\",\n      \"phone\": \"8135551514\",\n      \"email\": \"test@gmail.com\"\n    },\n    \"consignee\": {\n      \"name\": \"Anonyco\",\n      \"address\": \"651W57thSt\",\n      \"address2\": \"\",\n      \"city\": \"NewNewYork\",\n      \"zip\": \"10019\",\n      \"country\": \"US\",\n      \"showName\": \"Widgits 2023\",\n      \"venueName\": \"Javits Convention Center\",\n      \"booth\": \"999a\",\n      \"decorator\": \"Decorations Inc\",\n      \"contact\": \"B.Rodriquez\",\n      \"phone\": \"2125552254\",\n      \"email\": \"matt@planetexpress.us\"\n    },\n    \"shipmentLines\": [\n      {\n        \"description\": \"EQUIPMENT\",\n        \"pieces\": 4,\n        \"pieceType\": \"PCE\",\n        \"weight\": 15,\n        \"weightUOM\": \"LB\",\n        \"length\": 12,\n        \"width\": 15,\n        \"height\": 10,\n        \"dimUOM\": \"IN\",\n        \"hazmat\": False\n      }\n    ],\n    \"customerReference\": [\n      {\n        \"refParty\": \"Shipper\",\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refParty\": \"BillTo\",\n        \"refType\": \"REF\",\n        \"refNumber\": \"DEF456\"\n      }\n    ],\n    \"accessorialList\": [\n      \"PALL\",\n      \"SHRNK\"\n    ]\n  }\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
-                    },
-                    {
-                        "lang": "Curl",
-                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/create/shipment' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data-raw '{\n    \"shipmentCreateRequest\": {\n        \"serviceLevel\": \"EC\",\n        \"readyTime\": \"2023-01-31T09:00:00-05:00\",\n        \"closeTime\": \"2023-01-31T17:00:00-05:00\",\n        \"deliveryWindowFrom\": \"2023-02-02T14:00:00-04:00\",\n        \"deliveryWindowTo\": \"2022-02-02T16:00:00-04:00\",\n        \"delBy\": \"Between\",\n        \"UserID\": \"WebtrakUserID\",\n        \"insuredValue\": 1234.56,\n        \"mode\": \"DOM\",\n        \"incoterm\": \"EXW\",\n        \"customerNumber\": \"9468\",\n        \"projectCode\": \"ZZZ999\",\n        \"billTo\": \"3\",\n        \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n        \"controllingStation\": \"DFW\",\n        \"shipper\": {\n            \"name\": \"Test Shipper Inc.\",\n            \"address\": \"2423 PLEASANT RD\",\n            \"address2\": \"\",\n            \"city\": \"Someplace\",\n            \"state\": \"GA\",\n            \"zip\": \"31234\",\n            \"country\": \"US\",\n            \"showName\": \"\",\n            \"venueName\": \"\",\n            \"booth\": \"\",\n            \"decorator\": \"\",\n            \"contact\": \"Test Person\",\n            \"phone\": \"8135551514\",\n            \"email\": \"test@gmail.com\"\n        },\n        \"consignee\": {\n            \"name\": \"Anonyco\",\n            \"address\": \"651W57thSt\",\n            \"address2\": \"\",\n            \"city\": \"NewNewYork\",\n            \"state\": \"NY\",\n            \"zip\": \"10019\",\n            \"country\": \"US\",\n            \"showName\": \"Widgits 2023\",\n            \"venueName\": \"Javits Convention Center\",\n            \"booth\": \"999a\",\n            \"decorator\": \"Decorations Inc\",\n            \"contact\": \"B.Rodriquez\",\n            \"phone\": \"2125552254\",\n            \"email\": \"matt@planetexpress.us\"\n        },\n        \"shipmentLines\": [\n            {\n                \"description\": \"EQUIPMENT\",\n                \"pieces\": 4,\n                \"pieceType\": \"PCE\",\n                \"weight\": 15,\n                \"weightUOM\": \"LB\",\n                \"length\": 12,\n                \"width\": 15,\n                \"height\": 10,\n                \"dimUOM\": \"IN\",\n                \"hazmat\": false\n            }\n        ],\n        \"customerReference\": [\n            {\n                \"refParty\": \"Shipper\",\n                \"refType\": \"PO\",\n                \"refNumber\": \"ABC123\"\n            },\n            {\n                \"refParty\": \"BillTo\",\n                \"refType\": \"REF\",\n                \"refNumber\": \"DEF456\"\n            }\n        ],\n        \"accessorialList\": [\n            \"PALL\",\n            \"SHRNK\"\n        ]\n    }\n}'\n"
-                    },
-                    {
-                        "lang": "JavaScript",
-                        "source": "const axios = require('axios');\nlet data = JSON.stringify({\n  \"shipmentCreateRequest\": {\n    \"serviceLevel\": \"EC\",\n    \"readyTime\": \"2023-01-31T09:00:00-05:00\",\n    \"closeTime\": \"2023-01-31T17:00:00-05:00\",\n    \"deliveryWindowFrom\": \"2023-02-02T14:00:00-04:00\",\n    \"deliveryWindowTo\": \"2022-02-02T16:00:00-04:00\",\n    \"delBy\": \"Between\",\n    \"UserID\": \"WebtrakUserID\",\n    \"insuredValue\": 1234.56,\n    \"mode\": \"DOM\",\n    \"incoterm\": \"EXW\",\n    \"customerNumber\": \"9468\",\n    \"projectCode\": \"ZZZ999\",\n    \"billTo\": \"3\",\n    \"specialInstructions\": \"DRIVER WILL NEED PALLET WRAP\",\n    \"controllingStation\": \"DFW\",\n    \"shipper\": {\n      \"name\": \"Test Shipper Inc.\",\n      \"address\": \"2423 PLEASANT RD\",\n      \"address2\": \"\",\n      \"city\": \"Someplace\",\n      \"state\": \"GA\",\n      \"zip\": \"31234\",\n      \"country\": \"US\",\n      \"showName\": \"\",\n      \"venueName\": \"\",\n      \"booth\": \"\",\n      \"decorator\": \"\",\n      \"contact\": \"Test Person\",\n      \"phone\": \"8135551514\",\n      \"email\": \"test@gmail.com\"\n    },\n    \"consignee\": {\n      \"name\": \"Anonyco\",\n      \"address\": \"651W57thSt\",\n      \"address2\": \"\",\n      \"city\": \"NewNewYork\",\n      \"state\": \"NY\",\n      \"zip\": \"10019\",\n      \"country\": \"US\",\n      \"showName\": \"Widgits 2023\",\n      \"venueName\": \"Javits Convention Center\",\n      \"booth\": \"999a\",\n      \"decorator\": \"Decorations Inc\",\n      \"contact\": \"B.Rodriquez\",\n      \"phone\": \"2125552254\",\n      \"email\": \"matt@planetexpress.us\"\n    },\n    \"shipmentLines\": [\n      {\n        \"description\": \"EQUIPMENT\",\n        \"pieces\": 4,\n        \"pieceType\": \"PCE\",\n        \"weight\": 15,\n        \"weightUOM\": \"LB\",\n        \"length\": 12,\n        \"width\": 15,\n        \"height\": 10,\n        \"dimUOM\": \"IN\",\n        \"hazmat\": false\n      }\n    ],\n    \"customerReference\": [\n      {\n        \"refParty\": \"Shipper\",\n        \"refType\": \"PO\",\n        \"refNumber\": \"ABC123\"\n      },\n      {\n        \"refParty\": \"BillTo\",\n        \"refType\": \"REF\",\n        \"refNumber\": \"DEF456\"\n      }\n    ],\n    \"accessorialList\": [\n      \"PALL\",\n      \"SHRNK\"\n    ]\n  }\n});\n\nlet config = {\n  method: 'post',\n  maxBodyLength: Infinity,\n  url: 'https://dev-api.omnilogistics.com/v2/create/shipment',\n  headers: { \n    'Content-Type': 'application/json', \n    'x-api-key': '<X-API-KEY>'\n  },\n  data : data\n};\n\naxios.request(config)\n.then((response) => {\n  console.log(JSON.stringify(response.data));\n})\n.catch((error) => {\n  console.log(error);\n});\n"
-                    }
-                ],
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/CreateShipmentRequest"
-                },
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/schemas/CreateShipmentResponse"
-                    },
-                    "400": {
-                        "$ref": "#/components/schemas/InvalidRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/schemas/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/schemas/AuthTokenMissing"
-                    }
-                }
-            }
-        },
         "/v2/shipment/create": {
             "post": {
                 "operationId": "/v2/shipment/create",
@@ -545,64 +502,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/ShipmentCreateResponse"
-                    },
-                    "400": {
-                        "$ref": "#/components/schemas/InvalidRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/schemas/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/schemas/AuthTokenMissing"
-                    }
-                }
-            }
-        },
-        "/v2/shipment/detail": {
-            "get": {
-                "operationId": "/v2/shipment/detail",
-                "summary": "Shipment Details",
-                "tags": [
-                    "Shipment"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
-                    },
-                    {
-                        "lang": "Curl",
-                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962' \\\n--header 'x-api-key: <X-API-KEY>'"
-                    },
-                    {
-                        "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "house_bill_nbr",
-                        "in": "query",
-                        "description": "ID",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "file_nbr",
-                        "in": "query",
-                        "description": "ID",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/schemas/ShipmentDetails"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
