@@ -497,7 +497,267 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/ShipmentCreateRequest"
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "Customer Facing Payload": {
+                                    "value": {
+                                        "shipmentCreateRequest": {
+                                            "serviceLevel": "EC",
+                                            "readyTime": "2023-01-31T09:00:00-05:00",
+                                            "closeTime": "2023-01-31T17:00:00-05:00",
+                                            "insuredValue": 1234.56,
+                                            "mode": "DOM",
+                                            "incoterm": "EXW",
+                                            "specialInstructions": "DRIVER WILL NEED PALLET WRAP",
+                                            "shipper": {
+                                                "name": "Test Shipper Inc.",
+                                                "address": "2423 PLEASANT RD",
+                                                "address2": "",
+                                                "city": "Someplace",
+                                                "state": "GA",
+                                                "zip": "31234",
+                                                "country": "US",
+                                                "decorator": "",
+                                                "contact": "Test Person",
+                                                "phone": "8135551514",
+                                                "email": "test@gmail.com"
+                                            },
+                                            "consignee": {
+                                                "name": "Anonyco",
+                                                "address": "651 W 57th St",
+                                                "address2": "",
+                                                "city": "New New York",
+                                                "state": "NY",
+                                                "zip": "10019",
+                                                "country": "US",
+                                                "showName": "Widgits 2023",
+                                                "venueName": "Javits Convention Center",
+                                                "booth": "999a",
+                                                "decorator": "Decorations Inc",
+                                                "contact": "B. Rodriguez",
+                                                "phone": "2125552254",
+                                                "email": "matt@planetexpress.us"
+                                            },
+                                            "shipmentLines": [
+                                                {
+                                                    "description": "EQUIPMENT",
+                                                    "pieces": 4,
+                                                    "pieceType": "PCE",
+                                                    "weight": 15,
+                                                    "weightUOM": "LB",
+                                                    "length": 12,
+                                                    "width": 15,
+                                                    "height": 10,
+                                                    "dimUOM": "IN",
+                                                    "commodityClass": 70,
+                                                    "hazmat": false
+                                                }
+                                            ],
+                                            "customerReference": [
+                                                {
+                                                    "refParty": "Shipper",
+                                                    "refType": "PO",
+                                                    "refNumber": "ABC123"
+                                                },
+                                                {
+                                                    "refParty": "BillTo",
+                                                    "refType": "REF",
+                                                    "refNumber": "DEF456"
+                                                }
+                                            ],
+                                            "accessorialList": [
+                                                "PALL",
+                                                "SHRNK"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "Mechanical Orchard": {
+                                    "value": {
+                                        "shipmentCreateRequest": {
+                                            "UserID": "MOUser007",
+                                            "serviceLevel": "EC",
+                                            "readyTime": "2023-01-31T09:00:00-05:00",
+                                            "closeTime": "2023-01-31T17:00:00-05:00",
+                                            "deliveryWindowFrom": "2023-02-02T14:00:00-04:00",
+                                            "deliveryWindowTo": "2022-02-02T16:00:00-04:00",
+                                            "delBy": "Between",
+                                            "billTo": "123456",
+                                            "customerNumber": "111111",
+                                            "controllingStation": "DFW",
+                                            "projectCode": "XXXXX",
+                                            "deliveryRequest": "SAT",
+                                            "billToParty": "3",
+                                            "insuredValue": 1234.56,
+                                            "mode": "DOM",
+                                            "incoterm": "EXW",
+                                            "specialInstructions": "DRIVER WILL NEED PALLET WRAP",
+                                            "shipper": {
+                                                "name": "Test Shipper Inc.",
+                                                "address": "2423 PLEASANT RD",
+                                                "address2": "",
+                                                "city": "Someplace",
+                                                "state": "GA",
+                                                "zip": "31234",
+                                                "country": "US",
+                                                "contact": "Test Person",
+                                                "phone": "8135551514",
+                                                "email": "test@gmail.com",
+                                                "showName": "",
+                                                "venueName": "",
+                                                "booth": "",
+                                                "decorator": ""
+                                            },
+                                            "consignee": {
+                                                "name": "Anonyco",
+                                                "address": "651 W 57th St",
+                                                "address2": "",
+                                                "city": "New New York",
+                                                "state": "NY",
+                                                "zip": "10019",
+                                                "country": "US",
+                                                "showName": "Widgits 2023",
+                                                "venueName": "Javits Convention Center",
+                                                "booth": "999a",
+                                                "decorator": "Decorations Inc",
+                                                "contact": "B. Rodriguez",
+                                                "phone": "2125552254",
+                                                "email": "matt@planetexpress.us"
+                                            },
+                                            "shipmentLines": [
+                                                {
+                                                    "description": "EQUIPMENT",
+                                                    "pieces": 4,
+                                                    "pieceType": "PCE",
+                                                    "weight": 15,
+                                                    "weightUOM": "LB",
+                                                    "length": 12,
+                                                    "width": 15,
+                                                    "height": 10,
+                                                    "dimUOM": "IN",
+                                                    "hazmat": false,
+                                                    "commodityClass": 70
+                                                }
+                                            ],
+                                            "quoteId": "ABC123",
+                                            "customerReference": [
+                                                {
+                                                    "refParty": "Shipper",
+                                                    "refType": "PO",
+                                                    "refNumber": "ABC123"
+                                                },
+                                                {
+                                                    "refParty": "BillTo",
+                                                    "refType": "REF",
+                                                    "refNumber": "DEF456"
+                                                }
+                                            ],
+                                            "customerCharges": [
+                                                {
+                                                    "chargeCode": "FRT",
+                                                    "amount": 1234.56
+                                                }
+                                            ],
+                                            "vendorCharges": [
+                                                {
+                                                    "vendorId": "12345678",
+                                                    "serviceLevel": "LT",
+                                                    "amount": 543.21,
+                                                    "refNumber": "PRO12345"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "Customer Portal": {
+                                    "value": {
+                                        "shipmentCreateRequest": {
+                                            "serviceLevel": "EC",
+                                            "readyTime": "2023-01-31T09:00:00-05:00",
+                                            "closeTime": "2023-01-31T17:00:00-05:00",
+                                            "deliveryWindowFrom": "2023-02-02T14:00:00-04:00",
+                                            "deliveryWindowTo": "2022-02-02T16:00:00-04:00",
+                                            "delBy": "Between",
+                                            "UserID": "WebtrakUserID",
+                                            "insuredValue": 1234.56,
+                                            "mode": "DOM",
+                                            "incoterm": "EXW",
+                                            "customerNumber": "9468",
+                                            "projectCode": "ZZZ999",
+                                            "billTo": "3",
+                                            "specialInstructions": "DRIVER WILL NEED PALLET WRAP",
+                                            "controllingStation": "DFW",
+                                            "shipper": {
+                                                "name": "Test Shipper Inc.",
+                                                "address": "2423 PLEASANT RD",
+                                                "address2": "",
+                                                "city": "Someplace",
+                                                "state": "GA",
+                                                "zip": "31234",
+                                                "country": "US",
+                                                "showName": "",
+                                                "venueName": "",
+                                                "booth": "",
+                                                "decorator": "",
+                                                "contact": "Test Person",
+                                                "phone": "8135551514",
+                                                "email": "test@gmail.com"
+                                            },
+                                            "consignee": {
+                                                "name": "Anonyco",
+                                                "address": "651 W 57th St",
+                                                "address2": "",
+                                                "city": "New New York",
+                                                "state": "NY",
+                                                "zip": "10019",
+                                                "country": "US",
+                                                "showName": "Widgits 2023",
+                                                "venueName": "Javits Convention Center",
+                                                "booth": "999a",
+                                                "decorator": "Decorations Inc",
+                                                "contact": "B. Rodriguez",
+                                                "phone": "2125552254",
+                                                "email": "matt@planetexpress.us"
+                                            },
+                                            "shipmentLines": [
+                                                {
+                                                    "description": "EQUIPMENT",
+                                                    "pieces": 4,
+                                                    "pieceType": "PCE",
+                                                    "weight": 15,
+                                                    "weightUOM": "LB",
+                                                    "length": 12,
+                                                    "width": 15,
+                                                    "height": 10,
+                                                    "dimUOM": "IN",
+                                                    "commodityClass": 70,
+                                                    "hazmat": false
+                                                }
+                                            ],
+                                            "customerReference": [
+                                                {
+                                                    "refParty": "Shipper",
+                                                    "refType": "PO",
+                                                    "refNumber": "ABC123"
+                                                },
+                                                {
+                                                    "refParty": "BillTo",
+                                                    "refType": "REF",
+                                                    "refNumber": "DEF456"
+                                                }
+                                            ],
+                                            "accessorialList": [
+                                                "PALL",
+                                                "SHRNK"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
