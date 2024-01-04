@@ -1922,21 +1922,17 @@
           "Ready Date": {
             "description": "Ready Date",
             "type": "string",
-            "format": "date"
+            "format": "date-time"
           },
           "Service Level": {
             "description": "Service Level",
-            "type": "string"
+            "type": "string",
+            "enum": ["EC", "FT", "PT", "HS", "ND", "2D", "3D", "4D", "NT"]
           },
           "Close Time": {
             "description": "Close Time",
             "type": "string",
-            "format": "date"
-          },
-          "Close Date": {
-            "description": "Close Date",
-            "type": "string",
-            "format": "date"
+            "format": "date-time"
           },
           "Shipper Name": {
             "description": "Shipper Name",
@@ -1960,7 +1956,7 @@
           },
           "Shipper Zip": {
             "description": "Shipper Zip",
-            "type": "integer"
+            "type": "string"
           },
           "Shipper Country": {
             "description": "Shipper Country",
@@ -1968,7 +1964,7 @@
           },
           "Shipper Phone": {
             "description": "Shipper Phone",
-            "type": "integer"
+            "type": "string"
           },
           "Shipper Contact": {
             "description": "Shipper Contact",
@@ -2001,7 +1997,7 @@
           },
           "Consignee Zip": {
             "description": "Consignee Zip",
-            "type": "integer"
+            "type": "string"
           },
           "Consignee Country": {
             "description": "Consignee Country",
@@ -2009,7 +2005,7 @@
           },
           "Consignee Phone": {
             "description": "Consignee Phone",
-            "type": "integer"
+            "type": "string"
           },
           "Consignee Contact": {
             "description": "Consignee Contact",
@@ -2052,7 +2048,8 @@
               "properties": {
                 "Code": {
                   "description": "Code",
-                  "type": "string"
+                  "type": "string",
+                  "enum": ["PALL","SHRNK","WEEK","HOLPU","LIMPU","INSPU","LIFT","APPT","NONND","AFTER","STREL","FRNDK"]
                 }
               }
             }
@@ -2245,15 +2242,18 @@
           },
           "WeightUOMV3": {
             "description": "WeightUOMV3",
-            "type": "string"
+            "type": "string",
+            "enum": ["lb","kg"]
           },
           "DimUOMV3": {
             "description": "DimUOMV3",
-            "type": "string"
+            "type": "string",
+            "enum": ["in","cm"]
           },
           "PieceType": {
             "description": "PieceType",
-            "type": "string"
+            "type": "string",
+            "enum":["BOX","CTN","CRT","PKG","PLT","PCE","SKD"]
           },
           "Hazmat": {
             "description": "Hazmat",
