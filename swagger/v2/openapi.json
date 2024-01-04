@@ -64,15 +64,6 @@
                                             "eventTime": "2023-07-13T23:15:00-05:00"
                                         }
                                     }
-                                },
-                                "AAD Payload": {
-                                    "value": {
-                                        "addMilestoneRequest": {
-                                            "housebill": "8567276",
-                                            "statusCode": "AAD",
-                                            "eventTime": "2023-07-13T23:15:00-05:00"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -85,13 +76,6 @@
                             "application/json": {
                                 "examples": {
                                     "CAN Response": {
-                                        "value": {
-                                            "addMilestoneResponse": {
-                                                "message": "Success"
-                                            }
-                                        }
-                                    },
-                                    "AAD Response": {
                                         "value": {
                                             "addMilestoneResponse": {
                                                 "message": "Success"
@@ -820,49 +804,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/ShipmentInfoDetails"
-                    },
-                    "400": {
-                        "$ref": "#/components/schemas/InvalidRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/schemas/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/schemas/AuthTokenMissing"
-                    }
-                }
-            }
-        },
-        "/v2/rating": {
-            "post": {
-                "operationId": "/v2/rating",
-                "summary": "Rating",
-                "tags": [
-                    "Shipment"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "import requests\nimport json\n\nurl = \"https://dev-api.omnilogistics.com/v2/rating\"\n\npayload = json.dumps({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n})\nheaders = {\n  'Content-Type': 'application/json',\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
-                    },
-                    {
-                        "lang": "Curl",
-                        "source": "curl --location 'https://dev-api.omnilogistics.com/v2/rating' \\\n--header 'Content-Type: application/json' \\\n--header 'x-api-key: <X-API-KEY>' \\\n--data '{\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n    \"CommodityInput\": [\n      {\n        \"CommodityPieces\": 2,\n        \"CommodityWeightLB\": 100,\n        \"CommodityLengthIN\": 20,\n        \"CommodityWidthIN\": 30,\n        \"CommodityHeightIN\": 5\n      }\n    ]\n}'\n"
-                    },
-                    {
-                        "lang": "JavaScript",
-                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"Content-Type\", \"application/json\");\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar raw = JSON.stringify({\n  \"RatingInput\": {\n    \"OriginZip\": \"10012\",\n    \"DestinationZip\": \"90210\",\n    \"PickupTime\": \"2023-12-30T17:00:00\"\n  },\n  \"CommodityInput\": [\n    {\n      \"CommodityPieces\": 2,\n      \"CommodityWeightLB\": 100,\n      \"CommodityLengthIN\": 20,\n      \"CommodityWidthIN\": 30,\n      \"CommodityHeightIN\": 5\n    }\n  ]\n});\n\nvar requestOptions = {\n  method: 'POST',\n  headers: myHeaders,\n  body: raw,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/rating\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));\n"
-                    }
-                ],
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/ratingInput"
-                },
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/schemas/RatingResponse"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -2390,63 +2331,6 @@
                     }
                 }
             },
-            "RatingResponse": {
-                "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/RatingOutputArray"
-                            }
-                        }
-                    }
-                }
-            },
-            "RatingOutputArray": {
-                "type": "object",
-                "properties": {
-                    "ServiceLevelID": {
-                        "description": "ServiceLevelID",
-                        "type": "string"
-                    },
-                    "StandardTotalRate": {
-                        "description": "StandardTotalRate",
-                        "type": "string"
-                    },
-                    "Message": {
-                        "description": "Message",
-                        "type": "string"
-                    },
-                    "StandardFreightCharge": {
-                        "description": "StandardFreightCharge",
-                        "type": "string"
-                    },
-                    "AccessorialOutput": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/AccessorialOutput"
-                        }
-                    }
-                }
-            },
-            "AccessorialOutput": {
-                "type": "object",
-                "properties": {
-                    "AccessorialCode": {
-                        "description": "AccessorialCode",
-                        "type": "string"
-                    },
-                    "AccessorialDesc": {
-                        "description": "AccessorialDesc",
-                        "type": "string"
-                    },
-                    "AccessorialCharge": {
-                        "description": "AccessorialCharge",
-                        "type": "number"
-                    }
-                }
-            },
             "Billoflading": {
                 "description": "Success",
                 "content": {
@@ -2839,7 +2723,7 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "addMilestoneRequest": {
+                                "documentUploadRequest": {
                                     "$ref": "#/components/requestBodies/addDocumentProperties"
                                 }
                             }
@@ -3829,77 +3713,6 @@
                         "PALL",
                         "SHRNK"
                     ]
-                }
-            },
-            "ratingInput": {
-                "description": "Request Body",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "RatingInput": {
-                                    "$ref": "#/components/requestBodies/SubRatingList"
-                                },
-                                "CommodityInput": {
-                                    "$ref": "#/components/requestBodies/SubCommodityObject"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "SubRatingList": {
-                "type": "object",
-                "properties": {
-                    "OriginZip": {
-                        "description": "Origin Zip",
-                        "type": "string"
-                    },
-                    "DestinationZip": {
-                        "description": "Destination Zip",
-                        "type": "string"
-                    },
-                    "PickupTime": {
-                        "description": "Pick Up Time",
-                        "type": "string"
-                    }
-                }
-            },
-            "SubCommodityObject": {
-                "type": "object",
-                "properties": {
-                    "CommodityInput": {
-                        "$ref": "#/components/requestBodies/SubCommodityInput"
-                    }
-                }
-            },
-            "SubCommodityInput": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "CommodityPieces": {
-                            "description": "Commodity Pieces",
-                            "type": "number"
-                        },
-                        "CommodityWeightLB": {
-                            "description": "Commodity Weight LB",
-                            "type": "number"
-                        },
-                        "CommodityLengthIN": {
-                            "description": "Commodity Weight LB",
-                            "type": "number"
-                        },
-                        "CommodityWidthIN": {
-                            "description": "Commodity WidthIN",
-                            "type": "number"
-                        },
-                        "CommodityHeightIN": {
-                            "description": "Commodity HeightIN",
-                            "type": "number"
-                        }
-                    }
                 }
             },
             "ShipmentRate": {
