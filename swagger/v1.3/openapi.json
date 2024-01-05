@@ -498,20 +498,33 @@
       "SubShipmentDetails": {
         "type": "object",
         "properties": {
-          "Service Level Code": {
-            "description": "Service Level Code",
+          "File Number": {
+            "description": "File Number",
             "type": "string"
           },
-          "Service Level Description": {
-            "description": "Service Level Description",
+          "File Date": {
+            "description": "File Date",
+            "type": "string",
+            "format": "date"
+          },
+          "Handling Station": {
+            "description": "Handling Station",
+            "type": "string"
+          },
+          "Master Waybill": {
+            "description": "Master Waybill",
             "type": "string"
           },
           "House Waybill": {
             "description": "House Waybill",
             "type": "string"
           },
-          "File Number": {
-            "description": "File Number",
+          "Origin Port": {
+            "description": "Origin Port",
+            "type": "string"
+          },
+          "Destination Port": {
+            "description": "Destination Port",
             "type": "string"
           },
           "Shipper Name": {
@@ -522,18 +535,92 @@
             "description": "Consignee Name",
             "type": "string"
           },
-          "Current Status": {
-            "description": "Current Status",
-            "type": "string"
+          "Pieces": {
+            "description": "Pieces",
+            "type": "integer"
           },
-          "Current Status Desc": {
-            "description": "Current Status Desc",
-            "type": "string"
+          "Actual Weight LBS": {
+            "description": "Actual Weight LBS",
+            "type": "number"
           },
-          "File Date": {
-            "description": "File Date",
+          "Actual Weight KGS": {
+            "description": "Actual Weight KGS",
+            "type": "number"
+          },
+          "Chargeable Weight LBS": {
+            "description": "Chargeable Weight LBS",
+            "type": "number"
+          },
+          "Chargeable Weight KGS": {
+            "description": "Chargeable Weight KGS",
+            "type": "number"
+          },
+          "Pickup Date": {
+            "description": "Pickup Date",
             "type": "string",
-            "format": "date"
+            "format": "date-time"
+          },
+          "Pod Date": {
+            "description": "Pod Date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "ETA Date": {
+            "description": "ETA Date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "ETD Date": {
+            "description": "ETD Date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "Scheduled Delivery Date": {
+            "description": "Scheduled Delivery Date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "Service Level Description": {
+            "description": "Service Level Description",
+            "type": "string"
+          },
+          "Service Level Code": {
+            "description": "Service Level Code",
+            "type": "string"
+          },
+          "Bill To Customer": {
+            "description": "Bill To Customer",
+            "type": "string"
+          },
+          "Control Customer": {
+            "description": "Control Customer",
+            "type": "string"
+          },
+          "Milestones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Current Status": {
+                  "description": "Current Status",
+                  "type": "string"
+                },
+                "Current Status Desc": {
+                  "description": "Current Status Desc",
+                  "type": "string"
+                },
+                "Current Status Date": {
+                  "description": "Current Status Date",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Current Status Date UTC": {
+                  "description": "Current Status Date UTC",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
           }
         }
       },
@@ -578,7 +665,7 @@
           "Shipper Name": {
             "description": "Shipper Name",
             "type": "string"
-          },  
+          },
           "Consignee Name": {
             "description": "Consignee Name",
             "type": "string"
