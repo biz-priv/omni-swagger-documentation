@@ -481,9 +481,21 @@
                     }
                 ],
                 "requestBody": {
-                    "required": true,
                     "content": {
                         "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/components/requestBodies/CustomerFacing"
+                                    },
+                                    {
+                                        "$ref": "#/components/requestBodies/MechanicalOrchard"
+                                    },
+                                    {
+                                        "$ref": "#/components/requestBodies/CustomerPortal"
+                                    }
+                                ]
+                            },
                             "examples": {
                                 "Customer Facing Payload": {
                                     "value": {
@@ -558,7 +570,7 @@
                                         }
                                     }
                                 },
-                                "Mechanical Orchard": {
+                                "Vendor Facing (Mechanical Orchard)": {
                                     "value": {
                                         "shipmentCreateRequest": {
                                             "UserID": "MOUser007",
@@ -655,7 +667,7 @@
                                         }
                                     }
                                 },
-                                "Customer Portal": {
+                                "Vendor Facing (Customer Portal)": {
                                     "value": {
                                         "shipmentCreateRequest": {
                                             "serviceLevel": "EC",
@@ -1862,10 +1874,59 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "adjustmentResponse": {
+                                "_original": {
+                                    "type": "object",
+                                    "properties": {
+                                        "adjustmentResponse": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/adjustmentItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "details": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/adjustmentItem"
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "description": "Message",
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "type": "array",
+                                                "items": {
+                                                    "description": "path",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": {
+                                                "description": "type",
+                                                "type": "string"
+                                            },
+                                            "context": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "limit": {
+                                                        "description": "child",
+                                                        "type": "integer"
+                                                    },
+                                                    "value": {
+                                                        "description": "value",
+                                                        "type": "string"
+                                                    },
+                                                    "lable": {
+                                                        "description": "lable",
+                                                        "type": "string"
+                                                    },
+                                                    "key": {
+                                                        "description": "key",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -2727,6 +2788,848 @@
                                     "$ref": "#/components/requestBodies/addDocumentProperties"
                                 }
                             }
+                        }
+                    }
+                }
+            },
+            "CustomerFacing": {
+                "description": "Customer Facing Payload",
+                "type": "object",
+                "properties": {
+                    "shipmentCreateRequest": {
+                        "$ref": "#/components/requestBodies/shipmentCreateRequest1"
+                    }
+                }
+            },
+            "MechanicalOrchard": {
+                "description": "Mechanical Orchard Payload",
+                "type": "object",
+                "properties": {
+                    "shipmentCreateRequest": {
+                        "$ref": "#/components/requestBodies/shipmentCreateRequest2"
+                    }
+                }
+            },
+            "CustomerPortal": {
+                "description": "Mechanical Orchard Payload",
+                "type": "object",
+                "properties": {
+                    "shipmentCreateRequest": {
+                        "$ref": "#/components/requestBodies/shipmentCreateRequest3"
+                    }
+                }
+            },
+            "shipmentCreateRequest1": {
+                "type": "object",
+                "properties": {
+                    "serviceLevel": {
+                        "description": "Service Level",
+                        "type": "string"
+                    },
+                    "readyTime": {
+                        "description": "Ready Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "closeTime": {
+                        "description": "Close Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "insuredValue": {
+                        "description": "Insured Value",
+                        "type": "number"
+                    },
+                    "mode": {
+                        "description": "mode",
+                        "type": "string"
+                    },
+                    "incoterm": {
+                        "description": "incoterm",
+                        "type": "string"
+                    },
+                    "specialInstructions": {
+                        "description": "Special Instructions",
+                        "type": "string"
+                    },
+                    "shipper": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address 2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "consignee": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "Contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "Phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "shipmentLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "Description",
+                                    "type": "string"
+                                },
+                                "pieces": {
+                                    "description": "Pieces",
+                                    "type": "integer"
+                                },
+                                "pieceType": {
+                                    "description": "Piece Type",
+                                    "type": "string"
+                                },
+                                "weight": {
+                                    "description": "Weight",
+                                    "type": "number"
+                                },
+                                "weightUOM": {
+                                    "description": "Weight UOM",
+                                    "type": "string"
+                                },
+                                "length": {
+                                    "description": "Length",
+                                    "type": "number"
+                                },
+                                "width": {
+                                    "description": "Width",
+                                    "type": "number"
+                                },
+                                "height": {
+                                    "description": "Height",
+                                    "type": "number"
+                                },
+                                "dimUOM": {
+                                    "description": "Dim UOM",
+                                    "type": "string"
+                                },
+                                "commodityClass": {
+                                    "description": "Dim UOM",
+                                    "type": "number"
+                                },
+                                "hazmat": {
+                                    "description": "hazmat",
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refParty": {
+                                    "description": "Ref Party",
+                                    "type": "string"
+                                },
+                                "refType": {
+                                    "description": "Ref Type",
+                                    "type": "string"
+                                },
+                                "refNumber": {
+                                    "description": "Ref Number",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "accessorialList": {
+                        "type": "array",
+                        "items": {
+                            "description": "Accessorial List",
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "shipmentCreateRequest2": {
+                "type": "object",
+                "properties": {
+                    "UserID": {
+                        "description": "User ID",
+                        "type": "string"
+                    },
+                    "serviceLevel": {
+                        "description": "Service Level",
+                        "type": "string"
+                    },
+                    "readyTime": {
+                        "description": "Ready Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "closeTime": {
+                        "description": "Close Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowFrom": {
+                        "description": "delivery Window From",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowTo": {
+                        "description": "delivery Window To",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "delBy": {
+                        "description": "del By",
+                        "type": "string"
+                    },
+                    "billTo": {
+                        "description": "bill To",
+                        "type": "string"
+                    },
+                    "customerNumber": {
+                        "description": "customer Number",
+                        "type": "string"
+                    },
+                    "controllingStation": {
+                        "description": "controlling Station",
+                        "type": "string"
+                    },
+                    "projectCode": {
+                        "description": "project Code",
+                        "type": "string"
+                    },
+                    "deliveryRequest": {
+                        "description": "delivery Request",
+                        "type": "string"
+                    },
+                    "billToParty": {
+                        "description": "bill To Party",
+                        "type": "string"
+                    },
+                    "insuredValue": {
+                        "description": "Insured Value",
+                        "type": "number"
+                    },
+                    "mode": {
+                        "description": "mode",
+                        "type": "string"
+                    },
+                    "incoterm": {
+                        "description": "incoterm",
+                        "type": "string"
+                    },
+                    "specialInstructions": {
+                        "description": "Special Instructions",
+                        "type": "string"
+                    },
+                    "shipper": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address 2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            },
+                            "showName": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "phone",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "consignee": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "Contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "Phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "shipmentLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "Description",
+                                    "type": "string"
+                                },
+                                "pieces": {
+                                    "description": "Pieces",
+                                    "type": "integer"
+                                },
+                                "pieceType": {
+                                    "description": "Piece Type",
+                                    "type": "string"
+                                },
+                                "weight": {
+                                    "description": "Weight",
+                                    "type": "number"
+                                },
+                                "weightUOM": {
+                                    "description": "Weight UOM",
+                                    "type": "string"
+                                },
+                                "length": {
+                                    "description": "Length",
+                                    "type": "number"
+                                },
+                                "width": {
+                                    "description": "Width",
+                                    "type": "number"
+                                },
+                                "height": {
+                                    "description": "Height",
+                                    "type": "number"
+                                },
+                                "dimUOM": {
+                                    "description": "Dim UOM",
+                                    "type": "string"
+                                },
+                                "commodityClass": {
+                                    "description": "Dim UOM",
+                                    "type": "number"
+                                },
+                                "hazmat": {
+                                    "description": "hazmat",
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "quoteId": {
+                        "description": "quote Id",
+                        "type": "string"
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refParty": {
+                                    "description": "Ref Party",
+                                    "type": "string"
+                                },
+                                "refType": {
+                                    "description": "Ref Type",
+                                    "type": "string"
+                                },
+                                "refNumber": {
+                                    "description": "Ref Number",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "customerCharges": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "chargeCode": {
+                                    "description": "Charge Code",
+                                    "type": "string"
+                                },
+                                "amount": {
+                                    "description": "Amount",
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    },
+                    "vendorCharges": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "vendorId": {
+                                    "description": "Vendor Id",
+                                    "type": "string"
+                                },
+                                "serviceLevel": {
+                                    "description": "Service Level",
+                                    "type": "string"
+                                },
+                                "amount": {
+                                    "description": "Amount",
+                                    "type": "number"
+                                },
+                                "refNumber": {
+                                    "description": "Ref Number",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "shipmentCreateRequest3": {
+                "type": "object",
+                "properties": {
+                    "serviceLevel": {
+                        "description": "Service Level",
+                        "type": "string"
+                    },
+                    "readyTime": {
+                        "description": "Ready Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "closeTime": {
+                        "description": "Close Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowFrom": {
+                        "description": "delivery Window From",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "deliveryWindowTo": {
+                        "description": "delivery Window To",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "delBy": {
+                        "description": "del By",
+                        "type": "string"
+                    },
+                    "UserID": {
+                        "description": "User ID",
+                        "type": "string"
+                    },
+                    "insuredValue": {
+                        "description": "Insured Value",
+                        "type": "number"
+                    },
+                    "mode": {
+                        "description": "mode",
+                        "type": "string"
+                    },
+                    "incoterm": {
+                        "description": "incoterm",
+                        "type": "string"
+                    },
+                    "customerNumber": {
+                        "description": "customer Number",
+                        "type": "string"
+                    },
+                    "projectCode": {
+                        "description": "project Code",
+                        "type": "string"
+                    },
+                    "billTo": {
+                        "description": "bill To",
+                        "type": "string"
+                    },
+                    "specialInstructions": {
+                        "description": "Special Instructions",
+                        "type": "string"
+                    },
+                    "controllingStation": {
+                        "description": "Controlling Station",
+                        "type": "string"
+                    },
+                    "shipper": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address 2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "consignee": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "address": {
+                                "description": "Address",
+                                "type": "string"
+                            },
+                            "address2": {
+                                "description": "Address2",
+                                "type": "string"
+                            },
+                            "city": {
+                                "description": "City",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State",
+                                "type": "string"
+                            },
+                            "zip": {
+                                "description": "Zip",
+                                "type": "string"
+                            },
+                            "country": {
+                                "description": "Country",
+                                "type": "string"
+                            },
+                            "showName": {
+                                "description": "Show Name",
+                                "type": "string"
+                            },
+                            "venueName": {
+                                "description": "Venue Name",
+                                "type": "string"
+                            },
+                            "booth": {
+                                "description": "Booth",
+                                "type": "string"
+                            },
+                            "decorator": {
+                                "description": "Decorator",
+                                "type": "string"
+                            },
+                            "contact": {
+                                "description": "Contact",
+                                "type": "string"
+                            },
+                            "phone": {
+                                "description": "Phone",
+                                "type": "string"
+                            },
+                            "email": {
+                                "description": "email",
+                                "type": "string",
+                                "format": "email"
+                            }
+                        }
+                    },
+                    "shipmentLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "Description",
+                                    "type": "string"
+                                },
+                                "pieces": {
+                                    "description": "Pieces",
+                                    "type": "integer"
+                                },
+                                "pieceType": {
+                                    "description": "Piece Type",
+                                    "type": "string"
+                                },
+                                "weight": {
+                                    "description": "Weight",
+                                    "type": "number"
+                                },
+                                "weightUOM": {
+                                    "description": "Weight UOM",
+                                    "type": "string"
+                                },
+                                "length": {
+                                    "description": "Length",
+                                    "type": "number"
+                                },
+                                "width": {
+                                    "description": "Width",
+                                    "type": "number"
+                                },
+                                "height": {
+                                    "description": "Height",
+                                    "type": "number"
+                                },
+                                "dimUOM": {
+                                    "description": "Dim UOM",
+                                    "type": "string"
+                                },
+                                "commodityClass": {
+                                    "description": "Dim UOM",
+                                    "type": "number"
+                                },
+                                "hazmat": {
+                                    "description": "hazmat",
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refParty": {
+                                    "description": "Ref Party",
+                                    "type": "string"
+                                },
+                                "refType": {
+                                    "description": "Ref Type",
+                                    "type": "string"
+                                },
+                                "refNumber": {
+                                    "description": "Ref Number",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "accessorialList": {
+                        "type": "array",
+                        "items": {
+                            "description": "Accessorial List",
+                            "type": "string"
                         }
                     }
                 }
