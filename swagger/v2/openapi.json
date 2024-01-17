@@ -2635,8 +2635,8 @@
                         "description": "docType ",
                         "type": "string"
                     },
-                    "url": {
-                        "description": "url",
+                    "b64str": {
+                        "description": "b64str",
                         "type": "string"
                     }
                 }
