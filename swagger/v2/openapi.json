@@ -2456,7 +2456,8 @@
                                         "type": "object",
                                         "properties": {
                                             "serviceLevel": {
-                                                "type": "object"
+                                                "type": "string",
+                                                "description": "Service Level"
                                             },
                                             "estimatedDelivery": {
                                                 "type": "string",
@@ -2474,7 +2475,21 @@
                                             "accessorialList": {
                                                 "type": "array",
                                                 "items": {
-                                                    "type": "string"
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "code": {
+                                                            "type": "string",
+                                                            "description": "Accessorial Code"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "description": "Accessorial Description"
+                                                        },
+                                                        "charge": {
+                                                            "type": "number",
+                                                            "description": "Accessorial Charge"
+                                                        }
+                                                    }
                                                 },
                                                 "description": "Accessorial List"
                                             },
@@ -4640,6 +4655,10 @@
                                         "consigneeZip": {
                                             "type": "string",
                                             "description": "Consignee Zip"
+                                        },
+                                        "insuredValue": {
+                                            "type": "string",
+                                            "description": "Insured Value"
                                         },
                                         "shipmentLines": {
                                             "type": "array",
