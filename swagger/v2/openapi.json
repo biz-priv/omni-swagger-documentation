@@ -4621,7 +4621,7 @@
                                 },
                                 "charge": {
                                     "description": "charge",
-                                    "type": "string"
+                                    "type": "number"
                                 }
                             }
                         }
