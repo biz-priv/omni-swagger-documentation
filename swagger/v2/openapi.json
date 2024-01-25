@@ -1093,7 +1093,7 @@
         "/v2/shipment/vendorinvoice": {
             "post": {
                 "operationId": "/v2/shipment/vendorinvoice",
-                "summary": "Shipment vendor invoice",
+                "summary": "Vendor invoice",
                 "tags": [
                     "Shipment"
                 ],
@@ -4594,17 +4594,37 @@
             "ShipmentVendorInvoiceProperties": {
                 "type": "object",
                 "properties": {
-                    "fileNumber": {
-                        "description": "File Number",
-                        "type": "string"
-                    },
-                    "vendorReference": {
-                        "description": "VendorvReference",
+                    "operation": {
+                        "description": "Operation",
                         "type": "string"
                     },
                     "vendorId": {
                         "description": "Vendor Id",
                         "type": "string"
+                    },
+                    "housebill": {
+                        "description": "House Bill",
+                        "type": "string"
+                    },
+                    "vendorReference": {
+                        "description": "vendor Reference",
+                        "type": "string"
+                    },
+                    "chargeList": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "description": "code",
+                                    "type": "string"
+                                },
+                                "charge": {
+                                    "description": "charge",
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 },
                 "example": {
