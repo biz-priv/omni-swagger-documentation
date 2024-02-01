@@ -27,9 +27,6 @@
       "name": "WMS"
     },
     {
-      "name": "P44-Location"
-    },
-    {
       "name": "Eventing"
     }
   ],
@@ -574,7 +571,7 @@
         "operationId": "/v1/location/updates",
         "summary": "Location Update",
         "tags": [
-          "P44-Location"
+          "Shipment"
         ],
         "consumes": [
           "application/json"
