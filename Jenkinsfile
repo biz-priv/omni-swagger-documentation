@@ -42,9 +42,9 @@ pipeline {
         stage('Dev and Prod Deploy'){
             when {
                 anyOf {
-                    branch 'feature/*'
                     branch 'develop';
                     branch 'master';
+                    branch 'feature/28375';
                 }
                 expression {
                     return true;
