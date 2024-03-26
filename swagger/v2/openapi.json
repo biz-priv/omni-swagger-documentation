@@ -1111,260 +1111,16 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "_original": {
+                                "wmsOrderResponse": {
                                     "type": "object",
                                     "properties": {
-                                        "ShipTo": {
-                                            "type": "object",
-                                            "properties": {
-                                                "Name": {
-                                                    "description": "Name",
-                                                    "type": "string"
-                                                },
-                                                "Street": {
-                                                    "description": "Street",
-                                                    "type": "string"
-                                                },
-                                                "Street2": {
-                                                    "description": "Street2",
-                                                    "type": "string"
-                                                },
-                                                "Street3": {
-                                                    "description": "Street3",
-                                                    "type": "string"
-                                                },
-                                                "City": {
-                                                    "description": "City",
-                                                    "type": "string"
-                                                },
-                                                "State": {
-                                                    "description": "State",
-                                                    "type": "string"
-                                                },
-                                                "Phone": {
-                                                    "description": "Phone",
-                                                    "type": "string"
-                                                },
-                                                "Attention": {
-                                                    "description": "Attention",
-                                                    "type": "string"
-                                                },
-                                                "Zipcode": {
-                                                    "description": "Zip Code",
-                                                    "type": "string"
-                                                },
-                                                "CountryCode": {
-                                                    "description": "Country Code",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        "BillTo": {
-                                            "type": "object",
-                                            "properties": {
-                                                "Name": {
-                                                    "description": "Name",
-                                                    "type": "string"
-                                                },
-                                                "Street": {
-                                                    "description": "Street",
-                                                    "type": "string"
-                                                },
-                                                "Street2": {
-                                                    "description": "Street2",
-                                                    "type": "string"
-                                                },
-                                                "Street3": {
-                                                    "description": "Street3",
-                                                    "type": "string"
-                                                },
-                                                "City": {
-                                                    "description": "City",
-                                                    "type": "string"
-                                                },
-                                                "State": {
-                                                    "description": "State",
-                                                    "type": "string"
-                                                },
-                                                "Phone": {
-                                                    "description": "Phone",
-                                                    "type": "string"
-                                                },
-                                                "Attention": {
-                                                    "description": "Attention",
-                                                    "type": "string"
-                                                },
-                                                "Zipcode": {
-                                                    "description": "Zip Code",
-                                                    "type": "string"
-                                                },
-                                                "CountryCode": {
-                                                    "description": "Country Code",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        "LineItem": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "StockCode": {
-                                                        "description": "Stock Code",
-                                                        "type": "string"
-                                                    },
-                                                    "PartNumber": {
-                                                        "description": "Part Number",
-                                                        "type": "string"
-                                                    },
-                                                    "Line": {
-                                                        "description": "Line",
-                                                        "type": "string"
-                                                    },
-                                                    "Quantity": {
-                                                        "description": "Quantity",
-                                                        "type": "string"
-                                                    },
-                                                    "Price": {
-                                                        "description": "Price",
-                                                        "type": "string"
-                                                    },
-                                                    "Description": {
-                                                        "description": "Description",
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "CustomerReference": {
-                                            "description": "Customer Reference",
+                                        "orderNumber": {
+                                            "description": "Order Number",
                                             "type": "string"
                                         },
-                                        "PONumber": {
-                                            "description": "PO Number",
+                                        "customerOrderNumber": {
+                                            "description": "Customer Order Number",
                                             "type": "string"
-                                        },
-                                        "FreightTerms": {
-                                            "description": "Freight Terms",
-                                            "type": "string"
-                                        },
-                                        "Forwarder": {
-                                            "description": "Forwarder",
-                                            "type": "string"
-                                        },
-                                        "ShipDate": {
-                                            "description": "Ship Date",
-                                            "type": "string",
-                                            "format": "date"
-                                        },
-                                        "Currency": {
-                                            "description": "Currency",
-                                            "type": "string"
-                                        },
-                                        "ShippingNotes": {
-                                            "description": "Shipping Notes",
-                                            "type": "string"
-                                        },
-                                        "ShippingMethod": {
-                                            "description": "Shipping Method",
-                                            "type": "string"
-                                        },
-                                        "LocationId": {
-                                            "description": "Location Id",
-                                            "type": "string"
-                                        },
-                                        "ForwarderAccount": {
-                                            "description": "Forwarder Account",
-                                            "type": "string"
-                                        },
-                                        "SONumber": {
-                                            "description": "SO Number",
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "details": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "message": {
-                                                "description": "Message",
-                                                "type": "string"
-                                            },
-                                            "path": {
-                                                "type": "array",
-                                                "items": {
-                                                    "description": "path",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "type": {
-                                                "description": "type",
-                                                "type": "string"
-                                            },
-                                            "context": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "child": {
-                                                        "description": "child",
-                                                        "type": "string"
-                                                    },
-                                                    "label": {
-                                                        "description": "label",
-                                                        "type": "string"
-                                                    },
-                                                    "value": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "Name": {
-                                                                "description": "Name",
-                                                                "type": "string"
-                                                            },
-                                                            "Street": {
-                                                                "description": "Street",
-                                                                "type": "string"
-                                                            },
-                                                            "Street2": {
-                                                                "description": "Street2",
-                                                                "type": "string"
-                                                            },
-                                                            "Street3": {
-                                                                "description": "Street3",
-                                                                "type": "string"
-                                                            },
-                                                            "City": {
-                                                                "description": "City",
-                                                                "type": "string"
-                                                            },
-                                                            "State": {
-                                                                "description": "State",
-                                                                "type": "string"
-                                                            },
-                                                            "Phone": {
-                                                                "description": "Phone",
-                                                                "type": "string"
-                                                            },
-                                                            "Attention": {
-                                                                "description": "Attention",
-                                                                "type": "string"
-                                                            },
-                                                            "Zipcode": {
-                                                                "description": "Zip Code",
-                                                                "type": "string"
-                                                            },
-                                                            "CountryCode": {
-                                                                "description": "Country Code",
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    },
-                                                    "key": {
-                                                        "description": "key",
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
                                         }
                                     }
                                 }
@@ -2178,62 +1934,8 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "ShipTo": {
-                                    "$ref": "#/components/requestBodies/ShipTo"
-                                },
-                                "BillTo": {
-                                    "$ref": "#/components/requestBodies/BillTo"
-                                },
-                                "LineItem": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/requestBodies/LineItem"
-                                    }
-                                },
-                                "CustomerReference": {
-                                    "description": "Customer Reference",
-                                    "type": "string"
-                                },
-                                "PONumber": {
-                                    "description": "PO Number",
-                                    "type": "string"
-                                },
-                                "FreightTerms": {
-                                    "description": "Freight Terms",
-                                    "type": "string"
-                                },
-                                "Forwarder": {
-                                    "description": "Forwarder",
-                                    "type": "string"
-                                },
-                                "ShipDate": {
-                                    "description": "Ship Date",
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "Currency": {
-                                    "description": "Currency",
-                                    "type": "string"
-                                },
-                                "ShippingNotes": {
-                                    "description": "Shipping Notes",
-                                    "type": "string"
-                                },
-                                "ShippingMethod": {
-                                    "description": "Shipping Method",
-                                    "type": "string"
-                                },
-                                "LocationId": {
-                                    "description": "Location Id",
-                                    "type": "string"
-                                },
-                                "ForwarderAccount": {
-                                    "description": "Forwarder Account",
-                                    "type": "string"
-                                },
-                                "SONumber": {
-                                    "description": "SO Number",
-                                    "type": "string"
+                                "WMSOrderRequest": {
+                                    "$ref": "#/components/requestBodies/WMSOrderRequestProperties"
                                 }
                             }
                         }
@@ -3256,47 +2958,139 @@
                     ]
                 }
             },
+            "WMSOrderRequestProperties": {
+                "type": "object",
+                "properties": {
+                    "customerOrderNumber": {
+                        "type": "string",
+                        "description": "Customer Order Number"
+                    },
+                    "incoterm": {
+                        "type": "string",
+                        "description": "in co-term"
+                    },
+                    "carrier": {
+                        "type": "string",
+                        "description": "Carrier"
+                    },
+                    "carrierAccount": {
+                        "type": "string",
+                        "description": "Carrier Account"
+                    },
+                    "shipDate": {
+                        "type": "string",
+                        "description": "Ship Date",
+                        "format": "date"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Currency"
+                    },
+                    "specialInstructions": {
+                        "type": "string",
+                        "description": "Special Instructions"
+                    },
+                    "serviceLevel": {
+                        "type": "string",
+                        "description": "Service Level"
+                    },
+                    "warehouse": {
+                        "type": "string",
+                        "description": "Ware House"
+                    },
+                    "shipTo": {
+                        "$ref": "#/components/requestBodies/ShipTo"
+                    },
+                    "billTo": {
+                        "$ref": "#/components/requestBodies/BillTo"
+                    },
+                    "orderLines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "lineNumber": {
+                                    "type": "integer",
+                                    "description": "Line Number"
+                                },
+                                "partNumber": {
+                                    "type": "string",
+                                    "description": "Part Number"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "quantity"
+                                },
+                                "unitPrice": {
+                                    "type": "number",
+                                    "description": "Unit Price"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "description"
+                                }
+                            }
+                        }
+                    },
+                    "customerReference": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "refType": {
+                                    "type": "string",
+                                    "description": "Ref Type"
+                                },
+                                "refNumber": {
+                                    "type": "string",
+                                    "description": "Ref Number"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "ShipTo": {
                 "type": "object",
                 "properties": {
-                    "Name": {
+                    "name": {
                         "description": "Name",
                         "type": "string"
                     },
-                    "Street": {
-                        "description": "Street",
+                    "address": {
+                        "description": "Address",
                         "type": "string"
                     },
-                    "Street2": {
-                        "description": "Street 2",
+                    "address2": {
+                        "description": "Address 2",
                         "type": "string"
                     },
-                    "Street3": {
-                        "description": "Street 3",
-                        "type": "string"
-                    },
-                    "City": {
+                    "city": {
                         "description": "City",
                         "type": "string"
                     },
-                    "State": {
+                    "state": {
                         "description": "State",
                         "type": "string"
                     },
-                    "Phone": {
-                        "description": "Phone",
-                        "type": "string"
-                    },
-                    "Attention": {
-                        "description": "Attention",
-                        "type": "string"
-                    },
-                    "Zipcode": {
+                    "zip": {
                         "description": "Zip Code",
                         "type": "string"
                     },
-                    "CountryCode": {
-                        "description": "Country Code",
+                    "country": {
+                        "description": "country",
+                        "type": "string"
+                    },
+                    "contact": {
+                        "description": "Contact",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "phone",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "email",
                         "type": "string"
                     }
                 }
@@ -3304,44 +3098,44 @@
             "BillTo": {
                 "type": "object",
                 "properties": {
-                    "Name": {
+                    "name": {
                         "description": "Name",
                         "type": "string"
                     },
-                    "Street": {
-                        "description": "Street",
+                    "address": {
+                        "description": "Address",
                         "type": "string"
                     },
-                    "Street2": {
-                        "description": "Street 2",
+                    "address2": {
+                        "description": "Address 2",
                         "type": "string"
                     },
-                    "Street3": {
-                        "description": "Street 3",
-                        "type": "string"
-                    },
-                    "City": {
+                    "city": {
                         "description": "City",
                         "type": "string"
                     },
-                    "State": {
+                    "state": {
                         "description": "State",
                         "type": "string"
                     },
-                    "Phone": {
-                        "description": "Phone",
-                        "type": "string"
-                    },
-                    "Attention": {
-                        "description": "Attention",
-                        "type": "string"
-                    },
-                    "Zipcode": {
+                    "zip": {
                         "description": "Zip Code",
                         "type": "string"
                     },
-                    "CountryCode": {
-                        "description": "Country Code",
+                    "country": {
+                        "description": "country",
+                        "type": "string"
+                    },
+                    "contact": {
+                        "description": "Contact",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "email",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "phone",
                         "type": "string"
                     }
                 }
