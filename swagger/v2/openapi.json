@@ -842,7 +842,7 @@
                     {
                         "name": "housebill",
                         "in": "query",
-                        "description": "ID ",
+                        "description": "housebill",
                         "schema": {
                             "type": "integer"
                         }
@@ -850,7 +850,7 @@
                     {
                         "name": "docType",
                         "in": "query",
-                        "description": "ID ",
+                        "description": "housebill",
                         "schema": {
                             "type": "integer"
                         }
@@ -902,6 +902,112 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/schemas/ShipmentVendorInvoiceResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/InvalidRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/schemas/AuthTokenMissing"
+                    }
+                }
+            }
+        },
+        "/v2/shipment/detail": {
+            "get": {
+                "operationId": "/v2/shipment/detail",
+                "summary": "Shipment Details",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "import requests\n\nurl = \"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\"\n\npayload={}\nheaders = {\n  'x-api-key': '<X-API-KEY>'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)"
+                    },
+                    {
+                        "lang": "Curl",
+                        "source": "curl --location --request GET 'https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962' \\\n--header 'x-api-key: <X-API-KEY>'"
+                    },
+                    {
+                        "lang": "JavaScript",
+                        "source": "var myHeaders = new Headers();\nmyHeaders.append(\"x-api-key\", \"<X-API-KEY>\");\n\nvar requestOptions = {\n  method: 'GET',\n  headers: myHeaders,\n  redirect: 'follow'\n};\n\nfetch(\"https://dev-api.omnilogistics.com/v2/shipment/detail?housebill=327962\", requestOptions)\n  .then(response => response.text())\n  .then(result => console.log(result))\n  .catch(error => console.log('error', error));"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "housebill",
+                        "in": "query",
+                        "description": "housebill",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fileNumber",
+                        "in": "query",
+                        "description": "fileNumber",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "milestoneHistory",
+                        "in": "query",
+                        "description": "milestoneHistory",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "refNumber",
+                        "in": "query",
+                        "description": "refNumber",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "activityFromDate",
+                        "in": "query",
+                        "description": "activityFromDate",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "activityToDate",
+                        "in": "query",
+                        "description": "activityToDate",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shipmentFromDate",
+                        "in": "query",
+                        "description": "shipmentFromDate",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nextStartToken",
+                        "in": "query",
+                        "description": "nextStartToken",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/schemas/ShipmentDetails"
                     },
                     "400": {
                         "$ref": "#/components/schemas/InvalidRequest"
@@ -1542,20 +1648,15 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "Items": {
-                                    "type": "object",
-                                    "properties": {
                                         "shipmentDetailResponse": {
                                             "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/ShipmentDetailItem"
                                             }
-                                        }
-                                    }
-                                },
-                                "LastEvaluatedKey": {
+                                        },
+                                "NextEndPoint": {
                                     "type": "string",
-                                    "description": "LastEvaluatedKey"
+                                    "description": "NextEndPoint"
                                 }
                             }
                         }
